@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сырбай Мәуленов әдеби музейі</title>
+<meta name="description" content="Сырбай Мәуленовтің өмірі мен шығармашылығына арналған мектептің цифрлық әдеби музейі.">
+<style>
+  :root{
+    /* Ivory / Bronze — жылы, ұстамды музей палитрасы */
+    --ink:#5C4126;            /* қою қола — негізгі мәтін мен тақырып */
+    --ink-2:#71512F;          /* қола-2 */
+    --ink-soft:#7E6244;       /* жұмсақ қола мәтін */
+    --red-deep:#3B2A17;       /* ең қою қола (Hero/футер фоны) */
+    --red-grad-1:#7A5836;--red-grad-2:#3B2A17;
+    --gold:#C2A167;           /* қола акцент */
+    --gold-deep:#A2814A;--gold-ink:#6E5227;
+    --paper:#FCFAF3;          /* ivory фон */
+    --paper-2:#F3EDDF;--white:#FFFFFF;
+    --text:#33291D;           /* қою жылы-қоңыр мәтін */
+    --muted:#8A7C6B;--line:#E7DCC6;--line-cool:#E3D8C4;
+    --shadow:0 18px 50px -28px rgba(59,42,23,.45);
+    --shadow-sm:0 8px 24px -16px rgba(59,42,23,.35);
+    --font-display:Arial, Helvetica, sans-serif;
+    --font-body:Arial, Helvetica, sans-serif;
+    --font-serif:Arial, Helvetica, sans-serif;
+    --font-mono:Arial, Helvetica, sans-serif;
+    --wrap:1180px;--hd:70px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);line-height:1.14;font-weight:700}
+  section{scroll-margin-top:calc(var(--hd) + 12px)}
+
+  /* ---------- HEADER ---------- */
+  header.nav{position:sticky;top:0;z-index:80;background:rgba(252,250,243,.92);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;gap:14px;height:var(--hd)}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;color:var(--ink);font-size:.98rem;white-space:nowrap;flex:0 0 auto}
+  .brand .seal{width:38px;height:38px;flex:0 0 38px;border-radius:3px;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:1rem}
+  .brand small{display:block;font-family:var(--font-body);font-weight:500;color:var(--muted);font-size:.66rem;letter-spacing:.3px}
+  .nav-links{display:flex;gap:1px;margin-left:auto;align-items:center}
+  @media(max-width:1320px){.brand small{display:none}}
+  .nav-links a{padding:8px 9px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--ink-soft);transition:background .2s,color .2s;white-space:nowrap}
+  .nav-links a:hover{background:var(--paper-2);color:var(--ink)}
+  .nav-links a.active{color:var(--ink);background:var(--paper-2);font-weight:600}
+  .nav-search{margin-left:6px;width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;color:var(--ink-soft);transition:.2s}
+  .nav-search:hover{border-color:var(--gold);color:var(--ink)}
+  .nav-search svg{width:18px;height:18px}
+  .burger{display:none;margin-left:auto;background:#fff;border:1px solid var(--line);border-radius:9px;width:44px;height:40px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
+  .burger svg{width:22px;height:22px}
+
+  @media(max-width:1120px){
+    .nav-links{position:fixed;inset:var(--hd) 0 auto 0;flex-direction:column;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px 16px;gap:2px;box-shadow:var(--shadow);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.22s;align-items:stretch}
+    .nav-links.open{transform:none;opacity:1;pointer-events:auto}
+    .nav-links a{padding:12px 14px;font-size:1rem}
+    .nav-search{display:none}
+    .burger{display:flex}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--red-grad-1),var(--red-grad-2));color:#F2E9D8}
+  .hero:before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.04) 0 2px,transparent 2px 24px);pointer-events:none}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:78px 0 84px}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:1px;color:var(--red-deep);background:var(--gold);padding:7px 14px;border-radius:3px;margin-bottom:26px;font-weight:500}
+  .kicker b{color:var(--red-deep)}
+  .hero h1{color:#fff;font-weight:900;font-size:clamp(3rem,7vw,5.6rem);line-height:.92;letter-spacing:-2px;text-transform:uppercase;margin-bottom:18px}
+  .hero .tagline{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:24px;font-weight:500}
+  .hero .lead{font-size:1.04rem;line-height:1.7;color:#E3D3B8;max-width:48ch;margin-bottom:34px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 21px;border-radius:12px;font-weight:600;font-size:.95rem;cursor:pointer;border:1px solid transparent;transition:transform .15s,background .2s,border-color .2s;font-family:var(--font-body)}
+  .btn-primary{background:var(--gold);color:var(--red-deep);box-shadow:var(--shadow);font-weight:800;text-transform:uppercase;letter-spacing:.3px;border-radius:3px}
+  .btn-primary:hover{background:#D4B67F;transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:#fff;border-color:var(--gold);border-radius:3px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+  .btn-outline:hover{background:var(--gold);color:var(--red-deep);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#E3D3B8;border-color:rgba(194,161,103,.4);border-radius:3px;font-weight:600}
+  .btn-ghost:hover{color:#fff;border-color:var(--gold)}
+
+  /* hero portrait placeholder */
+  .hero-visual{position:relative}
+  .portrait{position:relative;aspect-ratio:4/5;overflow:hidden;background:#3a0a10;border-left:4px solid var(--gold);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+  .portrait-img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;filter:grayscale(1) contrast(1.08) sepia(.18)}
+  .ph{display:grid;place-items:center;gap:12px;text-align:center;color:var(--ink-soft);padding:24px}
+  .ph .ph-ic{width:56px;height:56px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-deep)}
+  .ph .ph-ic svg{width:26px;height:26px}
+  .ph b{font-family:var(--font-body);font-weight:600;color:var(--ink);font-size:.92rem}
+  .ph span{font-size:.8rem;color:var(--muted);font-family:var(--font-mono)}
+  .portrait .stamp{position:absolute;left:0;bottom:0;right:0;background:linear-gradient(0deg,rgba(74,11,18,.96),transparent);padding:34px 20px 18px}
+  .portrait .stamp b{font-family:var(--font-body);font-weight:700;color:#fff;font-size:1.05rem;display:block}
+  .portrait .stamp span{font-family:var(--font-mono);color:var(--gold);font-size:.74rem}
+
+  /* ---------- THREE PATHS ---------- */
+  .paths{padding:12px 0 4px;position:relative;margin-top:-38px;z-index:2}
+  .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .path{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 22px;box-shadow:var(--shadow-sm);transition:transform .18s,border-color .2s;position:relative;overflow:hidden}
+  .path:hover{transform:translateY(-4px);border-color:var(--ink)}
+  .path .verb{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-2);letter-spacing:1px;margin-bottom:12px;font-weight:500}
+  .path .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;background:var(--paper-2);color:var(--ink)}
+  .path .ic svg{width:24px;height:24px}
+  .path h3{font-size:1.35rem;margin-bottom:6px}
+  .path p{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px}
+  .path .go{font-weight:700;color:var(--ink);font-size:.9rem;display:inline-flex;align-items:center;gap:7px}
+  .path .go .arw{transition:transform .2s}
+  .path:hover .go .arw{transform:translateX(4px)}
+
+  /* ---------- SECTION SHELL ---------- */
+  .section{padding:74px 0}
+  .section.alt{background:var(--paper)}
+  .sec-head{max-width:60ch;margin-bottom:38px}
+  .eyebrow{font-family:var(--font-mono);font-size:.74rem;letter-spacing:1px;color:var(--ink-2);margin-bottom:14px;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+  .eyebrow:before{content:"";width:28px;height:3px;background:var(--ink);border-radius:0}
+  .sec-head h2{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+  .sec-head p{color:var(--ink-soft);font-size:1.02rem}
+
+  /* ---------- TIMELINE ---------- */
+  .tl-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}
+  .tl-head h3{font-size:1.4rem}
+  .tl-toggle{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:4px;gap:2px}
+  .tl-toggle button{border:none;background:none;font-family:var(--font-body);font-weight:600;font-size:.86rem;color:var(--ink-soft);padding:8px 15px;border-radius:8px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:7px}
+  .tl-toggle button svg{width:15px;height:15px}
+  .tl-toggle button.on{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}
+
+  .tl{position:relative;padding-left:0}
+  .tl-line{position:relative}
+  .tl-line:before{content:"";position:absolute;left:78px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--line))}
+  .tl-item{position:relative;display:grid;grid-template-columns:78px 1fr;gap:24px;padding:12px 0}
+  .tl-year{font-family:var(--font-mono);font-size:.86rem;color:var(--gold-ink);text-align:right;padding-top:2px;white-space:nowrap}
+  .tl-body{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .tl-body:before{content:"";position:absolute;left:-25px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--white);border:3px solid var(--gold);box-shadow:0 0 0 4px var(--paper)}
+  .tl-body h4{font-size:1.1rem;margin-bottom:5px}
+  .tl-body .place{font-family:var(--font-mono);font-size:.74rem;color:var(--muted);margin-bottom:8px;display:inline-flex;align-items:center;gap:5px}
+  .tl-body .place svg{width:12px;height:12px}
+  .tl-body p{color:var(--ink-soft);font-size:.9rem;line-height:1.6}
+
+  /* карта көрінісі */
+  .tl-map{display:none;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+  .tl-map.show{display:grid}
+  .tl-line.hide{display:none}
+  .map-frame{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#EDE4D2;box-shadow:var(--shadow-sm)}
+  .map-frame svg{display:block;width:100%;height:auto}
+  .map-dot{cursor:pointer}
+  .map-dot circle.hit{fill:var(--gold);stroke:#fff;stroke-width:2;transition:r .15s}
+  .map-dot:hover circle.hit,.map-dot.active circle.hit{r:9}
+  .map-dot text{font-family:var(--font-mono);font-size:9px;fill:var(--ink);pointer-events:none}
+  .map-info{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;box-shadow:var(--shadow-sm);min-height:220px}
+  .map-info .mi-year{font-family:var(--font-mono);color:var(--gold-ink);font-size:.8rem;margin-bottom:6px}
+  .map-info h4{font-size:1.2rem;margin-bottom:6px}
+  .map-info .mi-place{font-family:var(--font-mono);font-size:.76rem;color:var(--muted);margin-bottom:12px;display:inline-flex;gap:6px;align-items:center}
+  .map-info .mi-place svg{width:13px;height:13px}
+  .map-info p{color:var(--ink-soft);font-size:.92rem;line-height:1.65}
+  .map-hint{margin-top:14px;font-size:.8rem;color:var(--muted);font-family:var(--font-mono)}
+  @media(max-width:800px){.tl-map.show{grid-template-columns:1fr}}
+
+  /* placeholder shell for upcoming sections */
+  .stub{border:1px dashed var(--line);border-radius:16px;background:var(--paper);padding:40px 28px;text-align:center;color:var(--muted)}
+  .stub .ph-ic{margin:0 auto 12px;width:52px;height:52px;border-radius:13px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-deep)}
+  .stub .ph-ic svg{width:24px;height:24px}
+  .stub b{display:block;font-family:var(--font-display);color:var(--ink);font-size:1.15rem;margin-bottom:6px}
+  .stub span{font-size:.9rem}
+
+  /* ---------- СЫРБАЙТАНУ ТАБТАРЫ ---------- */
+  .study-tabs{position:sticky;top:var(--hd);z-index:40;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:6px;display:flex;gap:4px;margin-bottom:32px;overflow-x:auto}
+  .study-tab{flex:1;min-width:max-content;border:none;background:none;font-family:var(--font-body);font-weight:700;font-size:.92rem;color:var(--ink-soft);padding:12px 18px;border-radius:10px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+  .study-tab svg{width:17px;height:17px}
+  .study-tab:hover{color:var(--ink);background:#fff}
+  .study-tab.on{background:var(--ink);color:#fff}
+  .study-tab.on.sci{background:var(--gold-deep);color:var(--red-deep)}
+  .study-panel{display:none;animation:fadein .3s ease}
+  .study-panel.on{display:block}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .panel-lead{color:var(--ink-soft);font-size:1rem;line-height:1.6;max-width:70ch;margin:-8px 0 26px}
+
+  /* ---------- МУЗЕЙ БҰРЫШТАРЫ ---------- */
+  .corners{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+  .corner{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:border-color .2s}
+  .corner:hover{border-color:var(--gold)}
+  .corner .shot{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:14px 0 4px}
+  .corner .cbody{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .corner h4{font-size:1.12rem;margin-bottom:8px;line-height:1.2}
+  .corner .exh{color:var(--ink-soft);font-size:.88rem;line-height:1.55;margin-bottom:14px;flex:1}
+  .corner .ctoggle{margin-top:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:600;font-size:.83rem;color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:8px;transition:.2s;font-family:var(--font-body);width:100%}
+  .corner .ctoggle:hover{border-color:var(--gold)}
+  .corner .ctoggle.tsk{margin-top:8px}
+  .corner .ctoggle .ar{transition:transform .25s}
+  .corner .ctoggle[aria-expanded="true"] .ar{transform:rotate(90deg)}
+  .cpanel{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .cpanel.open{max-height:2400px}
+  .cpanel .inner{padding:15px 14px;margin-top:10px;border:1px dashed var(--line);border-radius:11px;background:var(--paper)}
+  .cpanel .lbl{font-family:var(--font-mono);font-size:.7rem;color:var(--gold-ink);margin-bottom:8px}
+  .cpanel p{font-size:.87rem;color:var(--text);line-height:1.65;margin-bottom:9px}
+  .cpanel p:last-child{margin-bottom:0}
+  .cpanel .lvl{margin-bottom:13px}
+  .cpanel .lvl:last-child{margin-bottom:0}
+  .cpanel .lvl ol{margin:0;padding-left:19px;font-size:.83rem;line-height:1.55;color:var(--text)}
+  .cpanel .lvl li{margin-bottom:6px}
+  .corner-src{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);line-height:1.5}
+  .corner-src a{color:var(--ink-2);font-weight:600}
+  .corner-link{display:block;margin-top:10px;text-align:center;font-size:.8rem;font-weight:600;color:var(--ink-2);text-decoration:none;border:1px dashed var(--gold);border-radius:10px;padding:9px 12px;transition:.2s}
+  .corner-link:hover{background:var(--paper);color:var(--ink)}
+
+  /* музей — маршрут пен құжаттар */
+  .museum-docs{margin-top:36px}
+  .doc-groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px}
+  .doc-group{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px}
+  .doc-group .dg-lvl{font-family:var(--font-mono);font-size:.74rem;color:var(--gold-ink);display:block;margin-bottom:14px}
+  .resource{display:flex;gap:12px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:11px;margin-bottom:10px;transition:.18s;background:var(--paper)}
+  .resource:last-child{margin-bottom:0}
+  .resource:hover{border-color:var(--gold);background:#fff}
+  .resource .ic{font-size:1.3rem;flex:0 0 auto}
+  .resource b{display:block;color:var(--ink);font-family:var(--font-body);font-size:.9rem;margin-bottom:2px}
+  .resource span span{color:var(--muted);font-size:.8rem;line-height:1.4}
+  .doc-note{margin:16px 0 0;font-size:.85rem;line-height:1.65;color:var(--muted)}
+  .doc-note a{color:var(--ink-2);font-weight:600}
+  @media(max-width:900px){.corners{grid-template-columns:1fr}.doc-groups{grid-template-columns:1fr}}
+  @media(max-width:640px){.corners{grid-template-columns:1fr}}
+
+  /* ---------- СЫРБАЙТАНУ ---------- */
+  .lesson-flow{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}
+  .lesson-flow .fstep{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:.85rem;color:var(--ink-soft);font-weight:500;display:inline-flex;align-items:center;gap:8px}
+  .lesson-flow .fstep .n{width:20px;height:20px;border-radius:50%;background:var(--paper-2);color:var(--ink);font-family:var(--font-mono);font-size:.72rem;display:grid;place-items:center}
+  .lesson-flow .arr{color:var(--muted);align-self:center}
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .level-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px 20px;box-shadow:var(--shadow-sm)}
+  .level-card .lc-tag{font-family:var(--font-mono);font-size:.72rem;color:var(--gold-ink);margin-bottom:10px}
+  .lc-flow{display:flex;align-items:center;gap:6px;margin:8px 0 12px;flex-wrap:wrap}
+  .lc-flow span{background:var(--gold);color:var(--red-deep);font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:6px}
+  .lc-flow i{color:var(--muted);font-style:normal;font-size:.85rem}
+  .level-card h4{font-size:1.15rem;margin-bottom:12px}
+  .level-card ul{list-style:none;margin:0;padding:0}
+  .level-card li{font-size:.88rem;color:var(--ink-soft);padding:6px 0 6px 20px;position:relative}
+  .level-card li:before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+  .arch-block{margin-bottom:24px}
+  .arch-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  .arch-head .ah-ic{flex:none;width:38px;height:38px;border-radius:10px;background:var(--paper-2);display:grid;place-items:center;color:var(--ink-2)}
+  .arch-head .ah-ic svg{width:19px;height:19px}
+  .arch-head b{display:block;font-size:1.02rem;color:var(--ink)}
+  .arch-head span span,.arch-head div span{font-size:.83rem;color:var(--muted)}
+  .arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .arch-item{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;transition:border-color .15s,transform .15s}
+  .arch-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .arch-item b{display:block;font-size:.95rem;color:var(--ink);margin-bottom:4px}
+  .arch-item span{display:block;font-size:.84rem;color:var(--ink-soft);line-height:1.45}
+  .stage-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0 30px}
+  .stage{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:0 0 12px 12px;padding:18px 16px}
+  .stage .st-k{display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--gold-ink);margin-bottom:8px}
+  .stage b{display:block;font-size:1.05rem;color:var(--ink);margin-bottom:6px}
+  .stage span:last-child{font-size:.87rem;color:var(--ink-soft);line-height:1.5}
+  .resource.soon{opacity:.62;cursor:default}
+  @media(max-width:760px){.stage-row{grid-template-columns:1fr}}
+  .guide-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:26px 24px;box-shadow:var(--shadow-sm)}
+  .guide-card .gc-tag{display:inline-block;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.04em;color:var(--gold-ink);background:var(--paper-2);border-radius:6px;padding:5px 10px;margin-bottom:12px}
+  .guide-card h4{font-size:1.22rem;margin-bottom:6px}
+  .guide-card .gc-meta{font-size:.85rem;color:var(--ink-soft);margin-bottom:12px}
+  .guide-card>p{color:var(--ink-soft);font-size:.93rem;max-width:70ch;margin-bottom:20px}
+  .gc-stops{display:grid;gap:10px;margin-bottom:20px}
+  .gc-stop{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:0;padding:12px 14px}
+  .gc-stop b{display:block;font-size:.94rem;margin-bottom:2px}
+  .gc-stop span span{font-size:.85rem;color:var(--ink-soft)}
+  .gc-skills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+  .gc-skills span{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:5px 11px}
+  .gc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;background:var(--gold);color:var(--red-deep);border-radius:9px;font-weight:600;font-size:.94rem;text-decoration:none}
+  .gc-btn svg{width:16px;height:16px}
+  .gc-btn:hover{filter:brightness(.95)}
+  @media(max-width:640px){.gc-stop{flex-direction:column;gap:6px}}
+  .guide-band{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px 24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+  .guide-band .gb-ic{width:64px;height:64px;border-radius:16px;background:linear-gradient(160deg,#F3EDDF,#EDE4D2);display:grid;place-items:center;font-size:1.8rem;border:1px solid var(--line)}
+  .guide-band h4{font-size:1.2rem;margin-bottom:6px}
+  .guide-band p{color:var(--ink-soft);font-size:.92rem;max-width:64ch}
+  .guide-steps{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .guide-steps span{font-family:var(--font-mono);font-size:.75rem;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 10px;color:var(--ink-soft)}
+
+  /* ---------- ОҚУШЫ ЖОБАЛАРЫ (AI) ---------- */
+  .ai-principle{background:linear-gradient(135deg,#4A3520,#6B4C2B);color:#fff;border-radius:16px;padding:22px 26px;margin-bottom:26px;display:flex;align-items:center;gap:18px}
+  .ai-principle .ap-ic{width:44px;height:44px;flex:0 0 44px;border-radius:12px;background:rgba(244,162,97,.2);display:grid;place-items:center;color:var(--gold)}
+  .ai-principle .ap-ic svg{width:24px;height:24px}
+  .ai-principle b{font-family:var(--font-display);font-size:1.15rem;display:block;margin-bottom:2px}
+  .ai-principle span{color:#E3D3B8;font-size:.9rem}
+  .ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ai-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow-sm);transition:transform .18s,border-color .2s}
+  .ai-card:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .ai-card .ac-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .ai-card .lg{width:44px;height:44px;flex:0 0 44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-size:1.2rem;font-weight:700}
+  .ai-card .ac-kind{display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--gold-ink);margin-bottom:3px}
+  .ai-card .ac-tool{display:block}
+  .ai-card .ac-tool{font-size:.82rem;color:var(--muted)}
+  .ai-card h4{font-size:1.05rem;margin-bottom:8px;line-height:1.25}
+  .ai-card p{color:var(--ink-soft);font-size:.86rem;line-height:1.55;margin-bottom:16px;flex:1}
+  .ai-card .ac-open{background:var(--ink);color:#fff;text-align:center;border-radius:10px;padding:10px;font-weight:600;font-size:.87rem;transition:background .2s}
+  .ai-card .ac-open:hover{background:var(--ink-2)}
+
+  /* 10–11: викторина каталогы */
+  .src-band{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:22px}
+  .src-band .src-k{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-2);letter-spacing:.5px;margin-bottom:12px;text-transform:uppercase}
+  .src-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .src-tags span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.83rem;color:var(--text);font-weight:500}
+  .q-cat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .qapp{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);transition:.18s}
+  .qapp:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .qapp .qa-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .qapp .qa-lg{width:42px;height:42px;flex:0 0 42px;border-radius:11px;display:grid;place-items:center;color:#fff;font-family:var(--font-display);font-weight:900;font-size:1.15rem}
+  .qapp h4{font-size:1.05rem}
+  .qapp .qa-row{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
+  .qapp .qa-row:first-of-type{border-top:none}
+  .qapp .qa-k{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-2);letter-spacing:.4px;text-transform:uppercase}
+  .qapp .qa-row span:last-child{font-size:.85rem;color:var(--ink-soft);line-height:1.45}
+  .qapp .qa-btn{display:inline-block;margin-top:14px;font-size:.83rem;font-weight:700;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:8px 14px;transition:.18s}
+  .qapp .qa-btn:hover{border-color:var(--gold);background:var(--paper)}
+  .algo{margin-top:26px;background:linear-gradient(135deg,var(--red-grad-1),var(--red-grad-2));color:#fff;border-radius:16px;padding:24px}
+  .algo .algo-k{font-family:var(--font-mono);font-size:.74rem;color:var(--gold);letter-spacing:.5px;margin-bottom:14px;text-transform:uppercase}
+  .algo-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .algo-flow span{background:rgba(255,255,255,.1);border:1px solid rgba(232,195,122,.3);border-radius:8px;padding:8px 13px;font-size:.85rem;font-weight:500}
+  .algo-flow i{color:var(--gold);font-style:normal;font-weight:700}
+  @media(max-width:900px){.q-cat{grid-template-columns:1fr}}
+
+  /* 12 ай – 12 кітап */
+  .months{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
+  .month{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;text-align:center;transition:.18s}
+  .month:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .month .mn{font-family:var(--font-mono);font-size:.72rem;color:var(--gold-ink);margin-bottom:8px}
+  .month .mbook{width:38px;height:38px;margin:0 auto 8px;border-radius:9px;background:var(--paper-2);display:grid;place-items:center;color:var(--ink-soft)}
+  .month .mbook svg{width:20px;height:20px}
+  .month b{font-size:.9rem;color:var(--ink);display:block;font-family:var(--font-body)}
+  .month span{font-size:.76rem;color:var(--muted)}
+  .flow-strip{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px}
+  .flow-strip span{font-family:var(--font-mono);font-size:.75rem;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 11px}
+
+  /* Пайдалы 15 минут */
+  .pv15{margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+  .pv15-head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .pv15-badge{font-family:var(--font-mono);font-size:.72rem;color:var(--red-deep);background:var(--gold);padding:6px 12px;border-radius:3px;font-weight:600}
+  .pv15-head h4{font-size:1.15rem}
+  .pv15 p{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px}
+  .guide-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  .ge-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+  .ge-card .ge-ic{font-size:1.8rem;margin-bottom:10px}
+  .ge-card b{display:block;font-family:var(--font-display);color:var(--ink);font-size:1.02rem;margin-bottom:5px}
+  .ge-card span{font-size:.86rem;color:var(--ink-soft);line-height:1.5}
+
+  /* Ғылыми жұмыстар */
+  .science-hero{background:linear-gradient(135deg,#3a2410,#5e3a18);color:#fff;border-radius:18px;padding:34px 32px;margin-bottom:26px;position:relative;overflow:hidden}
+  .science-hero:before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 22px)}
+  .science-hero h2{color:#fff;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-1px;margin:6px 0 10px;position:relative}
+  .science-hero p{color:#E5D6B6;font-size:1rem;max-width:60ch;position:relative}
+  .sci-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .sci-cats span{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.82rem;color:var(--ink-soft);font-weight:500}
+  .sci-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .sci-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold-deep);border-radius:12px;padding:20px;transition:.18s}
+  .sci-card:hover{border-color:var(--gold-deep);box-shadow:var(--shadow-sm)}
+  .sci-card .sc-cat{font-family:var(--font-mono);font-size:.7rem;color:var(--gold-ink);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+  .sci-card h4{font-size:1.08rem;margin-bottom:8px;line-height:1.3}
+  .sci-card .sc-meta{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+  .sci-card .sc-meta b{color:var(--ink-soft)}
+  .sci-card p{font-size:.87rem;color:var(--ink-soft);line-height:1.55;margin-bottom:14px}
+  .sci-card .sc-links{display:flex;flex-wrap:wrap;gap:8px}
+  .sci-card .sc-links a{display:inline-flex;align-items:center;gap:6px;font-size:.83rem;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;transition:.18s}
+  .sci-card .sc-links a:hover{border-color:var(--gold);background:var(--paper)}
+  .sci-card .sc-tag{font-size:.76rem;color:var(--muted);background:var(--paper);border-radius:6px;padding:8px 11px}
+  @media(max-width:800px){.guide-extra{grid-template-columns:1fr}.sci-grid{grid-template-columns:1fr}}
+
+  /* ---------- БАЙҚАУ ---------- */
+  .contest{margin-top:52px}
+  .noms{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  .nom{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px 20px;box-shadow:var(--shadow-sm);transition:.18s}
+  .nom:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .nom .nic{width:46px;height:46px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;color:var(--ink);margin-bottom:14px}
+  .nom .nic svg{width:24px;height:24px}
+  .nom h4{font-size:1.1rem;margin-bottom:7px}
+  .nom p{color:var(--ink-soft);font-size:.88rem;line-height:1.55}
+  .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .step4{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 16px}
+  .step4 .s4n{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#fff;font-family:var(--font-mono);font-size:.82rem;display:grid;place-items:center;margin-bottom:11px}
+  .step4 p{font-size:.85rem;color:var(--ink-soft);line-height:1.5}
+  .apply{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;margin-top:30px;align-items:start}
+  .apply-form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow-sm)}
+  .apply-form h4{font-size:1.2rem;margin-bottom:16px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:var(--font-body);font-size:.9rem;background:var(--paper);color:var(--text)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--gold);background:#fff}
+  .apply-form .btn-primary{width:100%;justify-content:center;margin-top:6px}
+  .apply-note{font-size:.78rem;color:var(--muted);margin-top:10px;text-align:center}
+  .wa-band{background:linear-gradient(135deg,#4A3520,#6B4C2B);color:#fff;border-radius:16px;padding:26px 24px}
+  .wa-band .wic{width:48px;height:48px;border-radius:12px;background:#25D366;display:grid;place-items:center;margin-bottom:14px}
+  .wa-band .wic svg{width:26px;height:26px;fill:#fff}
+  .wa-band h4{color:#fff;font-size:1.2rem;margin-bottom:8px}
+  .wa-band p{color:#E3D3B8;font-size:.9rem;line-height:1.6;margin-bottom:16px}
+  .wa-band a{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--ink);border-radius:11px;padding:11px 18px;font-weight:600;font-size:.9rem;transition:.2s}
+  .wa-band a:hover{background:var(--gold);color:#fff}
+  @media(max-width:900px){.noms{grid-template-columns:1fr}.steps4{grid-template-columns:1fr 1fr}.apply{grid-template-columns:1fr}}
+
+  /* ---------- БАЙҚАУ (толық) ---------- */
+  .contest{margin-top:52px}
+  .contest-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0 30px}
+  .cm{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .cm .cm-k{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-2);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase}
+  .cm .cm-v{font-weight:700;color:var(--text);font-size:.95rem;line-height:1.3}
+  .cm .cm-v small{display:block;font-weight:500;color:var(--muted);font-size:.8rem;margin-top:2px}
+
+  .noms{display:flex;flex-direction:column;gap:14px}
+  .nom{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;transition:border-color .2s}
+  .nom:hover{border-color:var(--ink)}
+  .nom-head{display:flex;align-items:center;gap:16px;padding:20px 22px;cursor:pointer;user-select:none}
+  .nom-num{width:44px;height:44px;flex:0 0 44px;border-radius:8px;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:1.3rem}
+  .nom-title{flex:1}
+  .nom-title h4{font-size:1.12rem;margin-bottom:3px}
+  .nom-title .nom-cls{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-2)}
+  .nom-arrow{color:var(--muted);transition:transform .25s;flex:0 0 auto}
+  .nom-head[aria-expanded="true"] .nom-arrow{transform:rotate(180deg)}
+  .nom-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .nom-body.open{max-height:1400px}
+  .nom-inner{padding:4px 22px 24px;border-top:1px solid var(--line);margin-top:0}
+  .nom-inner .nb-lead{color:var(--ink-soft);font-size:.92rem;line-height:1.6;margin:16px 0 18px;font-weight:500}
+  .nb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .nb-block h5{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-2);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+  .nb-block ul{list-style:none;margin:0;padding:0}
+  .nb-block li{font-size:.86rem;color:var(--text);padding:6px 0 6px 18px;position:relative;line-height:1.5}
+  .nb-block li:before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;border-radius:50%;background:var(--gold-deep)}
+  .nb-crit li:before{border-radius:2px;background:var(--ink)}
+  .nb-crit .pts{color:var(--ink-2);font-weight:700;font-family:var(--font-mono);font-size:.8rem}
+  @media(max-width:700px){.nb-grid{grid-template-columns:1fr}.contest-meta{grid-template-columns:1fr 1fr}}
+
+  .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+  .step4{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 16px}
+  .step4 .s4n{width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--gold);font-family:var(--font-mono);font-size:.82rem;display:grid;place-items:center;margin-bottom:11px;font-weight:700}
+  .step4 p{font-size:.85rem;color:var(--ink-soft);line-height:1.5}
+
+  .apply{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;margin-top:30px;align-items:start}
+  .apply-form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow-sm)}
+  .apply-form h4{font-size:1.2rem;margin-bottom:6px}
+  .apply-form .af-sub{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;color:var(--ink-soft);font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:11px 13px;font-family:var(--font-body);font-size:.9rem;background:var(--paper);color:var(--text)}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--ink-2);background:#fff}
+  .apply-form .btn-primary{width:100%;justify-content:center;margin-top:6px;background:var(--ink);color:#fff}
+  .apply-form .btn-primary:hover{background:var(--ink-2)}
+  .apply-form .form-official{display:block;text-align:center;margin-top:12px;font-size:.85rem;font-weight:600;color:var(--ink-2);border:1px solid var(--line);border-radius:8px;padding:11px;transition:.2s}
+  .apply-form .form-official:hover{border-color:var(--gold);background:var(--paper)}
+  .apply-note{font-size:.78rem;color:var(--muted);margin-top:10px;text-align:center;line-height:1.5}
+  .wa-band{background:linear-gradient(135deg,var(--red-grad-1),var(--red-grad-2));color:#fff;border-radius:16px;padding:26px 24px}
+  .wa-band .wic{width:48px;height:48px;border-radius:12px;background:#25D366;display:grid;place-items:center;margin-bottom:14px}
+  .wa-band .wic svg{width:26px;height:26px;fill:#fff}
+  .wa-band h4{color:#fff;font-size:1.2rem;margin-bottom:8px}
+  .wa-band p{color:#E3D3B8;font-size:.9rem;line-height:1.6;margin-bottom:16px}
+  .wa-band .contacts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+  .wa-band .contacts span{font-size:.86rem;color:#F2E9D8}
+  .wa-band .contacts b{color:var(--gold)}
+  .wa-band a.wa-btn{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--red-deep);border-radius:6px;padding:11px 18px;font-weight:800;font-size:.9rem;transition:.2s}
+  .wa-band a.wa-btn:hover{background:#D4B67F}
+  @media(max-width:900px){.steps4{grid-template-columns:1fr 1fr}.apply{grid-template-columns:1fr}}
+
+  /* ---------- МЕДИА ---------- */
+  .media-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .media-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+  .media-card .mc-ic{width:46px;height:46px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;color:var(--ink);margin-bottom:14px}
+  .media-card .mc-ic svg{width:24px;height:24px}
+  .media-card h4{font-size:1.1rem;margin-bottom:7px}
+  .media-card p{color:var(--ink-soft);font-size:.87rem;line-height:1.55;margin-bottom:14px;flex:1}
+  .media-card .mc-links{display:flex;flex-direction:column;gap:8px}
+  .media-card .mc-links a{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:500;color:var(--ink);padding:9px 12px;border:1px solid var(--line);border-radius:10px;transition:.18s}
+  .media-card .mc-links a:hover{border-color:var(--gold);background:var(--paper)}
+  .media-card .mc-links a svg{width:15px;height:15px}
+  @media(max-width:900px){.levels{grid-template-columns:1fr}.ai-grid{grid-template-columns:1fr}.months{grid-template-columns:repeat(2,1fr)}.media-tabs{grid-template-columns:1fr}.guide-band{grid-template-columns:1fr;text-align:center}.guide-band .gb-ic{margin:0 auto}}
+
+  /* ---------- FOOTER ---------- */
+  footer.ft{background:var(--red-deep);color:#E3D3B8;padding:56px 0 32px;margin-top:20px}
+  .ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .ft h4{color:#fff;font-size:1.15rem;margin-bottom:12px}
+  .ft p{color:#D6C7AC;font-size:.9rem;max-width:44ch;line-height:1.6}
+  .ft .col b{display:block;font-family:var(--font-mono);font-size:.74rem;color:var(--gold);margin-bottom:14px;letter-spacing:1px}
+  .ft .col a{display:block;color:#DFCFB4;font-size:.9rem;padding:5px 0;transition:color .2s}
+  .ft .col a:hover{color:#fff}
+  .ft-bottom{padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:#B0A085;font-size:.82rem}
+
+  /* ---------- CHAT (Қонжық) ---------- */
+  .chat-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:stretch}
+  .chat-intro .konzhyk{width:88px;height:88px;border-radius:20px;background:linear-gradient(160deg,#F3EDDF,#EDE4D2);border:1px solid var(--line);display:grid;place-items:center;font-size:2.4rem;margin-bottom:18px;box-shadow:var(--shadow-sm)}
+  .chat-intro h3{font-size:1.5rem;margin-bottom:10px}
+  .chat-intro p{color:var(--ink-soft);font-size:.96rem;margin-bottom:16px;max-width:42ch}
+  .chat-hint{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.86rem;color:var(--muted)}
+  .chat-hint b{color:var(--ink);font-family:var(--font-body)}
+  .chat-suggest{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.84rem;color:var(--ink-soft);cursor:pointer;transition:.18s;font-family:var(--font-body)}
+  .chip:hover{border-color:var(--gold);color:var(--ink)}
+  .chat-box{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);overflow:hidden;min-height:440px}
+  .chat-log{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px}
+  .msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:.92rem;line-height:1.6}
+  .msg.bot{background:var(--paper-2);color:var(--text);border-bottom-left-radius:5px;align-self:flex-start}
+  .msg.me{background:var(--ink);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+  .msg.bot b{color:var(--ink)}
+  .chat-typing{align-self:flex-start;color:var(--muted);font-size:.85rem;font-family:var(--font-mono);padding:4px 8px}
+  .chat-form{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line);background:var(--paper)}
+  .chat-form input{flex:1;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:var(--font-body);font-size:.94rem;background:#fff;color:var(--text)}
+  .chat-form input:focus{outline:none;border-color:var(--gold)}
+  .chat-form button{background:var(--ink);color:#fff;border:none;border-radius:11px;padding:0 18px;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:background .2s}
+  .chat-form button:hover{background:var(--ink-2)}
+  .chat-form button:disabled{opacity:.5;cursor:default}
+  .chat-note{font-size:.76rem;color:var(--muted);text-align:center;padding:0 14px 12px;background:var(--paper)}
+
+  /* қалқыма батырма */
+  .fab{position:fixed;right:22px;bottom:22px;z-index:70;display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:13px 20px 13px 15px;font-family:var(--font-body);font-weight:600;font-size:.92rem;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s,background .2s}
+  .fab:hover{transform:translateY(-2px);background:var(--ink-2)}
+  .fab .kz{width:32px;height:32px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:1.1rem}
+  @media(max-width:560px){.fab span.lbl{display:none}.fab{padding:14px}}
+
+  /* ---------- INSTITUTION INFO (мектеп/музей) ---------- */
+  .inst{display:grid;grid-template-columns:1fr;gap:22px;margin-top:14px;max-width:620px}
+  .inst-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px;box-shadow:var(--shadow-sm)}
+  .inst-card .tag{font-family:var(--font-mono);font-size:.74rem;color:var(--gold-ink);margin-bottom:12px}
+  .inst-card h3{font-size:1.3rem;margin-bottom:12px}
+  .inst-card p{color:var(--ink-soft);font-size:.95rem;margin-bottom:14px}
+  .inst-facts{list-style:none;margin:0 0 16px;padding:0;font-size:.9rem}
+  .inst-facts li{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);color:var(--text)}
+  .inst-facts li:first-child{border-top:none}
+  .inst-facts .k{color:var(--muted);flex:0 0 118px;font-size:.84rem}
+  .inst-facts .v{font-weight:500}
+  .inst-links{display:flex;flex-wrap:wrap;gap:8px}
+  .inst-links a{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:.85rem;font-weight:500;color:var(--ink);transition:.18s}
+  .inst-links a:hover{border-color:var(--gold);background:#fff}
+  .inst-links a svg{width:15px;height:15px}
+  @media(max-width:760px){.inst{grid-template-columns:1fr}}
+  /* ---------- АДАЛ АЗАМАТ 6 БАҒЫТ ---------- */
+  .adal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+  .adal-btn{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px 18px;cursor:pointer;text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--font-body)}
+  .adal-btn:hover{border-color:var(--ink);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+  .adal-btn.on{border-color:var(--ink);border-width:2px;box-shadow:var(--shadow-sm)}
+  .adal-btn img{width:64px;height:64px;object-fit:contain}
+  .adal-btn b{font-size:.98rem;color:var(--ink);line-height:1.25}
+  .adal-btn .ac{font-family:var(--font-mono);font-size:.72rem;color:var(--muted)}
+  .adal-panel{display:none;margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow-sm)}
+  .adal-panel.on{display:block;animation:fadein .3s ease}
+  .adal-panel .ap-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .adal-panel .ap-head img{width:48px;height:48px;object-fit:contain}
+  .adal-panel .ap-head h4{font-size:1.2rem}
+  .adal-panel .ap-head span{font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}
+  .poem-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .poem-list a{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text);padding:9px 12px;border:1px solid var(--line);border-radius:9px;transition:.15s}
+  .poem-list a:hover{border-color:var(--gold);background:var(--paper);color:var(--ink)}
+  .poem-list a svg{width:13px;height:13px;flex:0 0 13px;color:var(--ink-2)}
+  @media(max-width:820px){.adal-grid{grid-template-columns:1fr 1fr}.poem-list{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.adal-grid{grid-template-columns:1fr}.poem-list{grid-template-columns:1fr}}
+
+  /* ---------- ФОТО ГАЛЕРЕЯ ---------- */
+  .photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+  .photo{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#1C2E44;box-shadow:var(--shadow-sm)}
+  .photo img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.9) contrast(1.03);transition:transform .3s}
+  .photo:hover img{transform:scale(1.04)}
+  .photo figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(13,59,102,.9));color:#fff;padding:22px 14px 12px;font-size:.82rem;line-height:1.4}
+  .photo figcaption b{display:block;font-family:var(--font-display);font-size:.95rem;margin-bottom:2px}
+  @media(max-width:760px){.photo-row{grid-template-columns:1fr}}
+
+  /* ---------- ШЫҒАРМАЛАР (Adebiportal) ---------- */
+  .works-panel{margin-top:26px;background:linear-gradient(135deg,#4A3520,#6B4C2B);border-radius:18px;padding:32px 30px;color:#fff;position:relative;overflow:hidden}
+  .works-panel:before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 39h40M39 0v40' stroke='%23fff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E")}
+  .works-panel .wp-in{position:relative}
+  .works-panel .wp-tag{font-family:var(--font-mono);font-size:.74rem;color:var(--gold);margin-bottom:10px}
+  .works-panel h3{color:#fff;font-size:1.55rem;margin-bottom:8px}
+  .works-panel p{color:#E3D3B8;font-size:.96rem;max-width:56ch;margin-bottom:22px}
+  .works-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+  .work-link{display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:16px 16px;transition:.2s}
+  .work-link:hover{background:rgba(255,255,255,.14);border-color:var(--gold);transform:translateY(-2px)}
+  .work-link .wl-ic{width:34px;height:34px;border-radius:9px;background:rgba(244,162,97,.2);display:grid;place-items:center;color:var(--gold);margin-bottom:4px}
+  .work-link .wl-ic svg{width:18px;height:18px}
+  .work-link b{color:#fff;font-family:var(--font-display);font-size:1.05rem}
+  .work-link span{color:#D2BF9C;font-size:.82rem}
+  .works-note{font-size:.8rem;color:#9DB6CE}
+  .works-note a{color:var(--gold);font-weight:500}
+  @media(max-width:640px){.works-links{grid-template-columns:1fr}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px;padding:48px 0 56px}
+    .hero-visual{max-width:360px}
+    .paths-grid{grid-template-columns:1fr;margin-top:0}
+    .paths{margin-top:0;padding-top:36px}
+    .ft-grid{grid-template-columns:1fr;gap:26px}
+    .chat-wrap{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="seal">С</span>
+      <span>Сырбай Мәуленов<small>әдеби музейі</small></span>
+    </a>
+    <nav class="nav-links" id="menu">
+      <a href="#about">Сырбай туралы</a>
+      <a href="#study">Сырбайтану</a>
+      <a href="#baiqau">Байқау</a>
+      <a href="#media">Медиа</a>
+      <a href="#chat">Сырбаймен сырласу</a>
+    </nav>
+    <button class="nav-search" id="searchBtn" aria-label="Іздеу">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+    <button class="burger" id="burger" aria-label="Мәзір" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="kicker">Ақынға арналған цифрлық платформа · <b>1922–1993</b></span>
+      <h1>Сырбай Мәуленов</h1>
+      <div class="tagline">Өлең. Өмір. Өрнек.</div>
+      <p class="lead">Қазақтың халық жазушысы, майдангер ақын Сырбай Мәуленовтің өмірі, мұрасы мен жәдігерлеріне арналған цифрлық платформа. Астанадағы №37 мектеп-лицейдің әдеби музейі негізінде жасалды: тоғыз тақырыптық бұрыш, өмір жолының хроникасы, оқушы жобалары мен «Сырбай мұрасы» байқауы — бәрі бір жерде.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#museum">Музейге кіру</a>
+        <a class="btn btn-outline" href="#adal">Тәрбиенің 6 бағыты</a>
+        <a class="btn btn-ghost" href="#projects">Оқушы жобаларын көру</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portrait">
+        <img class="portrait-img" src="data:image/jpeg;base64,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" alt="Сырбай Мәуленовтің портреті" loading="eager">
+        <div class="stamp">
+          <b>Сырбай Мәуленов</b>
+          <span>Қазақстанның халық жазушысы</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE PATHS ================= -->
+<div class="wrap paths">
+  <div class="paths-grid">
+    <a class="path" href="#study">
+      <div class="verb">КӨР</div>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></div>
+      <h3>Музей</h3>
+      <p>Тоғыз тақырыптық бұрыш, түпнұсқа жәдігерлер және виртуалды экскурсия.</p>
+      <span class="go">Музейге кіру <span class="arw">→</span></span>
+    </a>
+    <a class="path" href="#study">
+      <div class="verb">ЗЕРТТЕ</div>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+      <h3>Сырбайтану</h3>
+      <p>40 минуттық музей сабағы, жас жолбасшылар және деңгейлік тапсырмалар.</p>
+      <span class="go">Сырбайтануды бастау <span class="arw">→</span></span>
+    </a>
+    <a class="path" href="#projects">
+      <div class="verb">ЖАСА</div>
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg></div>
+      <h3>Оқушы жобалары</h3>
+      <p>Оқушылар ақын шығармаларын жасанды интеллект құралдарымен насихаттайды.</p>
+      <span class="go">Жобаларды көру <span class="arw">→</span></span>
+    </a>
+  </div>
+</div>
+
+<!-- ================= SECTION STUBS (келесі қадамдарда толтырылады) ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Сырбай туралы</div><h2>Ақынның тұлғасы мен өмір жолы</h2><p>Өмір жолының интерактивті хроникасы, ғұмырнама және замандастарының естеліктері.</p></div>
+    <div class="tl-head">
+      <h3>Ақынның өмір жолы</h3>
+      <div class="tl-toggle" role="tablist" aria-label="Көрініс">
+        <button id="tlBtnList" class="on" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Хроника</button>
+        <button id="tlBtnMap" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3zM9 3v15M15 6v15"/></svg>Ізімен картадан көр</button>
+      </div>
+    </div>
+
+    <div class="tl-line" id="tlList">
+    <div class="tl-item"><div class="tl-year">1922</div><div class="tl-body"><h4>Дүниеге келуі</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Торғай</span><p>17 қыркүйекте Қостанай облысы, Жангелдин ауданы, Торғай өңірінде дүниеге келді. Әкесі — Мәулен, анасы — Алмагүл. Тайпасы арғын, руы Аю.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1930-жж</div><div class="tl-body"><h4>Балалық шағы</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Қызылорда</span><p>Балалық және жасөспірім кезі Сыр бойында — Қызылорда өңірінде өтті. Ақынды «Сыр бойында туды» деп Сырбай атаған.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1937</div><div class="tl-body"><h4>Тұңғыш өлеңі</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Жамбыл облысы</span><p>Алғашқы өлеңі Жамбыл облысының «Колхозшы» газетінде жарияланды. Ақындық жолдың басы.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1941–1945</div><div class="tl-body"><h4>Ұлы Отан соғысы</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Ленинград</span><p>Соғысқа қатысып, Ленинград қаласын қорғауға ерлікпен қатысты. Ауыр жараланды, 1-дәрежелі мүгедек болып оралды. Осы кезең жырларына мәңгілік із қалдырды.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1943–1950</div><div class="tl-body"><h4>«Большевиктік жол»</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Қостанай</span><p>Қостанай облысында радиокомитет пен «Большевиктік жол» газетінде редактор, бөлім меңгерушісі, редактордың орынбасары болды. Әдебиет майданының басы.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1948</div><div class="tl-body"><h4>Алғашқы жинағы</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Алматы</span><p>«Өлеңдері» атты тұңғыш жыр жинағы жарық көрді. Кейін ақын қырыққа жуық жинақтың авторы атанды.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1955–1977</div><div class="tl-body"><h4>Бас редактор</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Алматы</span><p>«Жұлдыз» журналы мен «Қазақ әдебиеті» газетінің бас редакторы болды. Қазақ поэзиясының лирика жанрын дамытуға зор үлес қосты.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1970</div><div class="tl-body"><h4>Мемлекеттік сыйлық</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Алматы</span><p>Абай атындағы Қазақстан Мемлекеттік сыйлығының лауреаты атанды. «Қызыл Ту», «Халықтар Достығы», «Құрмет Белгісі» ордендерімен марапатталды.</p></div></div>
+    <div class="tl-item"><div class="tl-year">1993</div><div class="tl-body"><h4>Ақынның қазасы</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Алматы</span><p>Ақын дүниеден өтті. Артында бай әдеби мұра — жырлар, поэмалар, аудармалар мен балаларға арналған шығармалар қалды.</p></div></div>
+    <div class="tl-item"><div class="tl-year">2017</div><div class="tl-body"><h4>Музейдің ашылуы</h4><span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Астана</span><p>Астанадағы №37 мектеп-лицейде (2003 жылдан ақын есімін иеленген) Сырбай Мәуленов әдеби музейі ашылды. Ақын мұрасы жаңа буынға жол тартты.</p></div></div>
+    </div>
+
+    <div class="tl-map" id="tlMap">
+      <div class="map-frame">
+        <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" aria-label="Сырбай Мәуленовтің өмір жолының картасы">
+          <rect width="700" height="400" fill="#EDE4D2"/>
+          <path d="M60 200 Q180 120 320 160 T640 150 L660 230 Q520 300 360 270 T80 300 Z" fill="#E5DCC4" stroke="#D5C9AC" stroke-width="1.5"/>
+          <text x="20" y="30" font-family="Arial" font-size="11" fill="#A8977A">Ленинградтан Астанаға дейінгі жол</text>
+          <g class="map-dot" data-i="0" tabindex="0" role="button" aria-label="1922 Торғай"><circle class="hit" cx="529.1" cy="239.4" r="6"/><text x="540.1" y="242.4">Торғай</text></g><g class="map-dot" data-i="1" tabindex="0" role="button" aria-label="1930-жж Қызылорда"><circle class="hit" cx="556.8" cy="327.5" r="6"/><text x="567.8" y="330.5">Қызылорда</text></g><g class="map-dot" data-i="2" tabindex="0" role="button" aria-label="1937 Жамбыл облысы"><circle class="hit" cx="637.5" cy="363.4" r="6"/><text x="648.5" y="366.4">Жамбыл облысы</text></g><g class="map-dot" data-i="3" tabindex="0" role="button" aria-label="1941–1945 Ленинград"><circle class="hit" cx="71.8" cy="49.5" r="6"/><text x="82.8" y="52.5">Ленинград</text></g><g class="map-dot" data-i="4" tabindex="0" role="button" aria-label="1943–1950 Қостанай"><circle class="hit" cx="530.8" cy="173.5" r="6"/><text x="541.8" y="176.5">Қостанай</text></g><g class="map-dot" data-i="5" tabindex="0" role="button" aria-label="1948 Алматы"><circle class="hit" cx="713.9" cy="357.2" r="6"/><text x="724.9" y="360.2">Алматы</text></g><g class="map-dot" data-i="6" tabindex="0" role="button" aria-label="1955–1977 Алматы"><circle class="hit" cx="714.4" cy="357.2" r="6"/><text x="725.4" y="360.2">Алматы</text></g><g class="map-dot" data-i="7" tabindex="0" role="button" aria-label="1970 Алматы"><circle class="hit" cx="714.1" cy="356.9" r="6"/><text x="725.1" y="359.9">Алматы</text></g><g class="map-dot" data-i="8" tabindex="0" role="button" aria-label="1993 Алматы"><circle class="hit" cx="713.1" cy="357.5" r="6"/><text x="724.1" y="360.5">Алматы</text></g><g class="map-dot" data-i="9" tabindex="0" role="button" aria-label="2017 Астана"><circle class="hit" cx="638.9" cy="211.3" r="6"/><text x="649.9" y="214.3">Астана</text></g>
+        </svg>
+      </div>
+      <div class="map-info" id="mapInfo">
+        <div class="mi-year">Нүктені таңда</div>
+        <h4>Ақынның ізімен</h4>
+        <p>Картадағы нүктені бассаң, ақын өмірінің сол кезеңі мен орны туралы оқисың. Торғайда туып, Ленинградты қорғап, Алматыда еңбек етіп, мұрасы Астанаға жетті.</p>
+        <div class="map-hint">Нүктелер: Торғай · Қызылорда · Ленинград · Қостанай · Алматы · Астана</div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="sec-head" style="margin-top:56px;margin-bottom:14px"><div class="eyebrow">Мұрағат</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">Бейне, дыбыс және мақалалар</h2><p>Ақынның өз даусы жазылған телехабарлар, замандастарының естеліктері және өмірбаяны туралы мақалалар. Барлығы ашық дереккөздерде — түпнұсқаға тікелей сілтейміз.</p></div>
+
+    <div class="arch-block">
+      <div class="arch-head"><span class="ah-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></span><div><b>Телемұрағат бейнелері</b><span>Altyn Qor — «Qazaqstan» телерадиокорпорациясының алтын қоры</span></div></div>
+      <div class="arch-grid">
+        <a class="arch-item" href="https://altynqor.com/video/1621" target="_blank" rel="noopener"><b>«Ұмытпаңдар мені»</b><span>Ақынға арналған деректі хабар</span></a>
+        <a class="arch-item" href="https://altynqor.com/video/2772" target="_blank" rel="noopener"><b>«Жарқын бейне»</b><span>Сырбай Мәуленовтің тұлғасы туралы</span></a>
+        <a class="arch-item" href="https://altynqor.com/video/2559" target="_blank" rel="noopener"><b>«Кездесу»</b><span>Ақынның оқырманмен кездесуі — өз даусы</span></a>
+        <a class="arch-item" href="https://altynqor.com/video/3610" target="_blank" rel="noopener"><b>«Сөнбес сәуле»</b><span>Ақын мұрасына арналған хабар</span></a>
+      </div>
+    </div>
+
+    <div class="arch-block">
+      <div class="arch-head"><span class="ah-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v12M9 18a3 3 0 1 0 6 0V6l6-2"/></svg></span><div><b>Дыбыс жазбалары</b><span>Ақын өлеңдеріне жазылған әндер</span></div></div>
+      <div class="arch-grid">
+        <a class="arch-item" href="https://altynqor.com/audios/134" target="_blank" rel="noopener"><b>Ретро әндер</b><span>Сырбай Мәуленов сөзіне жазылған әндер жинағы</span></a>
+        <a class="arch-item" href="https://www.youtube.com/watch?v=9w84p2CHwXY" target="_blank" rel="noopener"><b>«Ұмытпаймыз» хабары</b><span>Ақынның 100 жылдығына арналған эфир · YouTube</span></a>
+      </div>
+    </div>
+
+    <div class="arch-block">
+      <div class="arch-head"><span class="ah-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h13l3 3v13H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span><div><b>Мақалалар мен зерттеулер</b><span>Ақынның өмірбаяны мен шығармашылығы туралы</span></div></div>
+      <div class="arch-grid">
+        <a class="arch-item" href="https://adebiportal.kz/kz/authors/view/826" target="_blank" rel="noopener"><b>Adebiportal.kz</b><span>Ресми әдеби порталдағы толық ғұмырнама</span></a>
+        <a class="arch-item" href="https://el.kz/content-6065_5171/" target="_blank" rel="noopener"><b>El.kz — әдеби талдау</b><span>Ақын поэзиясының тілі мен образдар жүйесі</span></a>
+        <a class="arch-item" href="https://sputnik.kz/20211003/lirika-Syrbay-Maulenov-18305220.html" target="_blank" rel="noopener"><b>Отбасы мен шығармашылығы</b><span>Серік Қирабаевтың бағасы, жинақтар тізімі</span></a>
+        <a class="arch-item" href="https://adebiportal.kz/kz/news/view/ulyqbek-esdaulet-syrnai-sazdy-syrbai-aqyn-esse__19733" target="_blank" rel="noopener"><b>Ұлықбек Есдәулет эссесі</b><span>«Сырнай сазды Сырбай ақын» — замандасының естелігі</span></a>
+        <a class="arch-item" href="https://37mektep-ns.edu.kz/?page_id=3651&lang=kk" target="_blank" rel="noopener"><b>Мектеп музейі туралы</b><span>№37 мектеп-лицей сайтындағы мұражай беті</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section alt" id="study">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Сырбайтану · ғылыми-танымдық орталық</div><h2>Зерттеу. Талдау. Дәлелдеу. Жасау. Таныстыру.</h2><p>Сырбайтану — ақын мұрасын зерттейтін және оқушыны зерттеуші әрі цифрлық өнім жасаушы ретінде дамытатын музей-педагогикалық орталық. Төрт бағыт бойынша жұмыс жүреді.</p></div>
+
+    <div class="study-tabs" role="tablist">
+      <button class="study-tab on" data-panel="sp-museum" role="tab" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>Музей</button>
+      <button class="study-tab" data-panel="sp-works" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg>Шығармалары</button>
+      <button class="study-tab" data-panel="sp-adal" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 3.4c0 5-7 9.6-7 9.6z"/></svg>Адал азамат</button>
+      <button class="study-tab" data-panel="sp-lessons" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 2 8l10 5 10-5zM6 10.5V16l6 3 6-3v-5.5"/></svg>Сабақтар</button>
+      <button class="study-tab" data-panel="sp-guides" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>Жолбасшылар</button>
+      <button class="study-tab sci" data-panel="sp-science" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3M8 3h8M8 14h8"/></svg>Ғылыми жұмыстар</button>
+    </div>
+
+    <!-- ТАБ: АДАЛ АЗАМАТ -->
+    <div class="study-panel" id="sp-adal" role="tabpanel">
+      <div class="sec-head" style="margin-bottom:8px"><div class="eyebrow">Адал азамат</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Тәрбиенің алты бағыты бойынша ақын өлеңдері</h2></div>
+      <p class="panel-lead">Сырбай Мәуленовтің өлеңдері «Адал азамат» біртұтас тәрбие бағдарламасының алты бағытына топтастырылған. Бағыттың логотипін басып, сол бағытқа жинақталған өлеңдер тізімін ашыңыз. Әр өлең Adebiportal.kz-тегі толық мәтінге сілтейді.</p>
+      <div class="adal-grid" id="adalGrid"></div>
+      <div id="adalPanels"></div>
+    </div>
+
+    <!-- ТАБ 0: ШЫҒАРМАЛАРЫ -->
+    <div class="study-panel" id="sp-works" role="tabpanel">
+      <div class="sec-head" style="margin-bottom:14px"><div class="eyebrow">Adebiportal.kz</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Ақынның шығармалары</h2></div>
+      <p class="panel-lead">Сырбай Мәуленов — қырыққа жуық жыр жинағының авторы. Толық мәтіндер Қазақстанның ресми әдеби порталында — Adebiportal.kz-те заңды түрде оқуға қолжетімді.</p>
+      <div class="works-panel" style="margin-top:24px">
+        <div class="wp-in">
+          <div class="wp-tag">Adebiportal.kz · ресми әдеби портал</div>
+          <h3>Сырбай Мәуленовтің әдеби мұрасы</h3>
+          <p>Ақынның өмірбаяны, кітаптары мен өлеңдері «QazContent» АҚ жүргізетін ресми порталда сақталған. Толық мәтінді осы жерден оқыңыз — біз авторлық құқықты сақтап, тікелей түпнұсқаға сілтейміз.</p>
+          <div class="works-links">
+            <a class="work-link" href="https://adebiportal.kz/kz/authors/view/826" target="_blank" rel="noopener">
+              <span class="wl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></span>
+              <b>Өмірбаяны</b><span>Ақынның толық ғұмырнамасы</span>
+            </a>
+            <a class="work-link" href="https://adebiportal.kz/kz/authors/book/826" target="_blank" rel="noopener">
+              <span class="wl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></span>
+              <b>Кітаптары</b><span>Жыр жинақтары мен өлеңдер</span>
+            </a>
+            <a class="work-link" href="https://adebiportal.kz/kz/authors/about/826" target="_blank" rel="noopener">
+              <span class="wl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5"/><path d="M5 8v10l7 3 7-3V8"/></svg></span>
+              <b>Автор туралы</b><span>Зерттеулер мен мақалалар</span>
+            </a>
+          </div>
+          <p class="works-note">Замандасы Ұлықбек Есдәулеттің «Сырнай сазды Сырбай ақын» эссесін де осы порталдан оқуға болады — <a href="https://adebiportal.kz/kz/news/view/ulyqbek-esdaulet-syrnai-sazdy-syrbai-aqyn-esse__19733" target="_blank" rel="noopener">эссеге өту</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ТАБ 1: МУЗЕЙ -->
+    <div class="study-panel on" id="sp-museum" role="tabpanel">
+      <div class="sec-head" style="margin-bottom:8px"><div class="eyebrow">Виртуалды музей</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Тоғыз тақырыптық бұрыш</h2></div>
+      <p class="panel-lead">Мектептегі әдеби музейдің виртуалды кеңістігі. Әр бұрышта түпнұсқа жәдігерлер, тарихи-әдеби контекст және дереккөз көрсетілген. Бұрышқа кіру үшін карточканы басыңыз.</p>
+      <div class="corners" id="corners"></div>
+    </div>
+
+    <!-- ТАБ 2: САБАҚТАР -->
+    <div class="study-panel" id="sp-lessons" role="tabpanel">
+      <div class="sec-head" style="margin-bottom:8px"><div class="eyebrow">Музей сабағы</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">40 минуттық музей сабағы</h2></div>
+      <p class="panel-lead">Негізгі қағида: оқушы бір сабақта барлық бұрышты аралмайды. <b>Бір сабақ — бір тақырыптық бұрыш.</b> Оқушы бір бұрышты таңдап, сол бұрышпен терең жұмыс істейді. Тапсырманың күрделілігі жас деңгейіне қарай өзгереді.</p>
+    <div class="lesson-flow">
+      <span class="fstep"><span class="n">1</span>Музейге кіру</span><span class="arr">→</span>
+      <span class="fstep"><span class="n">2</span>Бір бұрышты таңдау</span><span class="arr">→</span>
+      <span class="fstep"><span class="n">3</span>Жолнұсқаулық алу</span><span class="arr">→</span>
+      <span class="fstep"><span class="n">4</span>Жәдігерді зерттеу</span><span class="arr">→</span>
+      <span class="fstep"><span class="n">5</span>Тапсырма орындау</span><span class="arr">→</span>
+      <span class="fstep"><span class="n">6</span>Қорытынды</span>
+    </div>
+
+    <div class="sec-head" style="margin-top:34px;margin-bottom:14px"><div class="eyebrow">Бастауыш · 1–4 сынып</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">Бастауыш сыныпқа арналған жолнұсқаулық</h2><p>Қонжық жолнұсқаушы бастауыш сынып оқушысын музей бұрыштарымен таныстырады. Әр бұрышта екі аялдама бар: жәдігерлерді зерттеу және шығармашылық жұмыс.</p></div>
+
+    <div class="guide-card">
+      <div class="gc-tag">Жолнұсқаулық · 1–4 сынып</div>
+      <h4>«Сырбайдың ғажап әлемі» — оқушы жұмыс парағы</h4>
+      <div class="gc-meta"><b>Сырбай Мәуленов атындағы №37 мектеп-лицей</b> · 2026</div>
+      <p>Бес тақырыптық бұрышқа арналған жұмыс парақтары. Оқушы жәдігерлерді өз бетімен зерттеп, сұрақтарға жауап жазады, өлеңге талдау жасайды.</p>
+
+      <div class="gc-stops">
+        <div class="gc-stop"><span><b>Қабырғалар сөйлейді</b><span>«Самаурын» сөзжұмбағы · «Майданға хат» өлеңіне талдау</span></span></div>
+        <div class="gc-stop"><span><b>Күркіреп күндей өтті ғой соғыс</b><span>№1–12 жәдігерлер бойынша сұрақтар · «Мың қолдар сау болсын деп»</span></span></div>
+        <div class="gc-stop"><span><b>Соғыстан қайтқан солдаттар</b><span>Ордендер мен медальдар · «Қоңырау қағылды» өлеңі</span></span></div>
+        <div class="gc-stop"><span><b>Әдебиет майданы</b><span>Құжаттар мен газеттер · «Бір жұтым су» өлеңі</span></span></div>
+        <div class="gc-stop"><span><b>Сырбайтану жұмыстары</b><span>Дипломдар мен арнаулар · «Көктем сұлу келеді» өлеңі</span></span></div>
+      </div>
+
+      <div class="gc-skills">
+        <span>Көр</span><span>→</span><span>Таны</span><span>→</span><span>Оқы</span>
+      </div>
+
+      <a class="gc-btn" href="assets/docs/bastauysh-zholnusqaulyq.docx" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+        Жолнұсқаулықты жүктеу (DOCX)
+      </a>
+    </div>
+
+
+    <div class="levels">
+      <div class="level-card">
+        <div class="lc-tag">БАСТАУЫШ · 1–4 СЫНЫП</div>
+        <div class="lc-flow"><span>Көр</span><i>→</i><span>Таны</span><i>→</i><span>Оқы</span></div>
+        <ul><li><b>Көр:</b> жәдігерді өз көзімен байқайды, суретін салады</li><li><b>Таны:</b> атын, не екенін, кімге тиесілі екенін анықтайды</li><li><b>Оқы:</b> жәдігермен байланысты өлең жолын немесе мәтінді оқиды</li></ul>
+      </div>
+      <div class="level-card">
+        <div class="lc-tag">НЕГІЗГІ ОРТА · 5–9 СЫНЫП</div>
+        <div class="lc-flow"><span>Зертте</span><i>→</i><span>Ойна</span><i>→</i><span>Ойла</span></div>
+        <ul><li><b>Зертте:</b> жәдігерді жолнұсқаулықпен зерттейді, деректер жинайды</li><li><b>Ойна:</b> ЖИ арқылы цифрлық өнім жасайды — викторина, ойын, сториборд</li><li><b>Ойла:</b> нәтижені талдап, рефлексия жазады, сыныпта ұсынады</li></ul>
+      </div>
+      <div class="level-card">
+        <div class="lc-tag">ЖАЛПЫ ОРТА · 10–11 СЫНЫП</div>
+        <div class="lc-flow"><span>Талда</span><i>→</i><span>Құрастыр</span><i>→</i><span>Тексер</span><i>→</i><span>Ұсын</span></div>
+        <ul><li><b>Талда:</b> зерттеу мәселесін таңдайды, дереккөздерді талдайды</li><li><b>Құрастыр:</b> ЖИ арқылы ғылыми жоба немесе презентация жасайды</li><li><b>Тексер:</b> нәтижені тексереді, редакциялайды, кері байланыс алады</li><li><b>Ұсын:</b> конференцияда немесе ашық сабақта ұсынады</li></ul>
+      </div>
+    </div>
+
+      <a id="projects" style="scroll-margin-top:90px"></a>
+    <div class="sec-head" style="margin-top:52px;margin-bottom:14px"><div class="eyebrow">Негізгі орта · 5–9 сынып</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">Оқушылар жұмыс істеуге мүмкіндік бер</h2><p>5–9 сынып оқушылары бір сабақта бір тақырыптық бұрышпен жұмыс істейді: жәдігерлерді зерттеп, талдап, сторибордты құрастырып, цифрлық өнім жасайды. Әрбір жоба ақын шығармашылығына, жәдігерлерге немесе музей бұрыштарына байланысты.</p></div>
+    
+    <div class="sec-head" style="margin-top:24px;margin-bottom:12px;font-size:0.9rem"><div class="eyebrow">ОҚУШЫ ЖОБАСЫ</div><h3 style="font-size:clamp(1.2rem,2.4vw,1.6rem)">Сторибордты құрастыру</h3></div>
+    <div class="story-card" style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;margin-bottom:32px;box-shadow:var(--shadow-sm)">
+      <div class="tag" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.7rem;color:var(--ink-2);background:var(--paper-2);padding:6px 12px;border-radius:6px;margin-bottom:14px;font-weight:500">СТОРИБОРДТЫ ЖҮҚ</div>
+      <h4 style="color:var(--ink);font-size:1.3rem;margin-bottom:10px">Сторибордты құрастыру. Сырбай әлеміне саяхат</h4>
+      <p style="color:var(--ink-soft);margin-bottom:12px"><b>№37 мектеп-лицей, 6-сынып · 2026</b></p>
+      <p style="color:var(--text);line-height:1.6;margin-bottom:16px">Ақын өмірі мен шығармашылығын ЖИ арқылы үйренуге арналған 8 кадрлық сюжеттік сториборд — цифрлық зерттеу өнімі. Оқушылар өзіндіктігінен сторибордты құрастырып, өлең оқиды.</p>
+      <a href="assets/img/storyboard.jpg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--gold);color:var(--red-deep);border-radius:8px;font-weight:600;text-decoration:none;font-size:0.95rem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        Сторибордты ашу →
+      </a>
+    </div>
+    
+    <div class="sec-head" style="margin-top:32px;margin-bottom:14px"><div class="eyebrow">Негізгі орта · 5–9 сынып</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">ЖИ көмегімен жасалған оқушы жобалары</h2><p>5–9 сынып оқушылары ЖИ құралдарымен цифрлық өнім жасайды — викториналар, тестер, интерактивті жобалар және презентациялар.</p></div>
+    <div class="ai-principle">
+      <span class="ap-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="M12 12v0"/></svg></span>
+      <span><b>Шешімді адам қабылдайды — ЖИ тек көмектеседі</b><span>Әр жобада ЖИ идея, тексеру және кері байланыс үшін қолданылады, ал түпкілікті жұмысты оқушы өзі орындайды әрі негіздейді.</span></span>
+    </div>
+
+    <div class="ai-grid">
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#7A4DE8,rgba(0,0,0,.28))">S</span><span><span class="ac-kind">Сториборд</span><span class="ac-tool">Оқушы жобасы</span></span></div><h4>Сториборд. Сырбай әлеміне саяхат</h4><p>Ақын өмірі мен шығармашылығын ЖИ арқылы үйренуге арналған 8 кадрлық сюжеттік сториборд — цифрлық зерттеу өнімі. 6-сынып оқушыларының жобасы.</p><a class="ac-open" href="assets/img/storyboard.jpg" target="_blank" rel="noopener">Сторибордты ашу</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#12B886,rgba(0,0,0,.28))">E</span><span><span class="ac-kind">Электронды кітапхана</span><span class="ac-tool">Оқушы жобасы</span></span></div><h4>Электронды кітапхана. Сырбай мұрасы</h4><p>QR-электронды кітапхана: «Ұмытпаймыз», «Жарқын бейне», «Өмірі мен шығармашылығы» 3 бейнебаяндары және Сырбай Мәуленовтің 250 өлеңінің тізімі.</p><a class="ac-open" href="assets/img/e-library.jpg" target="_blank" rel="noopener">Кітапхананы ашу</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#7A4DE8,rgba(0,0,0,.28))">W</span><span><span class="ac-kind">Викторина</span><span class="ac-tool">Wayground / Quizizz</span></span></div><h4>«Сырбай Мәуленов туралы» викторина</h4><p>Ақынның өмірбаяны мен шығармашылығы бойынша оқушылар құрастырған интерактивті викторина.</p><a class="ac-open" href="https://wayground.com/admin/quiz/67fb7fcdf5c26b04784fafae/syrbaj-maeulenov-turaly" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#12B886,rgba(0,0,0,.28))">Q</span><span><span class="ac-kind">Тест</span><span class="ac-tool">Quizgecko</span></span></div><h4>«Бала батыр Амангелді ерлігі» тесті</h4><p>Батырлық пен ерлік тақырыбындағы оқу тесті — оқушылардың ЖИ көмегімен дайындаған жұмысы.</p><a class="ac-open" href="https://quizgecko.com/learn/bala-batyr-amankeldi-erligi-fr8aqj?ref=StylizedAgate9543" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#F0654A,rgba(0,0,0,.28))">C</span><span><span class="ac-kind">Жаттығу</span><span class="ac-tool">Conker</span></span></div><h4>Conker интерактивті тапсырма</h4><p>Мәтінді түсіну мен ой қорыту дағдысын дамытатын интерактивті тест-жаттығу.</p><a class="ac-open" href="https://www.joinconker.com/ajwscg" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#2F80ED,rgba(0,0,0,.28))">I</span><span><span class="ac-kind">Интерактив</span><span class="ac-tool">Interacty</span></span></div><h4>Interacty интерактивті жоба</h4><p>Ойын-жаттығу форматындағы интерактивті контент — оқушылардың цифрлық жобасы.</p><a class="ac-open" href="https://interacty.me/projects/482ebcb16b638294" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#111827,rgba(0,0,0,.28))">♪</span><span><span class="ac-kind">Ән</span><span class="ac-tool">Suno AI</span></span></div><h4>Сырбай өлеңіне AI ән</h4><p>Ақын өлеңі негізінде Suno арқылы жасалған заманауи ән.</p><a class="ac-open" href="https://suno.com/song/9fcc4cbf-6453-4e7a-8fce-a895ee4a7f58?sh=rF09POz2fGRb012g" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#F2A73B,rgba(0,0,0,.28))">P</span><span><span class="ac-kind">Презентация</span><span class="ac-tool">Google Slides / Canva</span></span></div><h4>«Сырбайтану» презентациясы</h4><p>«Сырбайтану» тақырыбындағы оқу презентациясы — сабаққа дайын слайдтар.</p><a class="ac-open" href="https://docs.google.com/presentation/d/1ldDMhvCm88fLkVbg8PfB9WZyYYu1ZH2R/edit?usp=sharing" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#4DC6E6,rgba(0,0,0,.28))">L</span><span><span class="ac-kind">Сабақ</span><span class="ac-tool">LessonUp</span></span></div><h4>«Жұлдызды жолбасшы» сабағы</h4><p>25 слайдтан, интерактивті викторина мен видеодан тұратын «Сырбайтану» LessonUp сабағы.</p><a class="ac-open" href="https://www.lessonup.com/en/lesson/4ih5RvznwESZmpjmL" target="_blank" rel="noopener">Жобаны көру</a></div>
+        <div class="ai-card"><div class="ac-top"><span class="lg" style="background:linear-gradient(140deg,#FF5B4A,rgba(0,0,0,.28))">Lu</span><span><span class="ac-kind">Интерактивті ойын</span><span class="ac-tool">Lumio (SMART)</span></span></div><h4>Lumio интерактивті ойыны</h4><p>Сырбай Мәуленов тақырыбындағы дайын интерактивті ойын — сыныпта бірге ойнауға арналған.</p><a class="ac-open" href="https://www.lumioclass.com/link/915239" target="_blank" rel="noopener">Ойынды ашу</a></div>
+    </div>
+
+      <div class="sec-head" style="margin-top:56px;margin-bottom:14px"><div class="eyebrow">Жалпы орта · 10–11 сынып</div><h2 style="font-size:clamp(1.5rem,3vw,2rem)">5–9 сыныпқа арналған викториналық ойындар</h2><p>10–11 сынып оқушыларының басты міндеті — кіші сыныптарға арналған викториналық ойын құрастыру. Сұрақтар 5–9 сыныптың дайын жолнұсқаулығынан алынады, бірақ көшірілмей, кіші оқушыға түсінікті әрі қызық ойын форматына бейімделеді.</p></div>
+
+    <div class="src-band">
+      <div class="src-k">Сұрақтар мына негізде құрастырылады:</div>
+      <div class="src-tags"><span>Жәдігерді зерттеу</span><span>Салыстыру мен талдау</span><span>Әдеби-теориялық ұғымдар</span><span>Шығармашылық тапсырмалар</span><span>Рефлексия</span><span>Бұрыш бойынша негізгі ақпарат</span></div>
+    </div>
+
+    <div class="q-cat">
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#7A4DE8,rgba(0,0,0,.28))">W</span><h4>Wayground (Quizizz)</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>ЖИ көмегімен жанды викторина, ұпай және лидерборд жасау.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Ұпайлы викторина, уақытқа қарсы ойын, командалық жарыс.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Өте қолайлы — жарыс форматы 5–9 сыныпқа қызық.</span></div><a class="qa-btn" href="https://wayground.com" target="_blank" rel="noopener">Толығырақ →</a></div>
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#12B886,rgba(0,0,0,.28))">Q</span><h4>Quizgecko</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>Дайын мәтіннен (жолнұсқаулықтан) сұрақтарды автоматты құрастыру.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Тест, сұрақ-жауап, ашық сұрақтар.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Қолайлы — жолнұсқаулық мәтінін тез тестке айналдырады.</span></div><a class="qa-btn" href="https://quizgecko.com" target="_blank" rel="noopener">Толығырақ →</a></div>
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#F0654A,rgba(0,0,0,.28))">C</span><h4>Conker</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>Мәтінді түсінуге бағытталған интерактивті тест-жаттығу жасау.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Оқып-түсіну тесті, сәйкестендіру, толықтыру.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Қолайлы — жәдігер сипаттамасы бойынша тапсырма жасауға ыңғайлы.</span></div><a class="qa-btn" href="https://www.joinconker.com" target="_blank" rel="noopener">Толығырақ →</a></div>
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#2F80ED,rgba(0,0,0,.28))">I</span><h4>Interacty</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>Интерактивті ойындар: сәйкестендіру, пазл, жад ойыны құрастыру.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Пазл, сәйкестендіру, жад ойыны, «тап» ойыны.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Өте қолайлы — көрнекі ойындар кіші сыныпқа тартымды.</span></div><a class="qa-btn" href="https://interacty.me" target="_blank" rel="noopener">Толығырақ →</a></div>
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#2AA745,rgba(0,0,0,.28))">L</span><h4>LearningApps</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>Дайын шаблондардан сөзжұмбақ, хронология, топтастыру жасау.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Сөзжұмбақ, хронология, топтастыру, жұп табу.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Қолайлы — қарапайым әрі мектепте кең қолданылады.</span></div><a class="qa-btn" href="https://learningapps.org" target="_blank" rel="noopener">Толығырақ →</a></div>
+        <div class="qapp"><div class="qa-top"><span class="qa-lg" style="background:linear-gradient(140deg,#46178F,rgba(0,0,0,.28))">K</span><h4>Kahoot!</h4></div><div class="qa-row"><span class="qa-k">Не үшін</span><span>Сыныпта жаппай ойналатын жанды викторина жүргізу.</span></div><div class="qa-row"><span class="qa-k">Қандай ойын</span><span>Жанды викторина, дұрыс/бұрыс, ұпай жинау.</span></div><div class="qa-row"><span class="qa-k">5–9-ға қолайлылығы</span><span>Өте қолайлы — үлкен экранда бірге ойнауға арналған.</span></div><a class="qa-btn" href="https://kahoot.com" target="_blank" rel="noopener">Толығырақ →</a></div>
+    </div>
+
+    <div class="algo">
+      <div class="algo-k">Жұмыс алгоритмі</div>
+      <div class="algo-flow">
+        <span>5–9 жолнұсқаулығы</span><i>→</i><span>Сұрақтарды талдау</span><i>→</i><span>ЖИ қосымшасын таңдау</span><i>→</i><span>Ойын құрастыру</span><i>→</i><span>Тексеру</span><i>→</i><span>5–9 ойнауы</span><i>→</i><span>Кері байланыс</span>
+      </div>
+    </div>
+
+    <div class="ai-principle" style="margin-top:24px;margin-bottom:0">
+      <span class="ap-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v3m0 12v3M3 12h3m12 0h3"/><circle cx="12" cy="12" r="3.4"/></svg></span>
+      <span><b>ЖИ — құрал, ал мазмұн мен шешімді оқушы жасайды</b><span>Оқушы сұрақты өзі талдайды, ойынға бейімдейді және түпкілікті нұсқаны өзі бекітеді. ЖИ тек құрастыруға көмектеседі.</span></span>
+    </div>
+
+      <div class="sec-head" style="margin-top:52px;margin-bottom:12px"><div class="eyebrow">12 ай – 12 кітап</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Жылдық оқырмандық жоба</h2><p>Әр айда бір кітап оқылып, оқушы өз өнімін жасайды. Кітап тізімі мен өнімдер оқу жылы барысында толтырылады.</p></div>
+    <div class="months">
+      <div class="month"><div class="mn">Қыркүйек</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Қазан</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Қараша</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Желтоқсан</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Қаңтар</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Ақпан</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Наурыз</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Сәуір</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Мамыр</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Маусым</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Шілде</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+      <div class="month"><div class="mn">Тамыз</div><div class="mbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4zM4 9h16M9 5v14"/></svg></div><b>Кітап таңдалады</b><span>Оқушы өнімі</span></div>
+    </div>
+    <div class="flow-strip"><span>Кітап</span><span>→ Оқу</span><span>→ Оқушы өнімі</span><span>→ Рефлексия</span><span>→ Жариялау</span></div>
+
+      <div class="sec-head" style="margin-top:52px;margin-bottom:8px"><div class="eyebrow">Экскурсия материалдары</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Экскурсия жолнұсқаулықтары</h2></div>
+      <p class="panel-lead">Әр буын үшін бөлек ұстаным: <b>1–4:</b> Көр → Таны → Оқы · <b>5–9:</b> Зертте → Ойна → Ойла · <b>10–11:</b> Талда → Құрастыр → Тексер → Ұсын. Жолнұсқаулықтың форматы да осы ұстанымға негізделеді.</p>
+
+      <div class="stage-row" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stage"><span class="st-k">1–4 сынып</span><b>Көр → Таны → Оқы</b><span>Жәдігерді байқайды, танып атайды, байланысты өлең/мәтінді оқиды</span></div>
+        <div class="stage"><span class="st-k">5–9 сынып</span><b>Зертте → Ойна → Ойла</b><span>Деректер жинайды, цифрлық өнім жасайды, рефлексия жазады</span></div>
+        <div class="stage"><span class="st-k">10–11 сынып</span><b>Талда → Құрастыр → Тексер → Ұсын</b><span>Зерттеу жасайды, жобаны редакциялайды, конференцияда ұсынады</span></div>
+      </div>
+
+      <div class="museum-docs">
+      <div class="doc-groups">
+        <div class="doc-group">
+          <span class="dg-lvl">БАСТАУЫШ ДЕҢГЕЙ · 1–4 СЫНЫП</span>
+          <a class="resource" href="assets/docs/bastauysh-zholnusqaulyq.docx" download>
+            <span class="ic">📘</span><span><b>«Сырбайдың ғажап әлемі»</b><span>Қонжықпен саяхат: бес бұрыш бойынша жұмыс парағы · DOCX</span></span>
+          </a>
+        </div>
+        <div class="doc-group">
+          <span class="dg-lvl">НЕГІЗГІ ЖӘНЕ ЖОҒАРЫ ОРТА · 5–11 СЫНЫП</span>
+          <div class="resource soon">
+            <span class="ic">📗</span><span><b>Жолнұсқаулық әзірленуде</b><span>Бұл деңгейлердің форматы бөлек: талдау мен зерттеуге көбірек орын беріледі</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="doc-note">Бастауыш деңгейдің жолнұсқаулығы дайын. Негізгі және жоғары орта буынға арналған нұсқалар осы үш кезеңді ұстанымға негізделеді, бірақ құрылымы басқаша болады. Материалдардың мұрағаты — <a href="https://drive.google.com/drive/folders/1IRnpX-xwtLeNTWw6r2HHLMAwyqw6TCZ6?usp=sharing" target="_blank" rel="noopener">Google Drive қалтасында</a>.</p>
+    </div>
+    </div>
+
+    <!-- ТАБ 3: ЖОЛБАСШЫЛАР -->
+    <div class="study-panel" id="sp-guides" role="tabpanel">
+      <div class="sec-head" style="margin-bottom:8px"><div class="eyebrow">Жас гидтер</div><h2 style="font-size:clamp(1.4rem,2.8vw,1.9rem)">Жұлдызды жолбасшылар</h2></div>
+      <p class="panel-lead">Оқушылардан құралған музей гидтері. Әр жас жолбасшы бір тақырыптық бұрышты меңгеріп, оны басқа оқушыларға таныстырады: зертте → меңгер → таныстыр.</p>
+      <div class="guide-band">
+      <div class="gb-ic">🧭</div>
+      <div>
+        <h4>Жұлдызды жолбасшылар</h4>
+        <p>Оқушылардан құралған музей гидтері. Әр жас жолбасшы бір тақырыптық бұрышты меңгеріп, үлкен үзіліс кезінде келесі сыныптарға 15 минуттық таныстырылым өткізеді.</p>
+        <div class="guide-steps"><span>1 · Қызығушылық ояту</span><span>2 · Негізгі идея</span><span>3 · 2–3 жәдігер</span><span>4 · Қызықты сұрақ</span><span>5 · Қысқа интерактив</span><span>6 · Қорытынды</span></div>
+      </div>
+    </div>
+
+      <div class="pv15">
+        <div class="pv15-head"><span class="pv15-badge">Пайдалы 15 минут</span><h4>Үлкен үзіліс форматы</h4></div>
+        <p>Үлкен үзіліс кезінде өткізілетін қысқа танымдық формат. Жас жолбасшы бір бұрышты 15 минутта таныстырады.</p>
+        <div class="guide-steps"><span>1 · Қызықтыру</span><span>2 · Негізгі ақпарат</span><span>3 · 2–3 жәдігер</span><span>4 · Сұрақ</span><span>5 · Интерактив</span><span>6 · Қорытынды</span></div>
+      </div>
+
+      <div class="guide-extra">
+        <div class="ge-card"><div class="ge-ic">🎤</div><b>Жолбасшының презентациясы</b><span>Әр гид өз бұрышы бойынша таныстырылым дайындайды.</span></div>
+        <div class="ge-card"><div class="ge-ic">📁</div><b>Оқушы портфолиосы</b><span>Жолбасшының жұмыстары мен жетістіктері жинақталады.</span></div>
+        <div class="ge-card"><div class="ge-ic">💬</div><b>Кері байланыс</b><span>Тыңдаушылар мен педагогтерден баға және ұсыныс.</span></div>
+      </div>
+    </div>
+
+    <!-- ТАБ 4: ҒЫЛЫМИ ЖҰМЫСТАР -->
+    <div class="study-panel" id="sp-science" role="tabpanel">
+      <div class="science-hero">
+        <div class="eyebrow" style="color:var(--gold)">Ерекше бөлім</div>
+        <h2>Ғылыми жұмыстар</h2>
+        <p>Сырбай Мәуленов мұрасын зерттеу нәтижелері. Зерттеу → талдау → дәлелдеу → жариялау.</p>
+      </div>
+
+      <div class="sci-cats">
+        <span>Оқушының зерттеу жұмыстары</span><span>Ғылыми жобалар</span><span>Зерттеу мақалалары</span><span>Мектепішілік зерттеулер</span><span>Сырбайтану материалдары</span><span>Конференция материалдары</span><span>Презентациялар</span><span>Цифрлық зерттеу өнімдері</span><span>Архивтік материалдар</span><span>Мультимедиа</span>
+      </div>
+
+      <div class="sci-grid" id="sci-grid"><!-- ғылыми материалдар JS-пен --></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="baiqau-sec">
+  <div class="wrap">
+    <div class="contest">
+      <a id="baiqau" style="scroll-margin-top:90px"></a>
+      <div class="sec-head" style="margin-bottom:6px"><div class="eyebrow">Байқау · Астана дарыны</div><h2 style="font-size:clamp(1.6rem,3.2vw,2.3rem)">Қалалық «Сырбай мұрасы» байқауы</h2><p>Майдангер-ақын Сырбай Мәуленовтің әдеби, азаматтық және рухани мұрасын дәріптеуге арналған қалалық байқау. «Астана дарыны» орталығы мен №37 мектеп-лицей ұйымдастырады.</p></div>
+
+      <div class="contest-meta">
+        <div class="cm"><div class="cm-k">Өтетін күні</div><div class="cm-v">30 қыркүйек, 2026<small>Басталуы: 09:00</small></div></div>
+        <div class="cm"><div class="cm-k">Қатысушылар</div><div class="cm-v">5–10 сынып<small>Әр номинацияға 1 оқушы</small></div></div>
+        <div class="cm"><div class="cm-k">Тіркеу мерзімі</div><div class="cm-v">21 қыркүйек<small>сағ. 08:00-ге дейін</small></div></div>
+        <div class="cm"><div class="cm-k">Өтетін орны</div><div class="cm-v">№37 мектеп-лицей<small>Күйші Дина, 44/3</small></div></div>
+      </div>
+
+      <div class="sec-head" style="margin-bottom:10px"><div class="eyebrow">Төрт номинация</div><h2 style="font-size:clamp(1.3rem,2.5vw,1.7rem)">Өзара қайталанбайтын бағыттар</h2></div>
+      <div class="noms">
+
+        <div class="nom">
+          <div class="nom-head" role="button" tabindex="0" aria-expanded="false" data-nom="n1">
+            <div class="nom-num">1</div>
+            <div class="nom-title"><h4>«Жыр-Сырбай»</h4><div class="nom-cls">Көркемсөз оқу шеберлігі · 5–6 сынып</div></div>
+            <svg class="nom-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="nom-body" id="n1"><div class="nom-inner">
+            <p class="nb-lead">Қатысушылар ақынның табиғат/туған жер немесе майдан тақырыбындағы өлеңдерінің бірін жатқа, мәнерлеп оқиды. Сахналық костюм мен визуалды фон қолдануға болады.</p>
+            <div class="nb-grid">
+              <div class="nb-block">
+                <h5>Техникалық регламент</h5>
+                <ul><li>Орындау уақыты: 2–3 минутқа дейін</li><li>Жанды дауыста, анық дикциямен (фонограммаға жазылған дауысқа рұқсат жоқ)</li><li>Визуалды фон USB флешкада алдын ала жіберіледі</li></ul>
+              </div>
+              <div class="nb-block nb-crit">
+                <h5>Бағалау критерийлері</h5>
+                <ul><li>Мәтінді жатқа білу мен дикция <span class="pts">5 балл</span></li><li>Дауыс ырғағы мен эмоция <span class="pts">5 балл</span></li><li>Мазмұнды түсінуі <span class="pts">5 балл</span></li><li>Сахналық мәдениет пен актёрлік шеберлік <span class="pts">5 балл</span></li></ul>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="nom">
+          <div class="nom-head" role="button" tabindex="0" aria-expanded="false" data-nom="n2">
+            <div class="nom-num">2</div>
+            <div class="nom-title"><h4>«Сырбай бейнесі — цифрлық әлемде»</h4><div class="nom-cls">ЖИ-иллюстрация және комикс жобасы · 7–8 сынып</div></div>
+            <svg class="nom-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="nom-body" id="n2"><div class="nom-inner">
+            <p class="nb-lead">Ақынның белгілі бір өлеңі немесе поэмасына жасанды интеллект (Midjourney, DALL-E, Sora, Canva, Leonardo, Higgsfield т.б.) құралдарымен 3–4 кадрлы цифрлық комикс немесе иллюстрациялық арт-альбом дайындау.</p>
+            <div class="nb-grid">
+              <div class="nb-block">
+                <h5>Техникалық талаптар</h5>
+                <ul><li>Кадр пішімі: 16:9 (альбомдық)</li><li>Көлемі: 3–4 кадр</li><li>Формат: PDF немесе PNG/JPEG, USB флешкада</li><li>Промпттар (сұраныстар) жеке парақта көрсетілуі тиіс</li><li>Суреттер толықтай ЖИ арқылы жасалуы шарт</li></ul>
+              </div>
+              <div class="nb-block nb-crit">
+                <h5>Бағалау критерийлері</h5>
+                <ul><li>Идеялық сәйкестік <span class="pts">5 балл</span></li><li>Промпт құрастыру шеберлігі <span class="pts">5 балл</span></li><li>Көркемдік сапа мен композиция <span class="pts">5 балл</span></li><li>Креативтілік пен қорғау шеберлігі <span class="pts">5 балл</span></li></ul>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="nom">
+          <div class="nom-head" role="button" tabindex="0" aria-expanded="false" data-nom="n3">
+            <div class="nom-num">3</div>
+            <div class="nom-title"><h4>«Сырбайша толғау»</h4><div class="nom-cls">Аудиториялық поэтикалық экспромт · 9–10 сынып</div></div>
+            <svg class="nom-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="nom-body" id="n3"><div class="nom-inner">
+            <p class="nb-lead">Қатысушылар жеребе бойынша таңдалған тақырыпта, 60 минут ішінде Сырбай поэзиясы стилінде авторлық өлең (толғау/арнау) жазып, сахнада мәнерлеп оқып береді. Өлең арнайы мөр басылған бланкіге жазылады.</p>
+            <div class="nb-grid">
+              <div class="nb-block">
+                <h5>Тәртіп пен регламент</h5>
+                <ul><li>Өлең жазу уақыты: 60 минут</li><li>Сахнада оқу: 2–3 минут</li><li>Байланыс құралдары мен шпаргалкаға тыйым</li><li>Тек өлең (поэзия) форматы қабылданады</li></ul>
+              </div>
+              <div class="nb-block nb-crit">
+                <h5>Бағалау критерийлері</h5>
+                <ul><li>Ақындық шеберлік пен поэтикалық тіл <span class="pts">5 балл</span></li><li>Тақырыпты ашу тереңдігі <span class="pts">5 балл</span></li><li>Дербестік пен экспромт сапасы <span class="pts">5 балл</span></li><li>Сырбай поэзиясымен үндестігі <span class="pts">5 балл</span></li></ul>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="nom">
+          <div class="nom-head" role="button" tabindex="0" aria-expanded="false" data-nom="n4">
+            <div class="nom-num">4</div>
+            <div class="nom-title"><h4>«Сырбай поэзиясы — трендте»</h4><div class="nom-cls">Онлайн Reels / Shorts бейнежобасы · 8–9 сынып</div></div>
+            <svg class="nom-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="nom-body" id="n4"><div class="nom-inner">
+            <p class="nb-lead">Ақынның өлеңін немесе шығармашылығынан үзіндіні заманауи визуалды тәсілмен ашатын 60 секундқа дейінгі Reel/Shorts ролигін түсіру. Жұмыс Instagram немесе YouTube-қа <b>#СырбайМұрасы2026</b> хэштегімен жарияланады.</p>
+            <div class="nb-grid">
+              <div class="nb-block">
+                <h5>Техникалық талаптар</h5>
+                <ul><li>Формат: 9:16 (вертикаль)</li><li>Кеңейтім: MP4 немесе MOV</li><li>Сапа: Full HD (1080×1920) немесе 4K</li><li>Хронометраж: 15–60 секунд</li><li>Аккаунт ашық (публичный) болуы шарт</li></ul>
+              </div>
+              <div class="nb-block nb-crit">
+                <h5>Бағалау критерийлері</h5>
+                <ul><li>Сценарий мен идея ерекшелігі <span class="pts">5 балл</span></li><li>Ақын шығармасын заманауи ашуы <span class="pts">5 балл</span></li><li>Режиссура мен монтаж сапасы <span class="pts">5 балл</span></li><li>Виралдылық көрсеткіші <span class="pts">5 балл</span></li></ul>
+              </div>
+            </div>
+          </div></div>
+        </div>
+
+      </div>
+
+      <div class="sec-head" style="margin-top:38px;margin-bottom:10px"><div class="eyebrow">Қалай қатысамын?</div><h2 style="font-size:clamp(1.3rem,2.5vw,1.7rem)">Төрт қадам</h2></div>
+      <div class="steps4">
+        <div class="step4"><div class="s4n">1</div><p>Номинацияңды таңда: көркемсөз, ЖИ-комикс, толғау немесе Reels.</p></div>
+        <div class="step4"><div class="s4n">2</div><p>Талаптарды оқып, жұмысыңды дайында.</p></div>
+        <div class="step4"><div class="s4n">3</div><p>Ресми форма арқылы 21 қыркүйек 08:00-ге дейін тіркел.</p></div>
+        <div class="step4"><div class="s4n">4</div><p>Қазылар алқасы бағалайды, жеңімпаздар I, II, III дәрежелі дипломмен марапатталады.</p></div>
+      </div>
+
+      <div class="apply">
+        <div class="apply-form">
+          <h4>Онлайн өтінім</h4>
+          <div class="af-sub">Ресми тіркеу — Google форма арқылы. Төмендегі өрістерді толтырып, WhatsApp арқылы да жіберуге болады.</div>
+          <div class="field"><label for="ap-name">Аты-жөні</label><input id="ap-name" type="text" placeholder="Мысалы: Айсұлу Нұрланқызы"></div>
+          <div class="field"><label for="ap-class">Мектеп, сынып</label><input id="ap-class" type="text" placeholder="№37 мектеп-лицей, 8-сынып"></div>
+          <div class="field"><label for="ap-nom">Номинация</label><select id="ap-nom"><option>«Жыр-Сырбай» — көркемсөз (5–6)</option><option>«Сырбай бейнесі — цифрлық әлемде» — ЖИ-комикс (7–8)</option><option>«Сырбайша толғау» — экспромт (9–10)</option><option>«Сырбай поэзиясы — трендте» — Reels (8–9)</option></select></div>
+          <div class="field"><label for="ap-link">Жетекшісі / байланыс</label><input id="ap-link" type="text" placeholder="Жетекші аты-жөні және телефон"></div>
+          <a class="form-official" href="https://forms.gle/aKaN2s6M5zJ6bnd49" target="_blank" rel="noopener">Ресми Google формасын толтыру</a>
+          <button class="btn btn-primary" id="applyBtn" type="button" style="margin-top:12px">WhatsApp арқылы жіберу</button>
+          <div class="apply-note">Reels номинациясы бойынша жұмыс #СырбайМұрасы2026 хэштегімен жарияланады. Көркемсөз визуалды фоны 28 қыркүйекке дейін syrbay.maulenov@mail.ru-ге жіберіледі.</div>
+        </div>
+        <div class="wa-band">
+          <div class="wic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20z"/></svg></div>
+          <h4>Байланыс және көмек</h4>
+          <p>Байқау туралы толық ақпарат пен сұрақтар бойынша ұйымдастырушыларға хабарласыңыз:</p>
+          <div class="contacts">
+            <span><b>Саина Сәкеновна</b> · 8 747 186 5716</span>
+            <span><b>Айбек Төлегенұлы</b> · 8 701 455 7612</span>
+            <span><b>Эл. пошта:</b> syrbay.maulenov@mail.ru</span>
+          </div>
+          <a class="wa-btn" href="https://wa.me/77789178080" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>
+            Мектеп WhatsApp: +7 778 917 8080
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="media">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Медиа</div><h2>Фото, видео, жаңалықтар</h2><p>Мектеп пен музейдің ресми арналары. Тірі жаңалықтар мен іс-шаралар осы желілерде жарияланады.</p></div>
+    
+    <!-- Мектеп деректемесі -->
+    <div class="inst" style="margin-bottom:36px">
+      <div class="inst-card">
+        <div class="tag">Мектеп</div>
+        <h3>Сырбай Мәуленов атындағы №37 мектеп-лицей</h3>
+        <p>Астана қаласындағы мектеп-лицей ақынның есімін иеленеді. 2026 жылы мектепте Сырбай Мәуленовтің 103 жылдығы аталып өтті.</p>
+        <ul class="inst-facts">
+          <li><span class="k">Мекенжай</span><span class="v">Астана, Күйші Дина көшесі, 44/3</span></li>
+          <li><span class="k">Қабылдау</span><span class="v">8 (7172) 50-16-85</span></li>
+          <li><span class="k">Эл. пошта</span><span class="v">37mektep-ns@edu.kz</span></li>
+        </ul>
+        <div class="inst-links">
+          <a href="https://37mektep-ns.edu.kz/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M9 21V9"/><rect x="3" y="4" width="18" height="17" rx="2"/></svg>Мектеп сайты</a>
+          <a href="https://www.facebook.com/groups/astana37/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5.5c0-.8.3-1.5 1.5-1.5H16V1.4C15.6 1.3 14.7 1 13.6 1 11.3 1 10 2.4 10 4.9V7H7v3h3v9h3z"/></svg>Facebook</a>
+          <a href="https://www.instagram.com/p/CgjI_ZELK5p/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CHAT: Қонжықпен сырласу ================= -->
+<section class="section" id="chat">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Сырбаймен сырласу</div><h2>Қонжықтан сұра</h2><p>Қонжық — музейдің бойтұмары әрі жолнұсқаушысы. Ол ақынның өмірі, жәдігерлер мен музей бұрыштары туралы білгенін айтады.</p></div>
+    <div class="chat-wrap">
+      <div class="chat-intro">
+        <div class="konzhyk">🧸</div>
+        <h3>Сәлем! Мен — Қонжық</h3>
+        <p>Ақынның руы аю болғандықтан, мен музейдің сүйікті ойыншығы, әрі жолнұсқаушысымын. Сырбай Мәуленов, оның өлеңдері мен жәдігерлер туралы сұрай бер!</p>
+        <div class="chat-hint"><b>Ескерту:</b> Қонжық тек музей деректеріне сүйенеді. Егер бірдеңе анық болмаса, ол ойдан шығармай, «оны музейден көруге болады» дейді.</div>
+        <div class="chat-suggest" id="chips">
+          <button class="chip">Сырбай қашан туған?</button>
+          <button class="chip">№1 бұрышта не бар?</button>
+          <button class="chip">«Прогресс» деген не?</button>
+          <button class="chip">Қолтаңбалы кітаптар қанша?</button>
+        </div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-log" id="log">
+          <div class="msg bot">Сәлемдесу! Мен — Қонжық, музейдің бойтұмарымын. 🐻 Сырбай Мәуленов туралы не білгің келеді?</div>
+        </div>
+        <div class="chat-form">
+          <input id="chatInput" type="text" placeholder="Сұрағыңды жаз..." autocomplete="off" aria-label="Сұрақ">
+          <button id="chatSend">Жіберу</button>
+        </div>
+        <div class="chat-note">Қонжық жасанды интеллект көмегімен жауап береді. Шешімді адам қабылдайды — ЖИ тек көмектеседі.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- қалқыма чат батырмасы -->
+<button class="fab" id="fab" aria-label="Қонжықпен сырласу">
+  <span class="kz">🧸</span><span class="lbl">Қонжықтан сұра</span>
+</button>
+
+<!-- ================= FOOTER ================= -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <h4>Сырбай Мәуленов</h4>
+        <p>Астанадағы Сырбай Мәуленов атындағы №37 мектеп-лицейдің әдеби музейі негізінде жасалған цифрлық платформа. Ақынның өмірі, шығармашылығы мен мұрасын жаңа буынға жеткізу — басты мақсат. Барлық дерек тексерілген дереккөздерден алынған, өлең мәтіндері авторлық құқық сақтала отырып Adebiportal.kz-ке сілтенеді.</p>
+      </div>
+      <div class="col">
+        <b>БӨЛІМДЕР</b>
+        <a href="#about">Сырбай туралы</a>
+        <a href="#study">Сырбайтану</a>
+        <a href="#study">Сырбайтану</a>
+          </div>
+      <div class="col">
+        <b>БАЙЛАНЫС</b>
+        <a href="https://wa.me/77789178080" target="_blank" rel="noopener">WhatsApp: +7 778 917 8080</a>
+        <a href="https://37mektep-ns.edu.kz" target="_blank" rel="noopener">Мектеп сайты</a>
+        <a href="https://adebiportal.kz" target="_blank" rel="noopener">Adebiportal.kz — өлеңдер</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 Сырбай Мәуленов әдеби музейі, Астана</span>
+      <span>Дереккөздер көрсетіле отырып жасалды</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // мобильді мәзір
+  var burger=document.getElementById('burger'), menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');});
+  });
+
+  // белсенді бөлімді белгілеу (scroll spy)
+  var links=[].slice.call(menu.querySelectorAll('a'));
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);map[id]=a;});
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('active');});
+        var a=map[e.target.id]; if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(function(s){obs.observe(s);});
+
+  // іздеу (келесі қадамда толық қосылады)
+  document.getElementById('searchBtn').addEventListener('click',function(){
+    document.getElementById('about').scrollIntoView();
+  });
+</script>
+
+<script>
+(function(){
+  var KB = "СЕН — ҚОНЖЫҚ, Сырбай Мәуленов атындағы №37 мектеп-лицейдің цифрлық әдеби музейінің бойтұмары әрі жолнұсқаушысы.\n\nРӨЛІҢ МЕН МІНЕЗІҢ:\n- Сен — жұмсақ ойыншық аюсың. Ақынның руы «Аю» болғандықтан, сен музейдің сүйікті бойтұмары болдың.\n- Балаларға да, үлкендерге де жылы, ілтипатты, қарапайым тілде сөйлейсің. Артық көп сөйлемейсің — 2-4 сөйлеммен жауап бересің.\n- Кейде «🐻» эмодзиін сирек қолдансаң болады, бірақ асыра сілтеме.\n- Қазақ тілінде ғана жауап бересің.\n\nЕҢ МАҢЫЗДЫ ЕРЕЖЕ — АҚИҚАТТЫҚ:\n- Тек ТӨМЕНДЕГІ деректерге сүйенесің. Оны білмесең, ойдан ЕШНӘРСЕ шығарма.\n- Білмейтін нәрсе сұралса: «Оны нақты білмеймін, бірақ музейден көруге болады» немесе «Бұл туралы дерегім жоқ» деп адал айт.\n- Жалған дата, жалған оқиға, жалған цитата, жалған сан айтуға тыйым салынады.\n- Толық өлең мәтінін жатқа айтпа — оны Adebiportal.kz сайтынан оқуға болатынын айт.\n\nМУЗЕЙ ТУРАЛЫ ДЕРЕК:\n- Мектеп 1993 жылы 1 қаңтарда құрылды. 2003 жылы мектепке Сырбай Мәуленов есімі берілді. 2017 жылы 2 қыркүйекте музей ашылды.\n- Музейде 9 тақырыптық бұрыш бар (№0-ден №8-ге дейін).\n\nСЫРБАЙ МӘУЛЕНОВ ТУРАЛЫ:\n- Ақын 1922 жылы 17 қыркүйекте Сыр бойында (Қызылорда өңірінде) туған. 1993 жылы қайтыс болған.\n- Әкесі — Мәулен, анасы — Алмагүл. Тайпасы — арғын, руы — Аю.\n- Балалық шағы Қызылордада өткен. Кейде Торғайға көшіп тұрған.\n- Ұлы Отан соғысының ардагері, Ленинградты қорғауға қатысқан, 1-дәрежелі мүгедегі болған.\n- Қазақстанның халық жазушысы, Абай атындағы Мемлекеттік сыйлықтың лауреаты, Александр Фадеев атындағы күміс медаль иегері.\n- 40-қа жуық кітаптың авторы.\n- 7 баласы болған. Ұлы Қасым Мәуленов — ғалым, академик-жазушы (әкесі оны дауылпаз ақын Қасым Аманжоловты құрметтеп, соның есімімен атаған).\n- Зайыбы — Күнжамал апай.\n- Батыр Бауыржан Момышұлы онымен қалжыңдап: «Аю, медведь, встать!» деп телефон шалады екен.\n\nМУЗЕЙ БҰРЫШТАРЫ:\n- №0 «Қабырғалар сөйлейді»: музей залы, портреттер, балалары сыйлаған тұс кілемдер, Күнжамал апайдың самауыры, мерейтой банерлері, QR-электронды кітапхана. Портреттердің бірін Ақтөбе суретшісі Есет Исмайлов 2003 жылы салған. Тағы бір портретті мектеп түлегі Ажар Нұғалиева салған.\n- №1 «Күркіреп күндей өтті ғой соғыс»: соғыс жылдарының құжаттары — туу туралы куәлік, анықтама, госпиталь қағаздары, «Ленинград қаласын қорғауға» медалінің көшірмесі, майдандас достарының хаттары.\n- №2 «Соғыстан қайтқан солдаттар»: медальдар мен орден көшірмелері — «За доблестный труд», «За освоение целинных земель», «За победу над Германией», Жеңіс мерейтойларының куәліктері, Украина Үкіметінің алғыс хаты.\n- №3 «Әдебиет майданы»: «Большевиктік жол» (1943-1949, Қостанай) және «Қазақ әдебиеті» газеттеріндегі редакторлық қызметі, бұйрықтар, «Қостанай қаласының құрметті азаматы» атағы, Украина Жоғарғы Кеңесінің Құрмет грамотасы, партиялық билет.\n- №4 «Ақын өлеңдері мен ақын жайлы мақалалар»: Ұлықбек Есдәулетов («Асқар тауға айналған ақын»), Мұзафар Әлімбаев («Заңғардың зәулімдері»), Қоғабай Сәрсекеев («Өттің дүние дөңгеленіп») эсселері, ұлы Қасымның «И жизнь моя благодаря отцу» естелігі.\n- №5 «Қолтаңбалы кітаптар»: авторлық қолтаңбасы бар 21 кітап; Қасым Аманжолов және орыс ақыны Евгений Евтушенкомен (1974 ж.) түскен фотосуреттер.\n- №6 «Сыршыл ақын Сырбай»: ақынның 14 авторлық кітабы, «Қазақ әдебиеті» журналы, ұлы Қасыммен фотосуреті.\n- №7 «Өмірден қалған естеліктер»: «Прогресс» жазу машинасы (ақын өлеңдерін осы машинкамен терген), көзілдірік, сағат, соғыс шлемі, ордендердің түпнұсқалары, фотоальбом.\n- №8 «Сырбайтану жұмыстары»: Министрлер кабинетінің ақын есімін мәңгілік есте қалдыру туралы қаулысы, Астана қаласындағы көше атауы (2024 ж.), «Сырбай оқулары» жүлделері, ескерткіш тақталар, ұстаз Ғайния Ахметованың арнау өлеңі.\n\nЖӘДІГЕРЛЕР ТУРАЛЫ ЖИІ СҰРАЛАТЫН:\n- «Прогресс» — ақынның жазу машинасы, №7 бұрышта, өлеңдерін осымен терген.\n- Самаурын — №0 бұрышта, қонақтарға Күнжамал апай осыдан шәй құйған.\n- Қолтаңбалы кітаптар — 21 кітап, №5 бұрышта.\n\nЕГЕР сұрақ музейге, ақынға, өлеңдерге қатысы жоқ болса (мысалы, математика есебі, ауа райы): сыпайы түрде «Мен тек Сырбай ақын мен музей туралы әңгімелесемін» деп бағыттайсың.";
+  var log=document.getElementById('log');
+  var input=document.getElementById('chatInput');
+  var sendBtn=document.getElementById('chatSend');
+  var history=[];  // {role, content}
+
+  function add(cls, html){
+    var d=document.createElement('div');
+    d.className='msg '+cls; d.innerHTML=html;
+    log.appendChild(d); log.scrollTop=log.scrollHeight;
+    return d;
+  }
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+
+  function typing(on){
+    var ex=document.getElementById('typing');
+    if(on){ if(!ex){var d=document.createElement('div');d.className='chat-typing';d.id='typing';d.textContent='Қонжық жазып жатыр…';log.appendChild(d);log.scrollTop=log.scrollHeight;} }
+    else if(ex){ ex.remove(); }
+  }
+
+  async function ask(q){
+    add('me', esc(q));
+    history.push({role:'user', content:q});
+    input.value=''; sendBtn.disabled=true; typing(true);
+    try{
+      var res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-6', max_tokens:400,
+          system:KB,
+          messages:history.slice(-10)
+        })
+      });
+      var data=await res.json();
+      var txt=(data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('\n').trim();
+      typing(false);
+      if(!txt) txt='Кешір, қазір жауап бере алмадым. Сұрағыңды қайта жазып көрші. 🐻';
+      add('bot', esc(txt).replace(/\n/g,'<br>'));
+      history.push({role:'assistant', content:txt});
+    }catch(e){
+      typing(false);
+      add('bot','Байланыс үзілді. Интернетті тексеріп, қайта жазып көрші. 🐻');
+    }
+    sendBtn.disabled=false; input.focus();
+  }
+
+  sendBtn.addEventListener('click',function(){var q=input.value.trim(); if(q) ask(q);});
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){var q=input.value.trim(); if(q) ask(q);}});
+  document.querySelectorAll('#chips .chip').forEach(function(c){
+    c.addEventListener('click',function(){ask(c.textContent);});
+  });
+
+  // қалқыма батырма чатқа апарады әрі енгізуге фокус
+  document.getElementById('fab').addEventListener('click',function(){
+    document.getElementById('chat').scrollIntoView();
+    setTimeout(function(){input.focus();},500);
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  var TL = [{"y": "1922", "place": "Торғай", "lat": 49.63, "lng": 63.5, "t": "Дүниеге келуі", "d": "17 қыркүйекте Қостанай облысы, Жангелдин ауданы, Торғай өңірінде дүниеге келді. Әкесі — Мәулен, анасы — Алмагүл. Тайпасы арғын, руы Аю."}, {"y": "1930-жж", "place": "Қызылорда", "lat": 44.85, "lng": 65.51, "t": "Балалық шағы", "d": "Балалық және жасөспірім кезі Сыр бойында — Қызылорда өңірінде өтті. Ақынды «Сыр бойында туды» деп Сырбай атаған."}, {"y": "1937", "place": "Жамбыл облысы", "lat": 42.9, "lng": 71.37, "t": "Тұңғыш өлеңі", "d": "Алғашқы өлеңі Жамбыл облысының «Колхозшы» газетінде жарияланды. Ақындық жолдың басы."}, {"y": "1941–1945", "place": "Ленинград", "lat": 59.94, "lng": 30.31, "t": "Ұлы Отан соғысы", "d": "Соғысқа қатысып, Ленинград қаласын қорғауға ерлікпен қатысты. Ауыр жараланды, 1-дәрежелі мүгедек болып оралды. Осы кезең жырларына мәңгілік із қалдырды."}, {"y": "1943–1950", "place": "Қостанай", "lat": 53.21, "lng": 63.62, "t": "«Большевиктік жол»", "d": "Қостанай облысында радиокомитет пен «Большевиктік жол» газетінде редактор, бөлім меңгерушісі, редактордың орынбасары болды. Әдебиет майданының басы."}, {"y": "1948", "place": "Алматы", "lat": 43.24, "lng": 76.91, "t": "Алғашқы жинағы", "d": "«Өлеңдері» атты тұңғыш жыр жинағы жарық көрді. Кейін ақын қырыққа жуық жинақтың авторы атанды."}, {"y": "1955–1977", "place": "Алматы", "lat": 43.238, "lng": 76.945, "t": "Бас редактор", "d": "«Жұлдыз» журналы мен «Қазақ әдебиеті» газетінің бас редакторы болды. Қазақ поэзиясының лирика жанрын дамытуға зор үлес қосты."}, {"y": "1970", "place": "Алматы", "lat": 43.256, "lng": 76.928, "t": "Мемлекеттік сыйлық", "d": "Абай атындағы Қазақстан Мемлекеттік сыйлығының лауреаты атанды. «Қызыл Ту», «Халықтар Достығы», «Құрмет Белгісі» ордендерімен марапатталды."}, {"y": "1993", "place": "Алматы", "lat": 43.222, "lng": 76.851, "t": "Ақынның қазасы", "d": "Ақын дүниеден өтті. Артында бай әдеби мұра — жырлар, поэмалар, аудармалар мен балаларға арналған шығармалар қалды."}, {"y": "2017", "place": "Астана", "lat": 51.16, "lng": 71.47, "t": "Музейдің ашылуы", "d": "Астанадағы №37 мектеп-лицейде (2003 жылдан ақын есімін иеленген) Сырбай Мәуленов әдеби музейі ашылды. Ақын мұрасы жаңа буынға жол тартты."}];
+  var list=document.getElementById('tlList'), map=document.getElementById('tlMap');
+  var bL=document.getElementById('tlBtnList'), bM=document.getElementById('tlBtnMap');
+  function show(which){
+    var isMap=which==='map';
+    map.classList.toggle('show',isMap); list.classList.toggle('hide',isMap);
+    bM.classList.toggle('on',isMap); bL.classList.toggle('on',!isMap);
+    bM.setAttribute('aria-selected',isMap); bL.setAttribute('aria-selected',!isMap);
+  }
+  bL.addEventListener('click',function(){show('list');});
+  bM.addEventListener('click',function(){show('map');});
+
+  var info=document.getElementById('mapInfo');
+  function pinSvg(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';}
+  function pick(i){
+    var e=TL[i];
+    info.innerHTML='<div class="mi-year">'+e.y+'</div><h4>'+e.t+'</h4>'
+      +'<span class="mi-place">'+pinSvg()+e.place+'</span><p>'+e.d+'</p>';
+    document.querySelectorAll('.map-dot').forEach(function(d){d.classList.remove('active');});
+    var g=document.querySelector('.map-dot[data-i="'+i+'"]'); if(g)g.classList.add('active');
+  }
+  document.querySelectorAll('.map-dot').forEach(function(g){
+    g.addEventListener('click',function(){pick(+g.dataset.i);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(+g.dataset.i);}});
+  });
+})();
+</script>
+
+
+<script>
+var CORNERS=[{"n": "0", "img": "assets/img/corner-0.jpg", "t": "«Қабырғалар сөйлейді»", "exh": "Музей залы: мектеп тарихы, ақынның портреттері, балалары сыйлаған тұс кілемдер, самаурыны, мерейтой банерлері және QR-электронды кітапхана.", "s": ["«Қабырғалар сөйлейді» деп аталады. Сондықтан музей қабырғасында ілінген жәдігерлермен таныс боласыздар.", "Біздің мектеп 1993 жылы 1 қаңтарда құрылды. Мектепке 2003 жылы ақын Сырбай Мәуленов есімі берілді.", "Сырбай Мәуленов — Абай атындағы Мемлекеттік сыйлықтың лауреаты, Александр Фадеев атындағы күміс медальдің иегері, Екінші дүниежүзілік соғыс ардагері және 1-дәрежелі мүгедегі, Ленинградты қорғауға қатысқан. «Қызыл Ту», «Халықтар Достығы», «Құрмет Белгісі» ордендерімен және медальдармен марапатталған. Қазақстанның халық жазушысы, көрнекті ақын.", "<b>№1.</b> 2017 жылы 2 қыркүйекте мектеп музейі ашылды.", "<b>№2.</b> Бұл фотоколлаж музейдің ашылу салтанатынан сыр шертіп тұр. Ашылу салтанатына ақынның немересі Арлан Газизұлы мен келіні Арай, қалалық мәслихат депутаттары қатысқан.", "Музейде ақынның жеке заттары мен құжаттары сақтаулы тұр. Олар біз үшін құнды жәдігерлер. Сіздер көріп тұрғандай, қабырғада кілемшелер, портреттер ілінген, құжаттары мен кітаптары қойылған. Осының бәрі де Сіздерге ақын өмірінен сыр шертеді.", "<b>№3–4.</b> Мына қабырғада тұс кілемдер ілінген. Тұс кілемдерді музейге балалары сыйлаған. Ақынның 7 баласы болған. Ақын балалары туралы арнайы шумақ жазып, жеті баласын жеті асқарға, жеті далаға, жеті аспанға балаған. <i>(Өлеңнің толық мәтіні Adebiportal.kz сайтында.)</i>", "<b>№5.</b> Бұл портреттің авторы — суретші Исмайлов Есет Ахатұлы, Ақтөбе қаласынан. Портретті 2003 жылы салып, біздің мектепке сыйлаған. Бірегей туынды!", "<b>№6.</b> Мынау — ақынның самаурыны. Ақынның үйіне замандас ақын-жазушылар жиі келетін. Оларға ақынның зайыбы Күнжамал апай осы самаурыннан шәй құйып берген.", "<b>№7–8.</b> Қабырғаға ілінген үлкен банерлер ақынның мерейтойына байланысты әзірленген. Мына банер ақынның 80 жылдық мерейтойын көрсетіп тұр.", "<b>№9.</b> Мына портреттің тарихын тыңдаңыздар. 1982 жылы Арқалық қаласында ақынның 60 жылдық мерейтойы тойланған. Осы мерейтойда Арқалық қаласының «Құрметті азаматы» атағы беріліп, қала әкімшілігі осы портретті сыйлаған.", "<b>№10.</b> Мына портрет — мектебіміздің оқушысы Нұғалиева Ажардың туындысы. Дарынды оқушы қыз бұл портретті 7-сыныпта оқып жүргенде салып, музейге сыйға тартқан. Ажар — мектебіміздің 2023 жылғы түлегі.", "Мынау — заманауи электронды кітапхана. Музейге келушілер QR арқылы ақын туралы фильмдерді көріп, зерттеу жұмыстарын жүргізеді. Сонымен қатар оқушылардың ЖИ көмегімен жасаған жұмыстары қойылған.", "Ақынның тайпасы — арғын, руы — Аю болған. Сондықтан ақынның балалары мына жұмсақ ойыншықты жақсы көрген. Бұл — Қонжық, осы музейдің бойтұмары.", "Бұдан әрі Қонжықтың соңынан ереміз. Қонжық Сіздерді тақырыптық бұрыштармен таныстырады. Бізде ақын өмірінен сыр шертетін 8 тақырыптық бұрыш бар. Жәдігерлер тақырып бойынша топтастырылған. Зейіндеріңіз ашылсын!"], "link": {"href": "index.html#ai", "label": "Электронды кітапхана: оқушылардың ЖИ жұмыстары →"}}, {"n": "1", "img": "assets/img/corner-1.jpg", "t": "«Күркіреп күндей өтті ғой соғыс»", "exh": "Соғысқа дейінгі және соғыс жылдарының құжаттары: анықтама, туу туралы куәлік, госпиталь қағаздары, Ленинградты қорғау медалінің көшірмесі және майдандас достарының хаттары.", "s": ["Бұл бұрышта соғысқа дейінгі және соғыс жылдарына қатысты құжаттар сақталған.", "<b>№1 жәдігер — «Анықтама».</b> Бұл құжатта Сырбай ақынның әкесі Мәулен Тайұлының кедей шаруа екені көрсетілген. Ақынның тайпасы — арғын, руы — Аю. Қарапайым шаруа отбасында дүниеге келген.", "Атасы Тай атқа мінгенде екі тізесі аттың құлағына дейін жететін өте ірі адам болған. Ел аузында мынадай оқиға сақталған: бірде жер дауына Тай барады. Оны көрген қарсылас би: «Арғындарда Тай осындай болса, аттары тіптен зор шығар» — деп таңғалыпты.", "Тағы бір қызықты оқиға ақынның руына байланысты. Ұлы Қасымның айтуынша, қазақтың қаһарман ұлы, батыр Бауыржан Момышұлы Сырбай ақынға телефон шалып: «Аю, медведь, встать! С тобой полковник Советской армии!» — деп қалжыңдайды екен.", "<b>№2 жәдігер — «Туу туралы куәлік».</b> Бұл құжаттан ақынның әкесі — Мәулен, анасы — Алмагүл екенін білеміз.", "Ақын өзінің туған күні туралы былай дейді: 1922 жылы жоқшылық айдап біздің үй Торғайдан толқындай төңкеріліп Сыр бойына көшіп келді. Мен сол жылы 17 қыркүйекте, қара жаңбыр құйып тұрған күз таңында дүниеге келіппін. Атымды Сыр бойында туды деп Сырбай қойыпты. Анам жаңбыр жауса қатты қуанушы еді. Келесі жылы жазғытұрым біздің үй қайтадан Торғай даласына көшіп келді. 1932 жылы Торғайдан тағы да Сырға келдім. Менің балалық балғын кезім, жасөспірім өрімтал шағым Қызылорданың құшағында өтті. Халықтың мені біресе Сырдікі, біресе Қырдікі деп айтуының сыры осы болса керек.", "<b>№4–5 құжаттар</b> ақынның соғыста ауыр жараланып госпитальде жатқанын көрсетеді. Сондай-ақ алған жарақатына байланысты соғыстан босатылғанын көреміз.", "<b>№6 жәдігер.</b> Лейтенант Мәуленовтың «Ленинград қаласын қорғауға» ерлікпен қатысқаны үшін берілген медалінің көшірмесі.", "<b>№7–11 жәдігерлер — хаттар.</b> Ол хаттарды қандыкөйлек жауынгерлер соғыстан кейін ақынға жазған. Хаттармен таныса отырып, авторларының әртүрлі ұлт өкілдері екенін, ақынның интернационалист жауынгер болғанын білеміз."]}, {"n": "2", "img": "assets/img/corner-2.jpg", "t": "«Соғыстан қайтқан солдаттар»", "exh": "Ақынға берілген медальдар мен ордендердің көшірмелері, куәліктер және Украина Үкіметінің арнайы алғыс хаты.", "s": ["Бұл — халықтың жүрегінен жол тапқан тарихи ән. Өздеріңіз көріп тұрғандай, бұл бұрышта ақынға берілген медальдар мен орден көшірмелері сақтаулы тұр. Атап айтсақ:", "<b>№1.</b> «За доблестный труд в Великой Отечественной войне 1941–1945 гг.» медалі.", "<b>№5.</b> «За освоение целинных земель» медалі.", "<b>№6.</b> «За победу над Германией в Великой Отечественной войне 1941–1945 гг.» медалі.", "<b>№7.</b> «Двадцать лет победы в Великой Отечественной войне 1941–1945 гг.» куәлігі.", "<b>№8.</b> «Тридцать лет победы в Великой Отечественной войне 1941–1945 гг.» медалі.", "<b>№10.</b> «50 лет Вооружённых Сил СССР» куәлігі.", "Сонымен қатар Украина Үкіметінің халықаралық конференцияда маңызды баяндама жасағаны үшін берген арнайы алғыс хаты қойылған.", "Біз бұл жәдігерлермен таныса отырып, ақынның Ұлы Жеңіске арналған медальдармен тұрақты түрде марапатталып отырғанын көреміз."]}, {"n": "3", "img": "assets/img/corner-3.jpg", "t": "«Әдебиет майданы»", "exh": "«Большевиктік жол» және «Қазақ әдебиеті» газеттеріндегі қызметінің құжаттары, бұйрықтар, қаулылар, марапаттар, жазушы куәлігі мен партиялық билеті.", "s": ["Жаралы жас ақын майданнан оралып, екінші майданға кіріскен еді. Ол — әдебиет майданы болатын.", "<b>№1 жәдігер — Анықтама.</b> Соғыстан оралған жас ақын Сырбай 1943–1949 жылдар аралығында Қостанай облыстық «Большевиктік жол» газетінде жұмыс істеген. Әуелі 1943 жылы 15 шілдеде газеттің меншікті тілшісі, одан кейін хаттар бөлімінің меңгерушісі, партия жұмыстары бөлімінің меңгерушісі, редактордың жауапты хатшысы болып қызмет атқарады.", "<b>№8 жәдігер — Бұйрық.</b> Ақын шығармашылық жұмысқа ауысуына байланысты республикалық «Қазақ әдебиеті» газетінің редакторы лауазымынан босатылған. Бұйрық 1977 жылы 27 сәуірде шыққан. Қол қойған — жазушы Сайын Мұратбеков.", "<b>№10 жәдігер — Қаулы.</b> Халық ақыны Сырбай Мәуленовке «Қостанай қаласының құрметті азаматы» атағын беру туралы Қостанай қалалық Кеңесі халық депутаттарының қаулысы. Төраға Корнеев қол қойған.", "<b>№5 жәдігер — Марапат.</b> Украина мемлекеті Жоғарғы Кеңесінің Президиумы «Құрмет грамотасымен» марапаттаған.", "Сонымен қатар Мемлекеттік сыйлықтың лауреаты атанғаны туралы Дипломды және Мәскеу қаласында өткен декадаға қатысқаны туралы анықтаманы көріп тұрсыздар.", "Мына қапталында жазушының куәлігі мен партиялық билеті, медициналық кітапшасы және басқа да құжаттарының түпнұсқасы мен көшірмелері қойылған."]}, {"n": "4", "img": "assets/img/corner-4.jpg", "t": "«Ақын өлеңдері мен ақын жайлы мақалалар»", "exh": "Ақынды көзкөрген қаламгерлердің естелік эсселері мен әңгімелері, «Қазақ әдебиеті» әдеби журналының басылымдары.", "s": ["Бұл бұрышта ақынды көзкөрген, сыйлас, пікірлес болған ақын-жазушылардың естелік эсселері мен әңгімелері топтастырылған.", "<b>№1 жәдігер.</b> Ақын Ұлықбек Есдәулетовтың «Асқар тауға айналған ақын» деген әңгіме-эссесі.", "<b>№2 жәдігер.</b> Халық жазушысы Мұзафар Әлімбаевтың «Заңғардың зәулімдері» эссесі. Сондай-ақ Қоғабай Сәрсекеевтің «Өттің дүние дөңгеленіп» эссесі қойылған.", "<b>№12 жәдігер.</b> Ақынның ұлы Қасым Мәуленовтың «И жизнь моя благодаря отцу» естелігі жарияланған.", "<b>№10–11 жәдігерлер.</b> Қазақстанның ең беделді «Қазақ әдебиеті» әдеби журналы қойылған. Журналға ақынның өлеңдері жиі жарияланып тұрғанын көруге болады."]}, {"n": "5", "img": "assets/img/corner-5.jpg", "t": "«Қолтаңбалы кітаптар»", "exh": "Авторлық қолтаңбасы бар 21 кітап, замандас қаламгерлермен және Евгений Евтушенкомен түскен фотосуреттер.", "s": ["Бұл бұрышқа 21 кітап қойылған. Кітаптардың барлығында авторлық қолтаңбалар жазылған.", "Сырбай аға өмірде жаны жайсаң, көпшіл жан болған. Көрнекті қаламгер ақын-жазушылармен аға-іні болып сыйласқан. Олардың кейбірі қолтаңбасын өлең шумақтарымен қалдырған.", "Қолтаңбалы кітаптармен таныса келе ақынның шетелдік жазушылармен достығын білеміз. Мәселен, Ләбиба Ихсанова деген татар жазушы «Саралан малайлары» деген кітабын қолтаңбасын жазып сыйлаған.", "Ортада ілінген сурет — ақынның «Қазақ әдебиеті» газетінде редактор болып жүрген кезі.", "<b>№22–23 суреттерде</b> ақын қаламгерлермен бірге түскен. Сырбайдың қасында белгілі дауылпаз ақын Қасым Аманжолов тұр.", "<b>№24 суретте</b> орыстың атақты ақыны Евгений Евтушенкомен 1974 жылы кездескен сәтін көріп тұрмыз."], "lst": {"t": "Қолтаңбалы кітаптар тізімі", "items": ["Арман жолында — Дихан Әбілов", "Хафиз — Ғазалдар", "Ливень — Танаш Дәуренбеков", "Иран бағы — Иранбек Оразбаев", "Екінші өмір — Сәбит Досанов", "Корьен серләре — Гариф Гобәй", "Тағдыр — Қабдеш Жұмаділов", "Өтебай Тұрманжанов", "Таңдамалы — Сайын Мұратбеков", "Бозторғай — Решад Нури Гунтекин", "Саралан малайлары — Ләбиба Ихсанова", "Жәмила Егембердиева", "Бес белес — Мыңбай Рәшев", "Қобыз сарыны — Мұхтар Мағауин", "Ән сапары — Б. Балабеков", "Қыран тауы — Е. Тұрысов", "Біз әлі кездесеміз — Танаш Дәуренбеков", "Толғауы тоқсан қызыл тіл — Рымғали Нұрғалиев", "Мәңгі шырақ сөнбесін — Кәкімбек Салықов", "Сұңқар жерді мекендейді — Жүсіпбек Арыстанов"]}}, {"n": "6", "img": "assets/img/corner-6.jpg", "t": "«Сыршыл ақын Сырбай»", "exh": "Ақынның әр жылдары жарық көрген 14 кітабы және өмірінен сыр шертетін фотосуреттер. Барлығы 40-қа жуық кітаптың авторы.", "s": ["Ақын бас-аяғы 40-қа жуық кітаптың авторы. Бұл бұрышқа ақынның әр жылдары жарық көрген 14 кітабы қойылған. Сонымен қатар өмірінен сыр шертетін фотосуреттер ілінген.", "<b>№15 суретте</b> ұлы Қасым Мәуленовпен бірге түскен. Сырбай Мәуленов дауылпаз ақын ағасы Қасым Аманжоловты қатты құрметтеген, оның өлеңдерін жоғары бағалаған. Осындай құрметпен баласына Қасым деп ат қойған.", "Сырбай ақын отбасы туралы: «Біздің отбасымызда ақын бар, енді бір ғалым болса екен» — деп армандаған. Әке арманын орындаған осы Қасым болды. Қасым Мәуленов — ғалым, академик-жазушы. Мектебімізге жиі келіп тұрады, музеймен тығыз қарым-қатынаста."], "lst": {"t": "Бұрышқа қойылған кітаптар", "items": ["Сырбай Мәуленов", "Жыр тұлпары, сыр сұңқары Сырбай", "Ақ түн", "Өлеңім — өмірім менің", "Барлаушы бала", "Рауан", "Алысқа кетіп барамын", "Күзгі бұлттар", "Ақшамның қызыл қанаты", "Үркер төбеде тұр", "Алтын тасқын"]}}, {"n": "7", "img": "assets/img/corner-7.jpg", "t": "«Өмірден қалған естеліктер»", "exh": "«Прогресс» жазу машинасы, көзілдірік қабы, қалта және қол сағаттары, бес жұлдызды шлем мен пилотка, фотоальбом.", "s": ["Бұл бұрышта ақынның пайдаланған заттары қойылған. Оның ішінде біз үшін ең қадірлісі — ақынның саусақ табы қалған «Прогресс» жазу машинасы. Ақын өзінің өлеңдерін осы машинкамен жазып отырған.", "Оның қасында тұрған көзілдірік қабы, қалта сағаты, қол сағаты — бәрі де ақынның өмірінің соңында пайдаланған жеке заттары.", "Сырбай ақын — соғысқа қатысқан майдангер ақын. Мына бес жұлдызды шлем мен пилотка оның жас сарбаз болғанын көрсетіп тұр.", "Бұрышта жатқан фотоальбомнан классик жазушы Ғабит Мүсіреповті көріп тұрмыз. Жоғарыдағы портреттен ақынның жазу үстелінде отырған сәтін көріп тұрсыздар.", "<b>№11 жәдігер.</b> Соғыс жылдарында қандыкөйлек майдандастармен бірге түскен сурет. Ақын алыс-жақын шетелдегі майдангерлермен өмірінің соңына дейін шығармашылық байланыста болған, көптеген қаламгерлермен хат жазысып отырған."]}, {"n": "8", "img": "assets/img/corner-8.jpg", "t": "«Сырбайтану жұмыстары»", "exh": "Министрлер кабинетінің ақын есімін мәңгілік есте қалдыру туралы қаулысы, Астана көшесіне ат беру шешімі, ұстаз арнауы және келушілерге арналған тапсырмалар жинағы.", "s": ["Бұл бұрышта мектептің Сырбайтану жұмыстарымен таныса аласыздар.", "<b>№16 жәдігер — Қаулы.</b> Қазақстан Республикасы Министрлер кабинетінің қаулысы қойылған. Бұл қаулыда Сырбай Мәуленовті мәңгілік есте қалдыру айтылған. Осы қаулы бойынша ақынның зиратына ескерткіш бюст, Алматы қаласында тұрған үйдің қабырғасына мемориалдық ескерткіш тақта орнатылған. Сонымен қатар Алматы, Қызылорда, Арқалық қалалары мен Жангелді ауданынан көше аттары берілген.", "<b>№17 жәдігер.</b> «Астана қаласының кейбір құрамдас бөліктеріне атау беру және қайта атау туралы» — Астана қаласы әкімдігінің 2024 жылғы 31 қаңтардағы № 511-244 және Астана қаласы мәслихатының 2024 жылғы 31 қаңтардағы № 138/17-VIII бірлескен қаулысы мен шешімі. Осы шешімге сәйкес Сырбай Мәуленовке көше атауы берілді. <a href=\"https://adilet.zan.kz/kaz/docs/G24ABW51124\" target=\"_blank\" rel=\"noopener\">Құжат мәтіні ↗</a>", "<b>№7 жәдігер.</b> Мектебіміздің ұлағатты ұстазы Ғайния Ахметованың ақынға арнау өлеңі қойылған. Бұл арнау республикалық журналға жарияланған.", "Төменде музейге келушілерге арналған тапсырмалар жинағы қойылған. Тапсырмалар музейге келушінің жас ерекшелігін ескере отырып, ақынның шығармаларынан алынған.", "Сырбайтану ісін бүгін біз жалғастырып отырмыз: «Сырбайтану» үйірмесінің оқушылары ақын шығармаларын жасанды интеллект құралдарымен насихаттайды. Ол жұмыстар музейдің электронды кітапханасында және сайттың AI аймағында қойылған."], "link": {"href": "index.html#ai", "label": "Бүгінгі Сырбайтану: AI аймақ →"}}];
+(function(){
+  var wrap=document.getElementById('corners');
+  if(!wrap)return;
+  wrap.innerHTML=CORNERS.map(function(c,i){
+    var scr=c.s.map(function(x){return '<p>'+x+'</p>';}).join('');
+    return '<div class="corner">'+
+      '<div class="cbody">'+
+        '<h4>'+c.t+'</h4>'+
+        '<div class="exh">'+c.exh+'</div>'+
+        '<img class="shot" src="'+c.img+'" alt="'+c.t+'" loading="lazy" onerror="this.style.display=&quot;none&quot;">'+
+        '<button class="ctoggle" aria-expanded="false" data-t="msc'+i+'">Бұрышқа кіру · толық сипаттама <span class="ar">›</span></button>'+
+        '<div class="cpanel" id="msc'+i+'"><div class="inner"><div class="lbl">ЖӘДІГЕРЛЕР МЕН ТАРИХИ КОНТЕКСТ</div>'+scr+
+          '<div class="corner-src">Дереккөз: №37 мектеп-лицей музейінің қоры. Ақын шығармалары — <a href="https://adebiportal.kz/kz/authors/view/826" target="_blank" rel="noopener">Adebiportal.kz</a>.</div>'+
+        '</div></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  wrap.querySelectorAll('.ctoggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var panel=document.getElementById(btn.dataset.t);
+      var open=panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  var btn=document.getElementById('applyBtn');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    var name=(document.getElementById('ap-name').value||'').trim();
+    var cls=(document.getElementById('ap-class').value||'').trim();
+    var nom=document.getElementById('ap-nom').value;
+    var link=(document.getElementById('ap-link').value||'').trim();
+    if(!name||!cls){alert('Аты-жөні мен мектеп/сыныпты толтырыңыз.');return;}
+    var msg='«Сырбай мұрасы» байқауына өтінім%0A%0A'+
+      'Аты-жөні: '+encodeURIComponent(name)+'%0A'+
+      'Мектеп, сынып: '+encodeURIComponent(cls)+'%0A'+
+      'Номинация: '+encodeURIComponent(nom)+'%0A'+
+      'Жетекшісі / байланыс: '+encodeURIComponent(link)+'%0A%0A'+
+      'Ескерту: ресми тіркеу Google форма арқылы да қажет.';
+    window.open('https://wa.me/77789178080?text='+msg,'_blank');
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  document.querySelectorAll('.nom-head').forEach(function(h){
+    function toggle(){
+      var body=document.getElementById(h.dataset.nom);
+      var open=body.classList.toggle('open');
+      h.setAttribute('aria-expanded',open?'true':'false');
+    }
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  // Табтар
+  var tabs=document.querySelectorAll('.study-tab');
+  function openPanel(id){
+    var btn=document.querySelector('.study-tab[data-panel="'+id+'"]');
+    if(!btn)return false;
+    tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.study-panel').forEach(function(pn){pn.classList.remove('on');});
+    btn.classList.add('on');btn.setAttribute('aria-selected','true');
+    var pn=document.getElementById(id); if(pn)pn.classList.add('on');
+    return true;
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){openPanel(t.dataset.panel);});
+  });
+
+  // Хэш-роутинг: жасырын табтың ішіндегі якорьге сілтеме басылса, алдымен сол табты ашамыз
+  var HASH_PANEL={'#study':'sp-museum','#museum':'sp-museum','#works':'sp-works','#adal':'sp-adal','#projects':'sp-lessons','#lessons':'sp-lessons','#guides':'sp-guides','#science':'sp-science'};
+  function route(hash,scroll){
+    var panel=HASH_PANEL[hash];
+    if(!panel)return;
+    openPanel(panel);
+    if(scroll){
+      var id=hash.slice(1);
+      var el=document.getElementById(id)||document.getElementById('study');
+      if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);
+    }
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    var h=a.getAttribute('href');
+    if(HASH_PANEL[h]){e.preventDefault();history.replaceState(null,'',h);route(h,true);}
+  });
+  if(HASH_PANEL[location.hash])route(location.hash,true);
+  window.addEventListener('hashchange',function(){route(location.hash,true);});
+
+  // Ғылыми материалдар (context файлдары)
+  var SCI=[
+    {cat:"Әдістемелік материал",t:"«2026–2027 оқу жылында білім беру процесін ұйымдастырудың ерекшеліктері» әдістемелік нұсқау хат",author:"Ы. Алтынсарин атындағы Ұлттық білім академиясы",year:"2026",annot:"Музейлік жұмыс пен «Адал азамат» құндылықтарын оқу процесіне кіріктірудің нормативтік негізі.",link:"assets/docs/imp-2026.pdf",label:"PDF ашу"},
+    {cat:"Әдістемелік құрал",t:"Әдістемелік құрал. Байқас Б.Б.",author:"№37 мектеп-лицей",year:"2026",annot:"Музейлік сабақ өткізудің әдістемелік ынамдамасы және ұйымдастырылымы.",link:"assets/docs/tapsyrma-paragy-7-9.pdf",label:"PDF ашу"}
+  ];
+  var g=document.getElementById('sci-grid');
+  if(g){
+    g.innerHTML=SCI.map(function(x){
+      var linkHtml = x.link
+        ? '<a href="'+x.link+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>'+x.label+'</a>'
+        : '<span class="sc-tag">'+x.label+'</span>';
+      return '<div class="sci-card"><div class="sc-cat">'+x.cat+'</div>'+
+        '<h4>'+x.t+'</h4>'+
+        '<div class="sc-meta"><b>'+x.author+'</b> · '+x.year+'</div>'+
+        '<p>'+x.annot+'</p>'+
+        '<div class="sc-links">'+linkHtml+'</div></div>';
+    }).join('');
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  var DIRS=[{"n": "Тәуелсіздік және отаншылдық", "img": "adal-1.png", "poems": ["Соғыс жолы", "Өшпес даңқ", "Қоңырау қағылды", "Майдан жолында", "Туған ел", "Қайтармыз Қазақстанға", "Шекара", "Туған жермен сырласу", "Торғай сенің кішкене өзенің...", "Туған жерге ода", "Шекара түні", "Қайта қара мына туған жеріне", "Партизан Қасым", "Еркіндіктің ең соңғы ұлы", "Астана мерекесі"]}, {"n": "Бірлік және ынтымақ", "img": "adal-2.png", "poems": ["Мектеп", "Жалғас жүрек", "Майдандас досқа хат", "Тәтті көрші, тату дос", "Қуаныш", "Бақытты біздің балалық", "Дос сыры", "Қарттық пен жастық", "Адам қуаты", "Құрдасқа", "Күн екіге бөлінбес", "Берді ағаның сөзі"]}, {"n": "Әділдік және жауапкершілік", "img": "adal-3.png", "poems": ["Ана кегі", "Әділдік", "Адалдық", "Өсиет", "Солдат жесірі", "Көңіл білдіру", "Сенім", "Полковник командирі", "Қабірі белгісіз досқа", "Адам өлмейді", "Аманат", "Өмір өзегі"]}, {"n": "Заң және тәртіп", "img": "adal-4.png", "poems": ["Ереже", "Шанхай түс", "Секунд", "Сағат", "Мұслима", "Календарь парақтары", "Адалдық", "Сия сауыттың паспорты", "Ерте тұрып, кеш жатамын", "Қылмыс", "Нәзіктік", "Солдат пен құс", "Солдат жесірі", "Майдандас досқа хат", "Майдан жолында"]}, {"n": "Еңбекқорлық және кәсіби біліктілік", "img": "adal-5.png", "poems": ["Диқан", "Көше сыпырушы", "Өмір жолы", "Талант", "Редактор", "Алматының алмасы", "Құрылысшы қыз", "Тас қалаушының жыры", "Комбайншының баласы", "Бидай туралы баллада", "Шеберлер", "Орманшы", "Малшы"]}, {"n": "Жасампаздық және жаңашылдық", "img": "adal-6.png", "poems": ["Жыр жолы", "Ізгілік", "Жыр көктемі", "Дауыл мен жауын", "Поэзия", "Өлең жазар алдында", "Алғашқы адым", "Бақыты үшін баланың", "Жаңа туған ай", "Суретші", "Скульптор", "Ардагер азаматтар"]}];
+  var grid=document.getElementById('adalGrid');
+  var panels=document.getElementById('adalPanels');
+  if(!grid)return;
+  function search(q){return 'https://adebiportal.kz/kz/search?query='+encodeURIComponent('Сырбай Мәуленов '+q);}
+  grid.innerHTML=DIRS.map(function(d,i){
+    return '<button class="adal-btn" data-i="'+i+'"><img src="assets/img/'+d.img+'" alt=""><b>'+d.n+'</b><span class="ac">'+d.poems.length+' өлең</span></button>';
+  }).join('');
+  panels.innerHTML=DIRS.map(function(d,i){
+    var lst=d.poems.map(function(pm){
+      return '<a href="'+search(pm)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>'+pm+'</a>';
+    }).join('');
+    return '<div class="adal-panel" id="adal-p'+i+'"><div class="ap-head"><img src="assets/img/'+d.img+'" alt=""><div><h4>'+d.n+'</h4><span>'+d.poems.length+' шығарма · Adebiportal.kz сілтемесі</span></div></div><div class="poem-list">'+lst+'</div></div>';
+  }).join('');
+  grid.querySelectorAll('.adal-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=b.dataset.i;
+      var panel=document.getElementById('adal-p'+i);
+      var isOpen=panel.classList.contains('on');
+      panels.querySelectorAll('.adal-panel').forEach(function(x){x.classList.remove('on');});
+      grid.querySelectorAll('.adal-btn').forEach(function(x){x.classList.remove('on');});
+      if(!isOpen){panel.classList.add('on');b.classList.add('on');panel.scrollIntoView({block:'nearest',behavior:'smooth'});}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
