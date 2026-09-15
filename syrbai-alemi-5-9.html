@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="kk"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сырбай әлемі · 5–9 сынып жұмыс дәптері</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800;900&family=Golos+Text:wght@400;500;600;700&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF9F4; --paper2:#F4EFE4; --ink:#0D3B66; --ink-soft:#41586E; --muted:#7A8794;
+  --gold:#A8875A; --gold-d:#8C6D42; --line:#E6DECF;
+  --font-d:'Playfair Display',Georgia,serif;
+  --font-b:'Golos Text',system-ui,-apple-system,sans-serif;
+  --font-m:'PT Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--font-b);
+  font-size:10.4pt; line-height:1.5; }
+.book{ display:flex; flex-direction:column; align-items:center; gap:20px; padding:24px 12px 56px; }
+
+.page{ width:210mm; min-height:297mm; background:var(--paper); padding:14mm 15mm 12mm;
+  position:relative; overflow:hidden; box-shadow:0 18px 46px -24px rgba(13,59,102,.4); }
+.page::before{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+  background-image:radial-gradient(rgba(180,150,100,.09) 1px, transparent 1.4px); background-size:22px 22px; }
+.page>*{ position:relative; z-index:1; }
+
+/* stage badge (SVG icon chip) */
+.sbadge{ display:inline-grid; place-items:center; border-radius:11px; flex:0 0 auto;
+  background:var(--sc); box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3); padding:7px; }
+.sbadge svg{ width:70%; height:70%; }
+
+/* page tab */
+.tab{ position:absolute; top:24mm; right:-1px; width:15mm; height:20mm; background:var(--sc);
+  color:#fff; font-family:var(--font-d); font-weight:900; font-size:19pt;
+  display:grid; place-items:center; border-radius:11px 0 0 11px; box-shadow:-2px 3px 8px rgba(0,0,0,.15); }
+
+/* header */
+.phead{ border-radius:16px; background:var(--stage); color:#fff; padding:6mm 8mm 6.5mm;
+  box-shadow:0 6px 14px color-mix(in srgb,var(--stage) 35%, transparent); margin-bottom:6mm; }
+.phead__row{ display:flex; align-items:center; gap:10px; }
+.phead__kicker{ font-family:var(--font-m); font-size:9.5pt; letter-spacing:.08em; opacity:.92; }
+.phead__title{ margin:3mm 0 0; font-family:var(--font-d); font-size:22pt; font-weight:800; line-height:1.08; }
+
+.lead{ font-size:10.6pt; color:var(--ink-soft); margin:0 0 6mm; line-height:1.55; }
+.lead b{ color:var(--ink); }
+
+/* journey (page 2) */
+.journey{ display:flex; flex-direction:column; }
+.jstep{ background:#fff; border:1px solid var(--line); border-left:5px solid var(--sc);
+  border-radius:14px; padding:5mm 6mm; }
+.jstep__head{ display:flex; align-items:center; gap:10px; margin-bottom:2mm; }
+.jstep__head h3{ margin:0; font-family:var(--font-d); font-size:14pt; color:var(--ink); }
+.jstep__n{ font-family:var(--font-m); font-size:8pt; letter-spacing:.06em; color:var(--sc); text-transform:uppercase; }
+.jstep__d{ margin:0 0 3mm; font-size:9.6pt; color:var(--ink-soft); }
+.jchips{ display:flex; flex-wrap:wrap; gap:5px; }
+.jchip{ background:color-mix(in srgb,var(--sc) 12%, #fff); border:1px solid color-mix(in srgb,var(--sc) 40%, #fff);
+  color:var(--sc); border-radius:999px; padding:3px 10px; font-size:8.6pt; font-weight:700; }
+.jstep__arrow{ text-align:center; font-size:15pt; color:var(--gold-d); margin:2mm 0; }
+
+/* generic content card */
+.sec{ font-family:var(--font-d); font-weight:700; font-size:13.5pt; color:var(--ink); margin:6mm 0 3mm; }
+.card{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:5.5mm 6.5mm; margin-bottom:4.5mm; }
+.card__q{ margin:0 0 2mm; font-weight:700; color:var(--ink); font-size:10.2pt; }
+.card__q:not(:first-child){ margin-top:4mm; }
+
+.subhead{ display:flex; align-items:center; gap:9px; margin:6mm 0 3mm; }
+.subhead__n{ width:24px; height:24px; border-radius:50%; background:var(--stage); color:#fff;
+  font-family:var(--font-d); font-weight:800; font-size:11pt; display:grid; place-items:center; flex:0 0 24px; }
+.subhead h3{ margin:0; font-family:var(--font-d); font-size:13.5pt; color:var(--ink); }
+
+/* dotted lines */
+.dl{ display:flex; align-items:baseline; gap:9px; margin-bottom:3.4mm; }
+.dl__lb{ font-size:9.6pt; font-weight:700; color:var(--ink); flex:0 0 auto; white-space:nowrap; }
+.dl__ln{ flex:1 1 auto; border-bottom:1.5px dotted var(--gold); height:1px; transform:translateY(-3px); }
+.dl--bare .dl__lb{ display:none; }
+.row2{ display:flex; gap:8mm; align-items:center; }
+.row2>.dl{ flex:1; margin-bottom:0; }
+.score{ display:flex; align-items:center; gap:7px; font-size:9.4pt; font-weight:700; color:var(--ink); white-space:nowrap; }
+.score__box{ width:16mm; height:8mm; border:1.6px solid var(--gold); border-radius:6px; }
+.score__u{ color:var(--muted); font-weight:600; }
+
+/* write blocks */
+.wb{ display:flex; flex-direction:column; gap:6mm; }
+.wb__ln{ border-bottom:1.4px dotted var(--line); height:1px; }
+.writezone{ min-height:34mm; }
+
+/* checkboxes */
+.chk{ display:flex; align-items:center; gap:8px; font-size:9.8pt; font-weight:600; color:var(--ink-soft);
+  margin-bottom:2.6mm; }
+.chk__box{ width:14px; height:14px; border:1.8px solid var(--stage); border-radius:4px; flex:0 0 14px; }
+.chk__ln{ display:inline-block; width:60mm; border-bottom:1.3px dotted var(--line); height:1px; margin-left:-4px; }
+.chks--wrap{ display:flex; flex-direction:column; }
+
+/* literary lab */
+.lab{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.lab__col{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:5.5mm 6mm; }
+.lab__lb{ font-family:var(--font-d); font-weight:700; font-size:12pt; color:var(--ink); margin:0 0 3mm; }
+.cnts{ display:grid; grid-template-columns:repeat(4,1fr); gap:5mm; margin-top:2mm; }
+.cnt{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:5mm; text-align:center; }
+.cnt__lb{ display:block; font-size:9pt; font-weight:700; color:var(--ink-soft); margin-bottom:3mm; }
+.cnt__box{ display:block; height:11mm; border:1.6px dashed var(--gold); border-radius:8px; }
+
+/* self-assessment table */
+.assess{ width:100%; border-collapse:collapse; margin-bottom:6mm; }
+.assess th{ font-family:var(--font-d); font-size:10.5pt; color:var(--ink); padding:0 6px 4mm; text-align:left; }
+.assess th:not(:first-child){ text-align:center; font-size:15pt; }
+.assess td{ padding:3.4mm 6px; border-top:1px solid var(--line); }
+.at__row{ font-size:9.8pt; font-weight:600; color:var(--ink-soft); }
+.at__c{ text-align:center; }
+.at__c::after{ content:""; display:inline-block; width:13px; height:13px; border:1.7px solid var(--stage); border-radius:4px; }
+
+/* ---------------- COVER ---------------- */
+.page--cover{ text-align:center; display:flex; flex-direction:column;
+  background:radial-gradient(120% 78% at 50% -6%, #FFFFFF 0%, #FBF9F4 46%, #F5EFE2 100%); }
+.cov__eyebrow{ font-family:var(--font-m); font-size:9pt; letter-spacing:.24em; color:var(--gold-d); text-transform:uppercase; }
+.cov__museum{ font-family:var(--font-d); font-weight:800; font-size:19pt; color:var(--ink); line-height:1.2; margin:3mm 0 0; }
+.cov__mid{ margin-top:14mm; }
+.cov__badges{ display:flex; justify-content:center; gap:10px; margin-bottom:8mm; }
+.cov__series{ font-family:var(--font-m); font-size:10pt; letter-spacing:.18em; color:var(--gold-d); text-transform:uppercase; margin:0; }
+.cov__title{ font-family:var(--font-d); font-weight:900; font-size:44pt; color:var(--ink); margin:3mm 0 0; line-height:1; }
+.cov__grade{ font-size:12.5pt; font-weight:700; color:var(--ink-soft); margin:4mm 0 0; }
+.cov__flow{ display:flex; justify-content:center; align-items:center; gap:10px; margin-top:9mm; }
+.cov__flow span{ background:var(--sc); color:#fff; font-family:var(--font-d); font-weight:800; font-size:12.5pt;
+  padding:7px 18px; border-radius:999px; }
+.cov__flow i{ color:var(--gold-d); font-style:normal; font-size:13pt; }
+.cov__tag{ margin:9mm auto 0; max-width:130mm; font-family:var(--font-d); font-style:italic; font-size:13pt; color:var(--ink-soft); }
+.cov__owner{ margin-top:auto; text-align:left; border-top:1.4px solid var(--line); padding-top:7mm; }
+.mf{ display:flex; align-items:baseline; gap:9px; margin-bottom:4mm; }
+.mf span{ font-size:10pt; font-weight:700; color:var(--ink); flex:0 0 auto; }
+.mf i{ flex:1; border-bottom:1.4px dotted var(--gold); height:1px; transform:translateY(-3px); }
+.mf--split{ display:grid; grid-template-columns:1fr 1fr; gap:10mm; }
+.mf__h{ display:flex; align-items:baseline; gap:9px; }
+.mf__h span{ font-size:10pt; font-weight:700; color:var(--ink); }
+.mf__h i{ flex:1; border-bottom:1.4px dotted var(--gold); height:1px; transform:translateY(-3px); }
+
+/* ---------------- BACK COVER ---------------- */
+.page--back{ text-align:center; }
+.back__eyebrow{ font-family:var(--font-m); font-size:9pt; letter-spacing:.2em; color:var(--gold-d); text-transform:uppercase; margin:0; }
+.back__title{ font-family:var(--font-d); font-weight:800; font-size:26pt; color:var(--ink); margin:4mm 0 0; }
+.back__lead{ font-size:10.6pt; color:var(--ink-soft); max-width:140mm; margin:4mm auto 0; line-height:1.5; }
+.qrblock{ margin-top:8mm; display:flex; flex-direction:column; align-items:center; gap:4mm; }
+.qr{ width:32mm; height:32mm; border:2px dashed var(--gold); border-radius:16px; display:grid; place-items:center; background:#fff; }
+.qr__ic{ width:60%; height:60%; }
+.qr__cap{ font-family:var(--font-m); font-size:8.6pt; color:var(--muted); letter-spacing:.02em; margin:0; }
+.linkrow{ display:flex; justify-content:center; flex-wrap:wrap; gap:7px; }
+.linkchip{ background:var(--paper2); border:1px solid var(--line); border-radius:999px; padding:5px 14px;
+  font-size:9.4pt; font-weight:700; color:var(--ink); }
+.rate{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:4mm; font-weight:700; color:var(--ink); }
+.star{ font-size:17pt; color:var(--gold); }
+.back__closing{ margin-top:8mm; }
+.back__museum{ font-family:var(--font-d); font-weight:700; font-size:13pt; color:var(--ink); margin:0; }
+.back__quote{ font-family:var(--font-d); font-style:italic; font-size:11.5pt; color:var(--ink-soft); margin:6mm auto 0; max-width:120mm; }
+
+/* table of contents (title page) */
+.toc{ margin-top:10mm; border-top:1.4px solid var(--line); border-bottom:1.4px solid var(--line);
+  padding:6mm 4mm; display:grid; grid-template-columns:1fr 1fr; gap:2.6mm 10mm; text-align:left; }
+.toc__row{ display:flex; align-items:center; gap:8px; }
+.toc__dot{ width:9px; height:9px; border-radius:50%; background:var(--sc); flex:0 0 9px; }
+.toc__n{ font-family:var(--font-m); font-size:9pt; color:var(--muted); width:5mm; }
+.toc__t{ font-size:9.6pt; font-weight:600; color:var(--ink-soft); }
+
+/* game-tool strip (page 3) */
+.toolstrip{ margin-bottom:5mm; }
+.toolstrip__lb{ display:block; font-family:var(--font-m); font-size:8.4pt; letter-spacing:.05em;
+  color:var(--gold-d); margin-bottom:6px; text-transform:uppercase; }
+.toolstrip__row{ display:flex; flex-wrap:wrap; gap:9px; }
+.gtool{ display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line);
+  border-radius:999px; padding:4px 12px 4px 4px; }
+.gtool__n{ font-size:9pt; font-weight:700; color:var(--ink); }
+
+/* tip callout (fills remaining space meaningfully) */
+.tip{ display:flex; gap:11px; align-items:flex-start; background:var(--paper2);
+  border-radius:12px; padding:5mm 6mm; margin-top:5mm; }
+.tip p{ margin:0; font-size:9.6pt; color:var(--ink-soft); line-height:1.5; }
+
+.cnt__hint{ display:block; font-size:7.4pt; color:var(--muted); margin-bottom:3mm; line-height:1.25; min-height:9mm; }
+
+/* faint stage watermark, bottom-right, purely decorative */
+.wmark{ position:absolute; right:-6mm; bottom:14mm; width:78mm; height:78mm; opacity:.05;
+  color:var(--stage); pointer-events:none; z-index:0; }
+
+/* footer */
+.pfoot{ position:absolute; left:15mm; right:15mm; bottom:8mm; display:flex; align-items:center; gap:8px;
+  font-size:9pt; font-weight:700; color:var(--muted); border-top:1.4px solid var(--line); padding-top:3mm; }
+.pfoot__n{ margin-left:auto; }
+.pfoot--cover{ position:static; margin-top:6mm; justify-content:center; }
+
+@page{ size:A4 portrait; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  .book{ display:block; padding:0; gap:0; }
+  .page{ box-shadow:none !important; margin:0; overflow:visible;
+    page-break-after:always; break-after:page; }
+  .page:last-child{ page-break-after:auto; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .card,.jstep,.lab__col,.cnt{ break-inside:avoid; }
+}
+</style>
+</head><body>
+<main class="book">
+
+<section class="page page--cover" style="--stage:#0D3B66;--stage-d:#092A49">
+  <div class="cov__top">
+    <span class="cov__eyebrow">Мектептегі</span>
+    <h1 class="cov__museum">«Сырбай Мәуленов<br>әдеби музейі»</h1>
+  </div>
+
+  <div class="cov__mid">
+    <div class="cov__badges"><span class="sbadge" style="--sc:#C97B3C;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span><span class="sbadge" style="--sc:#0D3B66;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="sbadge" style="--sc:#3E7D4E;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span></div>
+    <p class="cov__series">Сырбай әлемі</p>
+    <h2 class="cov__title">Жұмыс дәптері</h2>
+    <p class="cov__grade">Негізгі орта білім беру деңгейі · 5–9 сынып</p>
+    <div class="cov__flow">
+      <span style="--sc:#C97B3C">Ойна</span><i>→</i>
+      <span style="--sc:#0D3B66">Ойла</span><i>→</i>
+      <span style="--sc:#3E7D4E">Біл</span>
+    </div>
+    <p class="cov__tag">Сырбай Мәуленов шығармаларын ойын арқылы зертте!</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">2</span><span class="toc__t">Менің зерттеу жолым</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">3</span><span class="toc__t">Ойна</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">4</span><span class="toc__t">Ойла — ЖИ мен тақырып</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">5</span><span class="toc__t">Құндылықты таны</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">6</span><span class="toc__t">Әдеби зертхана</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">7</span><span class="toc__t">Біліміңді дәлелде</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">8</span><span class="toc__t">Өзіңді бағала</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">9</span><span class="toc__t">Ойынды қайта ойна</span></div>
+  </nav>
+
+  <div class="cov__owner">
+    <div class="mf"><span>Оқушының аты-жөні</span><i></i></div>
+    <div class="mf mf--split">
+      <div class="mf__h"><span>Сыныбы</span><i></i></div>
+      <div class="mf__h"><span>Оқу жылы</span><i></i></div>
+    </div>
+  </div>
+  <footer class="pfoot pfoot--cover"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі</footer>
+</section>
+
+<section class="page" style="--stage:#0D3B66;--stage-d:#092A49">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#0D3B66"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#0D3B66"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#0D3B66"/></svg></div>
+  
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#0D3B66;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="phead__kicker">Бағдар</span></div>
+    <h2 class="phead__title">Менің зерттеу жолым</h2>
+  </header>
+
+  <p class="lead">Бұл дәптерде сен Сырбай Мәуленов шығармаларын <b>ойын арқылы зерттейсің</b>. Үш қадам — үш түс: әр бет қай кезеңге жататынын өз түсімен көрсетеді.</p>
+  <div class="journey"><div class="jstep" style="--sc:#C97B3C">
+          <div class="jstep__head"><span class="sbadge" style="--sc:#C97B3C;width:38px;height:38px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span><div><span class="jstep__n">Қадам 1</span><h3>Ойна</h3></div></div>
+          <p class="jstep__d">«Ақынға арналған цифрлық платформа» бөлімінен бір ойынды таңда.</p>
+          <div class="jchips"><span class="jchip" style="--sc:#C97B3C">Ойынды таңда</span><span class="jchip" style="--sc:#C97B3C">Ойынды ойна</span><span class="jchip" style="--sc:#C97B3C">Сұрақтарға жауап бер</span><span class="jchip" style="--sc:#C97B3C">Нәтижеңді белгіле</span></div>
+        </div><div class="jstep__arrow">↓</div><div class="jstep" style="--sc:#0D3B66">
+          <div class="jstep__head"><span class="sbadge" style="--sc:#0D3B66;width:38px;height:38px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><div><span class="jstep__n">Қадам 2</span><h3>Ойла</h3></div></div>
+          <p class="jstep__d">Ойын бойынша берілген тапсырмаларды орында.</p>
+          <div class="jchips"><span class="jchip" style="--sc:#0D3B66">Шығарманың тақырыбын анықта</span><span class="jchip" style="--sc:#0D3B66">Құндылығын тап</span><span class="jchip" style="--sc:#0D3B66">Өз ойыңды дәлелде</span></div>
+        </div><div class="jstep__arrow">↓</div><div class="jstep" style="--sc:#3E7D4E">
+          <div class="jstep__head"><span class="sbadge" style="--sc:#3E7D4E;width:38px;height:38px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><div><span class="jstep__n">Қадам 3</span><h3>Біл</h3></div></div>
+          <p class="jstep__d">Өлеңге әдеби талдау жаса.</p>
+          <div class="jchips"><span class="jchip" style="--sc:#3E7D4E">Жанр</span><span class="jchip" style="--sc:#3E7D4E">Шумақ</span><span class="jchip" style="--sc:#3E7D4E">Тармақ</span><span class="jchip" style="--sc:#3E7D4E">Бунақ</span><span class="jchip" style="--sc:#3E7D4E">Буын</span><span class="jchip" style="--sc:#3E7D4E">Ұйқас</span></div>
+        </div></div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#0D3B66;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span></span>
+    <p>Әр беттің жиегіндегі түсті белгі қай қадамда тұрғаныңды көрсетеді: қызғылт-сары — ойна, көк — ойла, жасыл — біл.</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">2 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#C97B3C;--stage-d:#9C5B27">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#C97B3C"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></div>
+  <div class="tab" style="--sc:#C97B3C">1</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#C97B3C;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span><span class="phead__kicker">1-тапсырма</span></div>
+    <h2 class="phead__title">Ойна</h2>
+  </header>
+
+  <p class="lead">«Ақынға арналған цифрлық платформа» бөлімінен бір ойынды таңда. Ойынды ойна. Сұрақтарға жауап бер. Өз нәтижеңді белгіле.</p>
+
+  <div class="toolstrip">
+    <span class="toolstrip__lb">Мұндай платформалардан таба аласың</span>
+    <div class="toolstrip__row"><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#E24E1B;font-size:14px">W</span><span class="gtool__n">Wordwall</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#8854C0;font-size:14px">Q</span><span class="gtool__n">Quizizz</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#46178F;font-size:14px">K!</span><span class="gtool__n">Kahoot!</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#2C9CDB;font-size:14px">LA</span><span class="gtool__n">LearningApps</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#F3901D;font-size:14px">S</span><span class="gtool__n">Scratch</span></div></div>
+  </div>
+
+  <div class="card">
+    <div class="dl"><span class="dl__lb">Мен таңдаған ойынның атауы</span><span class="dl__ln"></span></div>
+    <div class="dl"><span class="dl__lb">Шығарма атауы</span><span class="dl__ln"></span></div>
+    <div class="dl"><span class="dl__lb">Ойынды құрастырған оқушы</span><span class="dl__ln"></span></div>
+    <div class="row2"><div class="dl"><span class="dl__lb">Сыныбы</span><span class="dl__ln"></span></div><div class="score"><span>Ойын нәтижесі</span><span class="score__box"></span><span class="score__u">балл</span></div></div>
+  </div>
+
+  <h3 class="sec">Ойыннан кейін</h3>
+  <div class="card">
+    <p class="card__q">Маған ең қызықты болған тапсырма:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+  <div class="card">
+    <p class="card__q">Бұл тапсырма маған шығарманы түсінуге қалай көмектесті?</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#C97B3C;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span></span>
+    <p>Ойынды бір реттен көп ойнауға болады — әр әрекетің жаңа ұпай әкеледі. Асықпа, сұрақты мұқият оқы!</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">3 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#0D3B66;--stage-d:#092A49">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#0D3B66"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#0D3B66"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#0D3B66"/></svg></div>
+  <div class="tab" style="--sc:#0D3B66">2</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#0D3B66;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="phead__kicker">2-тапсырма · 1-бөлім</span></div>
+    <h2 class="phead__title">Ойла</h2>
+  </header>
+
+  <div class="subhead"><span class="subhead__n">1</span><h3>Ойынды құрастырған ЖИ түрін анықта</h3></div>
+  <div class="toolstrip">
+    <span class="toolstrip__lb">Мұндай ЖИ құралдары болуы мүмкін</span>
+    <div class="toolstrip__row"><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#10A37F;font-size:14px">GPT</span><span class="gtool__n">ChatGPT</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#4285F4;font-size:14px">◆</span><span class="gtool__n">Gemini</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#D97757;font-size:14px">✳</span><span class="gtool__n">Claude</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#20808D;font-size:14px">P</span><span class="gtool__n">Perplexity</span></div></div>
+  </div>
+  <div class="card">
+    <div class="dl"><span class="dl__lb">Ойынды жасауға қолданылған ЖИ құралы</span><span class="dl__ln"></span></div>
+    <p class="card__q">Бұл ЖИ құралы ойынның қай бөлігін жасауға көмектесті?</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <div class="subhead"><span class="subhead__n">2</span><h3>Өлең тақырыбын анықта</h3></div>
+  <div class="card">
+    <p class="card__q">Өлеңнің тақырыбы:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Өлеңнің негізгі ойын бір сөйлеммен жаз:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#0D3B66;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span></span>
+    <p>ЖИ құралы — сенің көмекшің. Ол сұрақ құрастырды, суретті безендірді — бірақ өлеңнің мағынасын тапқан өзің боласың.</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">4 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#0D3B66;--stage-d:#092A49">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#0D3B66"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#0D3B66"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#0D3B66"/></svg></div>
+  <div class="tab" style="--sc:#0D3B66">3</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#0D3B66;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="phead__kicker">2-тапсырма · 2-бөлім</span></div>
+    <h2 class="phead__title">Құндылықты таны</h2>
+  </header>
+
+  <div class="subhead"><span class="subhead__n">3</span><h3>Өлеңдегі құндылықты анықта</h3></div>
+  <div class="card">
+    <div class="dl"><span class="dl__lb">Өлеңде қандай құндылық көрініс тапқан? Құндылық</span><span class="dl__ln"></span></div>
+  </div>
+
+  <h3 class="sec">Өлеңнен мысал келтір</h3>
+  <div class="card writezone"><div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div></div>
+
+  <h3 class="sec">Ойлан!</h3>
+  <div class="card">
+    <p class="card__q">Бұл құндылық өлеңде қалай көрінеді?</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Ақын осы құндылық арқылы оқырманға не айтқысы келді деп ойлайсың?</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#0D3B66;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span></span>
+    <p>Құндылық дегеніміз — адам үшін маңызды нәрсе: достық, ерлік, еңбек, отан сүйгіштік. Өлеңнен соны тап.</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">5 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
+  <div class="tab" style="--sc:#3E7D4E">4</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">Әдеби зертхана</span></div>
+    <h2 class="phead__title">Өлеңге талдау</h2>
+  </header>
+
+  <p class="lead">Таңдаған өлеңіңді қайта оқы да, төмендегі белгілерді қой.</p>
+  <div class="lab">
+    <div class="lab__col">
+      <p class="lab__lb">Жанр түрі</p>
+      <div class="chks"><label class="chk"><span class="chk__box"></span><span>лирикалық өлең</span></label><label class="chk"><span class="chk__box"></span><span>патриоттық өлең</span></label><label class="chk"><span class="chk__box"></span><span>табиғат лирикасы</span></label><label class="chk"><span class="chk__box"></span><span>азаматтық лирика</span></label><label class="chk"><span class="chk__box"></span><span>махаббат лирикасы</span></label><label class="chk"><span class="chk__box"></span><span>басқа:</span></label><span class="chk__ln"></span></div>
+    </div>
+    <div class="lab__col">
+      <p class="lab__lb">Ұйқас түрі</p>
+      <div class="chks"><label class="chk"><span class="chk__box"></span><span>қара өлең ұйқасы</span></label><label class="chk"><span class="chk__box"></span><span>шұбыртпалы ұйқас</span></label><label class="chk"><span class="chk__box"></span><span>кезекті ұйқас</span></label><label class="chk"><span class="chk__box"></span><span>егіз ұйқас</span></label><label class="chk"><span class="chk__box"></span><span>аралас ұйқас</span></label><label class="chk"><span class="chk__box"></span><span>басқа:</span></label><span class="chk__ln"></span></div>
+    </div>
+  </div>
+  <p class="lab__lb" style="margin-top:6mm">Өлең өлшемі</p>
+  <div class="cnts"><div class="cnt"><span class="cnt__lb">Шумақ саны</span><span class="cnt__hint">өлеңдегі ірі бөліктер</span><span class="cnt__box"></span></div><div class="cnt"><span class="cnt__lb">Тармақ саны</span><span class="cnt__hint">әр шумақтағы жол саны</span><span class="cnt__box"></span></div><div class="cnt"><span class="cnt__lb">Бунақ саны</span><span class="cnt__hint">тармақтағы дауыс кідірісі</span><span class="cnt__box"></span></div><div class="cnt"><span class="cnt__lb">Буын саны</span><span class="cnt__hint">бір тармақтағы дыбыс тобы</span><span class="cnt__box"></span></div></div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#3E7D4E;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span></span>
+    <p>Кеңес: бунақ — тыныс алу үшін жасалатын кідіріс, буын — сөздегі дауысты дыбысқа сүйенген бөлік. Дауыстап оқып, санап көр!</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">6 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
+  <div class="tab" style="--sc:#3E7D4E">5</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">3-тапсырма</span></div>
+    <h2 class="phead__title">Біліміңді дәлелде</h2>
+  </header>
+
+  <h3 class="sec">Менің әдеби зерттеуім</h3>
+  <div class="card">
+    <p class="card__q">Өлеңнің тақырыбын қандай сөздер арқылы анықтадың?</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Құндылықты анықтаған өлең жолы немесе мысал:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Өлеңнің жанрын таңдауыма себеп:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <h3 class="sec">Зерттеуші ретінде</h3>
+  <div class="card">
+    <p class="card__q">Мен бұл өлеңнен білдім:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Мен үшін ең маңызды ой:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <div class="tip">
+    <span class="tip__ico"><span class="sbadge" style="--sc:#3E7D4E;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span></span>
+    <p>Зерттеуші әрқашан дәлел іздейді. Жауабыңды өлеңнен алған нақты мысалмен растауды ұмытпа.</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">7 / 9</span></footer>
+</section>
+
+<section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
+  <div class="tab" style="--sc:#3E7D4E">6</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">Өзіңді бағала</span></div>
+    <h2 class="phead__title">Мен не үйрендім?</h2>
+  </header>
+
+  <table class="assess">
+    <thead><tr><th>Менің әрекетім</th><th>😊</th><th>🤔</th><th>💪</th></tr></thead>
+    <tbody><tr><td class="at__row">Ойынды таңдадым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Ойынды толық ойнадым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">ЖИ құралын анықтадым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Өлең тақырыбын анықтадым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Құндылықты таптым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Өлеңнен мысал келтірдім</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Өлеңге талдау жасадым</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr><tr><td class="at__row">Өз ойымды дәлелдедім</td><td class="at__c"></td><td class="at__c"></td><td class="at__c"></td></tr></tbody>
+  </table>
+
+  <h3 class="sec">Рефлексия</h3>
+  <div class="card">
+    <p class="card__q">Бүгін мен үшін ең қызықты болғаны:</p><div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Маған қиын болғаны:</p><div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Келесі жолы мен:</p><div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">8 / 9</span></footer>
+</section>
+
+<section class="page page--back" style="--stage:#0D3B66;--stage-d:#092A49">
+  <p class="back__eyebrow">Сырбай әлемі жалғасады…</p>
+  <h2 class="back__title">Ойынды қайта ойна!</h2>
+  <p class="back__lead">«Ақынға арналған цифрлық платформаға» кіріп, басқа ойындарды да байқап көр.</p>
+
+  <div class="qrblock">
+    <div class="qr"><svg class="qr__ic" viewBox="0 0 48 48" fill="none" stroke="#0D3B66" stroke-width="3"><rect x="4" y="4" width="14" height="14" rx="2"/><rect x="30" y="4" width="14" height="14" rx="2"/><rect x="4" y="30" width="14" height="14" rx="2"/><path d="M30 30h6v6M44 30v14M30 44h8" stroke-linecap="round"/></svg></div>
+    <p class="qr__cap">Сканерле → Ойынды таңда → Ойна → Зертте</p>
+  </div>
+
+  <h3 class="sec" style="margin-top:9mm">Оқуыңды жалғастыр</h3>
+  <div class="linkrow"><span class="linkchip">Сырбай туралы</span><span class="linkchip">Шығармашылық</span><span class="linkchip">Сырбайтану</span><span class="linkchip">Оқушы жобалары</span></div>
+
+  <h3 class="sec">Сенің пікірің маңызды!</h3>
+  <div class="card">
+    <p class="card__q">Бұл ойын маған:</p>
+    <div class="chks chks--wrap"><label class="chk"><span class="chk__box"></span><span>жаңа нәрсе үйретті</span></label><label class="chk"><span class="chk__box"></span><span>шығарманы жақсы түсінуге көмектесті</span></label><label class="chk"><span class="chk__box"></span><span>құндылықты тануға көмектесті</span></label><label class="chk"><span class="chk__box"></span><span>қызықты болды</span></label></div>
+    <div class="rate"><span>Ойынға бағам</span><span class="rate__stars"><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span><span class="star">☆</span></span></div>
+  </div>
+
+  <div class="back__closing">
+    <p class="back__museum">«Сырбай Мәуленов әдеби музейі»</p>
+    <div class="cov__flow" style="justify-content:center;margin-top:3mm">
+      <span style="--sc:#C97B3C">Ойна</span><i>→</i>
+      <span style="--sc:#0D3B66">Ойла</span><i>→</i>
+      <span style="--sc:#3E7D4E">Біл</span>
+    </div>
+    <p class="back__quote">Сырбай әлемін зерттеу — өзіңді танудан басталады.</p>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">9 / 9</span></footer>
+</section>
+</main>
+</body></html>

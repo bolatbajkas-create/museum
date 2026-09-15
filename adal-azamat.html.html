@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>«Адал азамат» біртұтас тәрбие бағдарламасының бағыттары</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #fdfbf7;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    .border-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 12px solid #d4af37;
+      outline: 2px solid #8e620d;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .header-title {
+      text-align: center;
+      color: #5a3e1b;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: bold;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #d4af37;
+      letter-spacing: 1px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-container { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .grid-container { grid-template-columns: repeat(1, 1fr); }
+    }
+
+    .column-box {
+      border: 1px solid #d4af37;
+      background-color: #fffdf9;
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .column-header {
+      background: linear-gradient(180deg, #d4af37 0%, #aa7c11 100%);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 8px 4px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-container {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      padding: 10px;
+      border-bottom: 1px solid #e2d2a4;
+    }
+
+    .logo-svg {
+      width: 75px;
+      height: 75px;
+    }
+
+    .item-list {
+      list-style: none;
+      padding: 8px;
+      flex-grow: 1;
+    }
+
+    .item-list li {
+      font-size: 11px;
+      color: #2c2c2c;
+      padding: 5px 0;
+      border-bottom: 1px dashed #e2d2a4;
+    }
+
+    .item-list li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="border-container">
+    <div class="header-title">
+      «Адал азамат» біртұтас тәрбие бағдарламасының бағыттары
+    </div>
+
+    <div class="grid-container">
+
+      <!-- 1-баған -->
+      <div class="column-box">
+        <div class="column-header">Тәуелсіздік және отаншылдық</div>
+        <div class="logo-container">
+          <!-- Көгілдір күн мен алақан логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <path fill="none" stroke="#00a8cc" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M 50,22 C 38,22 28,32 28,44 C 28,56 38,66 50,66 C 62,66 72,56 72,44 C 72,32 62,22 50,22 Z M 50,26 L 50,22 M 50,66 L 50,62 M 28,44 L 32,44 M 68,44 L 72,44 M 34,28 L 37,31 M 63,57 L 66,60 M 34,60 L 37,57 M 63,31 L 66,28" />
+            <path fill="none" stroke="#00a8cc" stroke-width="7" stroke-linecap="round" d="M 24,46 C 24,68 36,78 50,78 C 64,78 76,68 76,46" />
+            <path fill="none" stroke="#00a8cc" stroke-width="7" stroke-linecap="round" d="M 38,86 C 50,78 68,82 74,82" />
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Соғыс жолы</li>
+          <li>Өшпес даңқ</li>
+          <li>Қоңырау қағылды</li>
+          <li>Майдан жолында</li>
+          <li>Туған ел</li>
+          <li>Қайтармыз Қазақстанға</li>
+          <li>Шекара</li>
+          <li>Туған жермен сырласу</li>
+          <li>Торғай сенің кішкене өзенің...</li>
+          <li>Туған жерге ода</li>
+          <li>Шекара түні</li>
+          <li>Қайта қара мына туған жеріне</li>
+          <li>Партизан Қасым</li>
+          <li>Еркіндіктің ең соңғы ұлы</li>
+          <li>Астана мерекесі</li>
+        </ul>
+      </div>
+
+      <!-- 2-баған -->
+      <div class="column-box">
+        <div class="column-header">Бірлік және ынтымақ</div>
+        <div class="logo-container">
+          <!-- Жасыл шаңырақ логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#7cb305" stroke-width="8"/>
+            <path stroke="#7cb305" stroke-width="6" stroke-linecap="round" d="M 22,35 L 78,65 M 35,22 L 65,78 M 22,65 L 78,35 M 35,78 L 65,22" />
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Мектеп</li>
+          <li>Жалғас жүрек</li>
+          <li>Майландас досқа хат</li>
+          <li>Тәтті көрші, тату дос</li>
+          <li>Қуаныш</li>
+          <li>Бақытты біздің балалық</li>
+          <li>Дос сыры</li>
+          <li>Қарттық пен жастық</li>
+          <li>Адам қуаты</li>
+          <li>Құрдасқа</li>
+          <li>Жалғас жүрек</li>
+          <li>Күн екіге бөлінбес</li>
+          <li>Берді ағаның сөзі</li>
+        </ul>
+      </div>
+
+      <!-- 3-баған -->
+      <div class="column-box">
+        <div class="column-header">Әділдік және жауапкершілік</div>
+        <div class="logo-container">
+          <!-- Сары таразы логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <path fill="none" stroke="#fadb14" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M 50,38 L 50,80 M 30,80 L 70,80 M 24,38 L 76,38" />
+            <circle cx="50" cy="30" r="7" fill="none" stroke="#fadb14" stroke-width="6"/>
+            <path fill="none" stroke="#fadb14" stroke-width="6" stroke-linejoin="round" d="M 24,38 L 12,65 L 36,65 Z M 76,38 L 64,65 L 88,65 Z" />
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Ана кегі</li>
+          <li>Әділдік</li>
+          <li>Адалдық</li>
+          <li>Өсиет</li>
+          <li>Солдат жесірі</li>
+          <li>Көңіл білдіру</li>
+          <li>Сенім</li>
+          <li>Полковник командирі</li>
+          <li>Қабірі белгісіз досқа</li>
+          <li>Адам өлмейді</li>
+          <li>Аманат</li>
+          <li>Өмір өзегі</li>
+        </ul>
+      </div>
+
+      <!-- 4-баған -->
+      <div class="column-box">
+        <div class="column-header">Заң және тәртіп</div>
+        <div class="logo-container">
+          <!-- Көк заң кітабы логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <rect x="30" y="18" width="48" height="64" rx="8" fill="none" stroke="#3c89e8" stroke-width="7"/>
+            <path fill="none" stroke="#3c89e8" stroke-width="7" stroke-linecap="round" d="M 30,22 L 30,76 M 30,74 C 30,70 38,70 78,70" />
+            <circle cx="58" cy="36" r="6" fill="none" stroke="#3c89e8" stroke-width="5"/>
+            <path fill="none" stroke="#3c89e8" stroke-width="6" stroke-linecap="round" d="M 48,50 L 68,50 M 48,58 L 68,58" />
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Ереже</li>
+          <li>Шанхай түс</li>
+          <li>Секунд</li>
+          <li>Сағат</li>
+          <li>Мұслима</li>
+          <li>Календарь парақтары</li>
+          <li>Адалдық</li>
+          <li>Сия сауыттың паспорты</li>
+          <li>Ерте тұрып, кеш жатамын</li>
+          <li>Қылмыс</li>
+          <li>Нәзіктік</li>
+          <li>Солдат пен құс</li>
+          <li>Солдат жесірі</li>
+          <li>Майландас досқа хат</li>
+          <li>Майдан жолында</li>
+        </ul>
+      </div>
+
+      <!-- 5-баған -->
+      <div class="column-box">
+        <div class="column-header">Еңбекқорлық және кәсіби біліктілік</div>
+        <div class="logo-container">
+          <!-- Қоңыр-қызыл тісті дөңгелектер (шестернялар) логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <g fill="none" stroke="#8c1143" stroke-width="5" stroke-linejoin="round">
+              <!-- Үлкен шестерня -->
+              <circle cx="42" cy="58" r="16" stroke-width="6"/>
+              <path stroke-width="6" stroke-linecap="round" d="M 42,36 L 42,42 M 42,74 L 42,80 M 20,58 L 26,58 M 58,58 L 64,58 M 27,43 L 31,47 M 53,69 L 57,73 M 27,73 L 31,69 M 53,47 L 57,43" />
+              <!-- Оң жақтағы орташа шестерня -->
+              <circle cx="68" cy="38" r="11" stroke-width="5"/>
+              <path stroke-width="5" stroke-linecap="round" d="M 68,23 L 68,27 M 68,49 L 68,53 M 53,38 L 57,38 M 79,38 L 83,38" />
+              <!-- Жоғарғы кіші шестерня -->
+              <circle cx="40" cy="24" r="8" stroke-width="4"/>
+              <path stroke-width="4" stroke-linecap="round" d="M 40,13 L 40,16 M 40,32 L 40,35 M 29,24 L 32,24 M 48,24 L 51,24" />
+            </g>
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Диқан</li>
+          <li>Көше сыпырушы</li>
+          <li>Өмір жолы</li>
+          <li>Талант</li>
+          <li>Редактор</li>
+          <li>Алматының алмасы</li>
+          <li>Құрылысшы қыз</li>
+          <li>Тас қалаушының жыры</li>
+          <li>Комбайншының баласы</li>
+          <li>Бидай туралы баллада</li>
+          <li>Шеберлер</li>
+          <li>Орманшы</li>
+          <li>Малшы</li>
+        </ul>
+      </div>
+
+      <!-- 6-баған -->
+      <div class="column-box">
+        <div class="column-header">Жасампаздық және жаңашылдық</div>
+        <div class="logo-container">
+          <!-- Күлгін микроскоп логотипі -->
+          <svg class="logo-svg" viewBox="0 0 100 100">
+            <path fill="none" stroke="#722ed1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M 30,78 L 62,78 M 46,78 L 46,64 C 30,64 24,48 28,34 C 32,20 48,16 58,24 L 46,40 M 42,52 L 72,52 M 42,24 L 56,8 L 68,18 L 54,34" />
+          </svg>
+        </div>
+        <ul class="item-list">
+          <li>Жыр жолы</li>
+          <li>Ізгілік</li>
+          <li>Жыр көктемі</li>
+          <li>Дауыл мен жауын</li>
+          <li>Поэзия</li>
+          <li>Өлең жазар алдында</li>
+          <li>Алғашқы адым</li>
+          <li>Бақыты үшін баланың</li>
+          <li>Жаңа туған ай</li>
+          <li>Суретші</li>
+          <li>Скульптор</li>
+          <li>Ардагер азаматтар</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
