@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сырбайтану — жұмыс дәптері (Бастауыш білім беру деңгейі 3–4 сынып)</title>
+<meta name="description" content="Сырбай Мәуленов әдеби музейіне арналған, бастауыш сынып оқушыларына арналған А4 баспа жұмыс дәптері. 9 тақырыптық бұрыш, тапсырмалар, сөзжұмбақтар.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7EF; --paper-2:#F5EEDF; --ink:#2E2620; --ink-soft:#6B5E4E;
+  --brand:#C97B3C; --brand-deep:#8A5A2B; --line:#CFC4AE; --tip:#F6E7C4;
+  --accent:#B24A2E;
+}
+*{box-sizing:border-box;}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:#E7DFCD; color:var(--ink);
+  font-family:'Nunito',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:12.5pt; line-height:1.5; font-weight:500;
+}
+.book{ display:flex; flex-direction:column; align-items:center; gap:22px; padding:26px 12px 60px; }
+
+/* ---------- A4 page ---------- */
+.page{
+  width:210mm; min-height:297mm; background:var(--paper);
+  padding:16mm 15mm 14mm; position:relative; overflow:hidden;
+  box-shadow:0 18px 40px rgba(60,42,20,.22); border-radius:3px;
+}
+/* faint notebook dot texture */
+.page::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+  background-image:radial-gradient(rgba(180,150,100,.10) 1px, transparent 1.4px);
+  background-size:22px 22px;
+}
+.page>*{ position:relative; z-index:1; }
+
+/* ---------- shared: mascot slot ---------- */
+.mascot{
+  border:2.5px dashed color-mix(in srgb,var(--accent,var(--brand)) 55%, #cbb487);
+  border-radius:20px; background:rgba(255,255,255,.55);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; color:color-mix(in srgb,var(--accent,var(--brand)) 60%, #7a6a4e);
+  gap:4px;
+}
+.mascot__paw{ width:40px; height:40px; opacity:.85; }
+.mascot__label{ font-weight:800; font-size:11pt; letter-spacing:.2px; }
+.mascot__pose{ font-size:8.4pt; font-weight:600; line-height:1.25; color:var(--ink-soft); max-width:88%; }
+.mascot--corner{ width:134px; min-height:134px; flex:0 0 134px; padding:9px; }
+.mascot--hero{ width:190px; height:190px; margin:0 auto 6px; }
+.mascot--hero .mascot__paw{ width:52px; height:52px; }
+.mascot--hero .mascot__label{ font-size:12.5pt; }
+.mascot--letter{ width:120px; height:120px; margin:0 auto; }
+.mascot--filled{ border-style:solid; border-width:2px; padding:0; overflow:hidden; background:#fff; }
+.mascot__img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---------- COVER ---------- */
+.page--cover{ text-align:center; display:flex; flex-direction:column; align-items:center;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #FBEFD6 0%, var(--paper) 55%);
+}
+.cover__eyebrow{ margin:4mm 0 6mm; font-weight:800; color:var(--brand-deep);
+  font-size:12pt; letter-spacing:.3px; }
+.cover__title{ margin:8mm 0 2mm; line-height:.94; }
+.cover__t1{ display:block; font-size:64pt; font-weight:900; color:var(--brand);
+  text-shadow:2px 3px 0 rgba(201,123,60,.18); }
+.cover__t2{ display:block; font-size:30pt; font-weight:900; color:var(--brand-deep);
+  letter-spacing:.4px; }
+.cover__sub{ font-size:17pt; font-weight:800; margin:6mm 0 1mm; color:var(--ink); }
+.cover__level{ display:inline-block; margin:6mm 0 0; padding:4px 16px; border-radius:999px;
+  background:var(--brand); color:#fff; font-weight:800; font-size:11.5pt; }
+.cover__flow{ display:flex; align-items:center; justify-content:center; gap:9px; margin:5mm 0 2mm; }
+.cover__flow span{ font-weight:900; font-size:14pt; color:var(--brand-deep); }
+.cover__flow i{ font-style:normal; color:var(--brand); font-size:14pt; }
+.cover__grade{ font-size:12.5pt; font-weight:700; color:var(--ink-soft); margin:0 0 10mm; }
+.owner{ width:82%; max-width:150mm; margin-top:auto; margin-bottom:6mm; text-align:left;
+  background:var(--tip); border:2px solid #E5C879; border-radius:18px; padding:7mm 8mm; }
+.owner__title{ margin:0 0 5mm; font-weight:900; font-size:14pt; color:var(--brand-deep); }
+.owner__field{ display:flex; align-items:baseline; gap:10px; margin:5mm 0; }
+.owner__field span{ font-weight:700; font-size:12.5pt; min-width:28mm; }
+.owner__field i{ flex:1; border-bottom:2px dotted #BFA46B; height:1px; transform:translateY(-3px); }
+
+/* ---------- LETTER + STEPS ---------- */
+.letter-title{ text-align:center; font-size:26pt; font-weight:900; color:var(--brand-deep);
+  margin:4mm 0 6mm; }
+.hello{ background:#FFFDF7; border:2.5px dashed var(--brand); border-radius:18px;
+  padding:7mm 8mm; }
+.hello p{ margin:0 0 4mm; }
+.hello p:last-child{ margin-bottom:0; }
+.hello__hi{ color:var(--accent); font-weight:900; font-size:13.5pt; }
+.steps-title{ font-size:16pt; font-weight:900; margin:10mm 0 5mm; color:var(--ink); }
+.steps-title span{ font-weight:700; font-size:11.5pt; color:var(--ink-soft); }
+.steps{ display:flex; align-items:stretch; gap:6px; }
+.step{ flex:1; background:#FFFDF7; border:2px solid var(--line); border-radius:16px;
+  padding:6mm 4mm; text-align:center; position:relative; }
+.step__n{ position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  width:26px; height:26px; border-radius:50%; background:var(--brand); color:#fff;
+  font-weight:900; display:grid; place-items:center; font-size:12pt; }
+.step__ico{ font-size:26pt; margin-top:3mm; }
+.step__t{ margin:3mm 0 2mm; font-size:15pt; font-weight:900; color:var(--brand-deep); }
+.step__d{ margin:0; font-size:10pt; color:var(--ink-soft); line-height:1.35; }
+.step__arrow{ align-self:center; font-size:20pt; color:var(--brand); font-weight:900; }
+
+/* ---------- CORNER header + tab ---------- */
+.tab{ position:absolute; top:26mm; right:-1px; width:16mm; height:22mm;
+  background:var(--accent); color:#fff; font-weight:900; font-size:22pt;
+  display:grid; place-items:center; border-radius:12px 0 0 12px;
+  box-shadow:-2px 3px 8px rgba(0,0,0,.15); }
+.chead{ border-radius:16px; background:var(--accent); color:#fff;
+  padding:6mm 8mm 6.5mm; box-shadow:0 6px 14px color-mix(in srgb,var(--accent) 40%, transparent); }
+.chead__badge{ display:inline-block; background:rgba(255,255,255,.22); border-radius:999px;
+  padding:2px 12px; font-weight:800; font-size:11pt; }
+.chead__title{ margin:3mm 0 0; font-size:22pt; font-weight:900; line-height:1.05; }
+.chead--cont{ display:flex; align-items:center; gap:5mm; padding:4.5mm 8mm; }
+.chead--cont .chead__badge{ flex:0 0 auto; }
+.chead__title--cont{ margin:0; font-size:17pt; opacity:.96; }
+
+/* generous create area (page Ә) — flex-fill to the bottom of the sheet */
+.page--create{ display:flex; flex-direction:column; }
+.page--create .chead{ flex:0 0 auto; }
+.page--create .task--creative{ flex:1 1 auto; display:flex; flex-direction:column;
+  margin-bottom:13mm; }
+.task__body--create{ margin-top:4mm; flex:1 1 auto; display:flex; flex-direction:column; }
+.writezone{ border:2px solid color-mix(in srgb,var(--accent) 30%, #E7DCC4); border-radius:16px;
+  background:rgba(255,255,255,.5); padding:6mm 6mm 5mm; flex:1 1 auto; }
+.writezone .wl{ height:10mm; }
+.sq__note{ margin:0 0 4mm; font-weight:700; color:var(--brand-deep);
+  background:var(--tip); border-radius:10px; padding:3mm 5mm; }
+
+/* ---------- intro (mascot + tip + goal) ---------- */
+.intro{ display:flex; gap:6mm; margin:6mm 0 5mm; align-items:stretch; }
+.intro__text{ flex:1; display:flex; flex-direction:column; gap:4mm; }
+.tip{ background:var(--tip); border-left:6px solid var(--brand); border-radius:12px;
+  padding:4mm 5mm; display:flex; gap:8px; align-items:flex-start; }
+.tip__ico{ font-size:15pt; line-height:1; }
+.tip p{ margin:0; font-weight:700; font-size:12pt; }
+.goal{ display:flex; gap:8px; align-items:flex-start; font-style:italic;
+  color:var(--ink-soft); font-weight:600; font-size:11pt; padding:0 2mm; }
+.goal__ico{ font-style:normal; }
+
+/* ---------- tasks ---------- */
+.task{ margin:5mm 0; break-inside:avoid; }
+.task__head{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  padding:3mm 4mm; background:color-mix(in srgb,var(--accent) 12%, #fff);
+  border-radius:10px; border:1.5px solid color-mix(in srgb,var(--accent) 30%, #fff); }
+.task__pill{ background:var(--accent); color:#fff; font-weight:900; font-size:10.5pt;
+  padding:2px 11px; border-radius:999px; }
+.task__pill--2{ background:var(--brand-deep); }
+.task__verb{ font-weight:900; color:var(--accent); font-size:12.5pt; }
+.task__instr{ font-weight:700; }
+.task__instr--block{ margin:4mm 1mm 3mm; font-weight:700; font-size:12pt; }
+.task__body{ margin-top:4mm; }
+
+/* questions + writing lines */
+.q{ display:flex; gap:9px; margin:0 0 3mm; break-inside:avoid; }
+.q-grid{ display:flex; flex-direction:column; }
+.q__bullet{ width:9px; height:9px; border-radius:50%; background:var(--accent);
+  margin-top:6px; flex:0 0 9px; }
+.q__body{ flex:1; }
+.q__text{ margin:0 0 2mm; font-weight:700; font-size:11.3pt; line-height:1.34; }
+.wl{ height:7.5mm; border-bottom:1.6px dotted var(--line); margin:0 0 1.5mm; }
+.wl--letter{ height:8.5mm; }
+.wl--fav{ height:11mm; }
+
+/* chips */
+.chips{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:0 0 4mm; }
+.chips__lead{ font-size:9.5pt; font-weight:800; color:var(--ink-soft);
+  text-transform:none; }
+.chip{ background:#fff; border:1.6px solid var(--accent); color:var(--accent);
+  border-radius:999px; padding:2px 12px; font-weight:800; font-size:10.5pt; }
+
+/* draw box */
+.drawbox{ flex:1 1 auto; min-height:150mm; border:2.5px dashed var(--accent); border-radius:16px;
+  display:grid; place-items:center; background:rgba(255,255,255,.5); }
+.drawbox span{ font-weight:800; color:color-mix(in srgb,var(--accent) 70%, #8a7a5c);
+  font-size:13pt; }
+
+/* letter */
+.letter{ background:#FFFDF7; border:2px solid var(--line); border-radius:14px; padding:6mm; }
+.letter__open{ margin:0 0 3mm; font-weight:900; color:var(--accent); font-size:13pt; }
+.letter__close{ margin:3mm 0 0; font-weight:700; display:flex; align-items:baseline; gap:8px; }
+.letter__sign{ flex:1; max-width:60mm; border-bottom:1.6px dotted var(--line); height:1px;
+  transform:translateY(-2px); }
+
+/* crossword */
+.cw{ display:grid; grid-template-columns:1fr auto; gap:7mm; align-items:start; }
+.cw__clues{ margin:0; padding:0; list-style:none; counter-reset:none; font-size:11pt; }
+.cw__clues li{ display:flex; gap:8px; align-items:baseline; margin:0 0 2.4mm; font-weight:700; }
+.cw__n{ width:20px; height:20px; flex:0 0 20px; border-radius:50%; background:var(--accent);
+  color:#fff; font-size:9.5pt; font-weight:900; display:grid; place-items:center; }
+.cw-grid{ border-collapse:collapse; }
+.cw-row-n{ font-weight:900; color:var(--accent); font-size:10pt; padding-right:6px; text-align:right; }
+.cw-cell{ width:9mm; height:9mm; border:1.4px solid #b9ac8e; }
+.cw-cell--key{ background:color-mix(in srgb,var(--accent) 20%, #fff);
+  color:var(--accent); font-weight:900; font-size:12pt; text-align:center; }
+.cw__hint{ margin:3mm 0 0; font-size:9.5pt; color:var(--ink-soft); font-weight:600; max-width:70mm; }
+
+/* synquain */
+.sq{ display:flex; flex-direction:column; gap:7mm; flex:1 1 auto; justify-content:space-evenly; }
+.task__body--create .cw{ flex:1 1 auto; align-content:start; }
+.sq__row{ display:flex; align-items:center; gap:5mm; }
+.sq__lead{ width:60mm; flex:0 0 60mm; display:flex; flex-direction:column; }
+.sq__lead b{ color:var(--accent); font-size:12.5pt; }
+.sq__lead span{ font-size:10pt; color:var(--ink-soft); font-weight:600; }
+.sq__line{ flex:1; height:11mm; border-bottom:1.8px dotted var(--line); }
+
+/* video options */
+.video__lead{ font-weight:800; margin:0 0 3mm; }
+.video__lead--q{ margin-top:5mm; }
+.vopts{ display:flex; flex-direction:column; gap:3mm; }
+.vopt{ display:flex; align-items:center; gap:10px; background:#fff;
+  border:1.8px solid color-mix(in srgb,var(--accent) 35%, #fff); border-radius:12px;
+  padding:3mm 4mm; }
+.vopt__box{ width:16px; height:16px; border:2px solid var(--accent); border-radius:5px; flex:0 0 16px; }
+.vopt__tag{ width:22px; height:22px; flex:0 0 22px; background:var(--accent); color:#fff;
+  border-radius:6px; font-weight:900; display:grid; place-items:center; font-size:11pt; }
+.vopt__txt{ font-weight:800; }
+
+/* final */
+.page--final{ text-align:center; }
+.final__title{ font-size:52pt; font-weight:900; color:var(--brand); margin:4mm 0 3mm;
+  text-shadow:2px 3px 0 rgba(201,123,60,.16); }
+.final__sub{ font-size:15pt; font-weight:700; color:var(--ink); margin:0 0 10mm; }
+.fav{ text-align:left; background:var(--tip); border:2px solid #E5C879; border-radius:16px;
+  padding:6mm 7mm; margin:0 auto 6mm; max-width:150mm; }
+.fav__title{ margin:0 0 4mm; font-weight:900; font-size:13.5pt; color:var(--brand-deep); }
+
+/* footer */
+.pfoot{ position:absolute; left:15mm; right:15mm; bottom:8mm; display:flex; align-items:center;
+  gap:8px; font-size:9pt; font-weight:700; color:var(--ink-soft);
+  border-top:1.5px solid var(--line); padding-top:3mm; }
+.pfoot__n{ margin-left:auto; }
+.pfoot__paw{ font-size:10pt; }
+
+/* ---------- screen-only helper bar ---------- */
+.hint-bar{ width:210mm; max-width:100%; background:var(--ink);
+  color:#fff; font-size:12px; font-weight:600; text-align:center; padding:9px 14px;
+  border-radius:10px; }
+.hint-bar b{ color:#F6D08A; }
+.hint-bar button{ margin-left:12px; background:var(--brand); color:#fff; border:0;
+  border-radius:8px; padding:5px 14px; font-weight:800; cursor:pointer; font-family:inherit; }
+
+/* ---------- PRINT ---------- */
+@page{ size:A4 portrait; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  .hint-bar{ display:none !important; }
+  .book{ display:block; padding:0; gap:0; }
+  .page{ box-shadow:none !important; border-radius:0; margin:0; overflow:visible;
+    width:210mm; min-height:297mm; page-break-after:always; break-after:page; }
+  .page:last-child{ page-break-after:auto; }
+  .page::before{ opacity:.5; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .task, .q, .step, .cw, .sq__row, .vopt{ break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<main class="book">
+<div class="hint-bar">Бұл — А4 баспаға дайын жұмыс дәптері. <b>Ctrl/Cmd + P</b> басып, PDF ретінде сақтаңыз немесе басып шығарыңыз. «Background graphics» опциясын қосыңыз.<button onclick="window.print()">🖨 Басып шығару</button></div>
+
+<section class="page page--cover">
+  <p class="cover__eyebrow">Сырбай Мәуленов әдеби музейі</p>
+  <div class="mascot mascot--hero mascot--filled" role="img" aria-label="Қонжық — қолын бұлғап амандасып тұр"><img class="mascot__img" src="konzhyq-hello.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+  <h1 class="cover__title"><span class="cover__t1">Алақай!</span><span class="cover__t2">Музейде балақай</span></h1>
+  <p class="cover__sub">Сырбайтану — тапсырмалар дәптері</p>
+  <p class="cover__level">🎒 Бастауыш білім беру деңгейі · 3–4 сынып</p>
+  <div class="cover__flow"><span>Тап</span><i>→</i><span>Таны</span><i>→</i><span>Жаз</span></div>
+  <p class="cover__grade">9–10 жас</p>
+  <div class="owner">
+    <p class="owner__title">Бұл дәптердің иесі</p>
+    <div class="owner__field"><span>Атым</span><i></i></div>
+    <div class="owner__field"><span>Сыныбым</span><i></i></div>
+    <div class="owner__field"><span>Мектебім</span><i></i></div>
+  </div>
+</section>
+
+<section class="page page--letter">
+  <div class="mascot mascot--letter mascot--filled" role="img" aria-label="Қонжық — қолын бұлғап амандасып тұр"><img class="mascot__img" src="konzhyq-hello.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+  <h2 class="letter-title">Қонжықтың хаты</h2>
+  <div class="hello">
+    <p class="hello__hi">Қымбатты дос! «Сырбайдың ғажайып әлемі» әдеби музейіне қош келдің! 🐻</p>
+    <p>Менің атым — <b>Қонжық</b>. Мен музейдегі бойтұмармын. Неліктен? Ақынның руы — аю болғандықтан, мен жанұядағы ең сүйікті ойыншық болдым.</p>
+    <p>Қазір — жолнұсқаушымын. Саған музей жәдігерлерін таныстырамын. Саған сәттілік тілеймін!</p>
+  </div>
+  <h3 class="steps-title">Біздің үш қадам <span>— әр бұрышта осылай жұмыс істейміз</span></h3>
+  <div class="steps"><div class="step"><div class="step__n">1</div>
+            <div class="step__ico">🔎</div><h4 class="step__t">Тап</h4>
+            <p class="step__d">Жәдігерді витринадан өз көзіңмен тап. Оны мұқият қара.</p></div><div class="step__arrow" aria-hidden="true">→</div><div class="step"><div class="step__n">2</div>
+            <div class="step__ico">👀</div><h4 class="step__t">Таны</h4>
+            <p class="step__d">Ол не зат? Кімдікі? Не туралы айтады? Ойлан да таны.</p></div><div class="step__arrow" aria-hidden="true">→</div><div class="step"><div class="step__n">3</div>
+            <div class="step__ico">✏️</div><h4 class="step__t">Жаз</h4>
+            <p class="step__d">Білгеніңді дәптерге жаз, сурет сал немесе өлең құрастыр.</p></div></div>
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі</footer>
+</section>
+
+<section class="page page--corner" style="--accent:#B24A2E;">
+  <div class="tab">1</div>
+  <header class="chead">
+       <h2 class="chead__title">Сырда туып, Қырда өстім</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — пилотка киген солдат, сәлем беріп тұр"><img class="mascot__img" src="konzhyq-soldier.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Сырбайдың атасы алып адам болған. Сырбай атасы сияқты батыр ақын.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Тарихи жәдігерлер мен құжаттарды зерттеп, ақын өмірбаянымен танысу.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Қара</span>
+      <span class="task__instr">Витринадағы жәдігерлерді тап.</span></div>
+    <div class="task__body"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text"> Алмагүл кім? Таев Мәулен кім? Ақын қай жерде туған? Бұл құжат қалай аталады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Сырбай Мәуленов атындағы мектеп-гимназия қай қалада орналасқан?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">1 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#B24A2E;">
+  <div class="tab">1</div>
+  <header class="chead chead--cont">
+  <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Сырда туып, Қырда өстім</span></div>
+    <p class="task__instr task__instr--block">«Жеңіс жыры» тақырыбына тірек сөздерді қолданып, 4 жолды өлең немесе шағын арнау жаз.</p>
+    <div class="task__body task__body--create"><div class="writezone"><div class="chips"><span class="chips__lead">Тірек сөздер</span><span class="chip">майдангер</span><span class="chip">туған жер</span><span class="chip">бейбітшілік</span><span class="chip">ерлік</span></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">1 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#C68A1E;">
+  <div class="tab">2</div>
+  <header class="chead">
+        <h2 class="chead__title">Соғыстан қайтқан солдаттар</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — алтын медаль ұстап отыр"><img class="mascot__img" src="konzhyq-medal.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>БСырбай ата соғыста болған. Ол Отанын қорғаған батыр ақын.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Соғыс жылдарындағы марапаттар мен құжаттарды зерделеу.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Қара</span>
+      <span class="task__instr">Орден мен медальдарды тап.</span></div>
+    <div class="task__body"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Бұрышта орден мен медаль саны қанша?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">«За победу над Германией…» медаль нөмірін жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text"> «Двадцать лет победы…» куәлік нөмірін жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text"> «Тридцать лет победы…» медалі қашан берілді?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">2 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#C68A1E;">
+  <div class="tab">2</div>
+  <header class="chead chead--cont">
+        <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Соғыстан қайтқан солдаттар</span></div>
+    <p class="task__instr task__instr--block">«Бейбітшілік» тақырыбында сурет сал. Аманкелді батырдың немесе өзге батырдың ерлігін елестет.</p>
+    <div class="task__body task__body--create"><div class="drawbox"><span>🎨 Суретіңді осы жерге сал</span></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">2 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#3E7D4E;">
+  <div class="tab">3</div>
+  <header class="chead">
+    <h2 class="chead__title">Еңбек жолы</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — көзілдірік киген журналист, жазу машинкасында отыр"><img class="mascot__img" src="konzhyq-journalist.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Сырбай ата журналист болған. Ол газетке жазған, кітап шығарған.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Ақынның қоғамдық және журналистік еңбек жолын зерделеу.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Ізде</span>
+      <span class="task__instr">Билеттер мен құжаттарды тап.</span></div>
+    <div class="task__body"><div class="q-grid"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Партиялық билет нөмірін жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Депутаттық билет нөмірін жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Украина Жоғарғы Кеңесі 1986 жылы 2 қазанда ақынға қандай марапат берді?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Қандай газеттерде қызмет атқарды?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">3 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#3E7D4E;">
+  <div class="tab">3</div>
+  <header class="chead chead--cont">
+    <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Еңбек жолы</span></div>
+    <p class="task__instr task__instr--block">Өз мектебіңді жарнамалап жаз. Жарнама — қызмет туралы қысқа әрі әдемі ақпарат.</p>
+    <div class="task__body task__body--create"><div class="writezone"><div class="chips"><span class="chips__lead">Тірек сөздер</span><span class="chip">мектеп</span><span class="chip">білім</span><span class="chip">достар</span><span class="chip">ұстаз</span></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">3 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#7C4C86;">
+  <div class="tab">4</div>
+  <header class="chead">
+    <h2 class="chead__title">Ақын жайлы мақалалар</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — газет оқып отыр"><img class="mascot__img" src="konzhyq-newspaper.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Ақынның достары ол туралы жылы сөздер жазған. Оны бәрі жақсы көрген.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Замандастары мен қаламдастарының ақын туралы пікірлерін оқып үйрену.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Оқы</span>
+      <span class="task__instr">Мақалаларды оқы.</span></div>
+    <div class="task__body"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Мұзафар Әлімбаев кім? Ол жазған эссе қалай аталады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">«Өттің дүние дөңгелеп» эссесінің авторы кім және ол қашан жарияланды?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">«Асқар тауға айналған ақын» эссесінің авторы кім?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">«И жизнь моя благодаря отцу» авторы ақынға кім болады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">4 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#7C4C86;">
+  <div class="tab">4</div>
+  <header class="chead chead--cont">
+   <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Ақын жайлы мақалалар</span></div>
+    <p class="task__instr task__instr--block">Ата немесе әже жайлы шағын эссе жаз. Оны қалай жақсы көретініңді айт.</p>
+    <div class="task__body task__body--create"><div class="writezone">
+            <p class="letter__open">Құрметті Сырбай ата!</p>
+            <div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div><div class="wl wl--letter"></div>
+            <p class="letter__close">Құрметпен, <span class="letter__sign"></span></p>
+        </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">4 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#3D6E93;">
+  <div class="tab">5</div>
+  <header class="chead">
+  <h2 class="chead__title">Қолтаңбалы кітаптар</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — кітап құшақтап тұр"><img class="mascot__img" src="konzhyq-book.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Жазушылар Сырбай атаға кітап сыйлаған. Кітапқа қолтаңба жазған.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Қолтаңбалы кітаптардың құндылығын ұғыну және авторларды анықтау.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Ізде</span>
+      <span class="task__instr">Кітаптардың авторын тап.</span></div>
+    <div class="task__body"><div class="q-grid"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Неге бұл бұрыш «Қолтаңбалы кітаптар» деп аталды? </p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">М. Мағауиннің кітабы қалай аталады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Сайын Мұратбеков кітабын қашан сыйлаған?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">5 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#3D6E93;">
+  <div class="tab">5</div>
+  <header class="chead chead--cont">
+   <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Қолтаңбалы кітаптар</span></div>
+    <p class="task__instr task__instr--block">Шығарма аты бойынша авторларын тауып, тігінен «ҚОЛТАҢБАЛЫ» сөзін шығар.</p>
+    <div class="task__body task__body--create"><div class="cw">
+      <ol class="cw__clues"><li><span class="cw__n">1</span>Мәңгілік шырақ</li><li><span class="cw__n">2</span>Корьен серләре</li><li><span class="cw__n">3</span>Арман жолында</li><li><span class="cw__n">4</span>Сұңқар жерді мекендейді</li><li><span class="cw__n">5</span>Біз әлі кездесеміз</li><li><span class="cw__n">6</span>Бес белес</li><li><span class="cw__n">7</span>Саралан малайлары</li><li><span class="cw__n">8</span>Қобыз сарыны</li><li><span class="cw__n">9</span>Өмірдің өзі дастан</li><li><span class="cw__n">10</span>Қыран тауы</li></ol>
+      <div class="cw__grid-wrap"><table class="cw-grid"><tr><td class="cw-row-n">1</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Қ</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">2</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">О</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">3</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Л</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">4</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Т</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">5</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">А</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">6</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Ң</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">7</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Б</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">8</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">А</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">9</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Л</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">10</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Ы</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr></table>
+        <p class="cw__hint">Жауабыңды жолмен жаз — бояулы баған тігінен «ҚОЛТАҢБАЛЫ» болып шықсын.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">5 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#C05A34;">
+  <div class="tab">6</div>
+  <header class="chead">
+  <h2 class="chead__title">Сыршыл ақын Сырбай</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — қарындаш ұстап, өлең ойлап отыр"><img class="mascot__img" src="konzhyq-tablet.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Сырбай ата көп өлең жазған. Оның өлеңдері әдемі әрі жылы.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Ақынның басылымдары мен өлең жинақтарымен танысу.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Оқы</span>
+      <span class="task__instr">Өлең жинақтарын қара.</span></div>
+    <div class="task__body"><div class="q-grid"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Бұл бұрышта неше кітап бар?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">№1. Кітаптың атын жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">№5 жәдігер. Кітаптың атын жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">№7 жәдігер. Кітаптың атын жаз.</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">6 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#C05A34;">
+  <div class="tab">6</div>
+  <header class="chead chead--cont">
+   <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Сыршыл ақын Сырбай</span></div>
+    <p class="task__instr task__instr--block">Өлең жолдарындағы түсіп қалған сөздерді тауып, тігінен «КІТАПТАР» сөзін құрастыр.</p>
+    <div class="task__body task__body--create"><div class="cw">
+      <ol class="cw__clues"><li><span class="cw__n">1</span>…… төбеде тұр</li><li><span class="cw__n">2</span>Өлеңім …… менің</li><li><span class="cw__n">3</span>Күзгі ……</li><li><span class="cw__n">4</span>Ақшамның қызыл ……</li><li><span class="cw__n">5</span>Жыр ……, сыр сұңқары Сырбай</li><li><span class="cw__n">6</span>…… тасқын</li><li><span class="cw__n">7</span>Барлаушы ……</li><li><span class="cw__n">8</span>…… Мәуленов</li></ol>
+      <div class="cw__grid-wrap"><table class="cw-grid"><tr><td class="cw-row-n">1</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">К</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">2</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">І</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">3</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Т</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">4</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">А</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">5</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">П</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">6</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Т</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">7</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">А</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr><tr><td class="cw-row-n">8</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell cw-cell--key">Р</td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td><td class="cw-cell"></td></tr></table>
+        <p class="cw__hint">Жауабыңды жолмен жаз — бояулы баған тігінен «КІТАПТАР» болып шықсын.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">6 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#8A6D2A;">
+  <div class="tab">7</div>
+  <header class="chead">
+   <h2 class="chead__title">Өмірден қалған естеліктер</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — комбинезон киіп, қалпақ пен сағатқа қарап тұр"><img class="mascot__img" src="konzhyq-overalls.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Мұнда ақынның жеке заттары бар: сағаты, қалпағы, жазу машинкасы.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Ақынның жеке заттары мен тарихи фотосуреттерді сипаттау.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Қара</span>
+      <span class="task__instr">Жеке заттарды қарап, сұрақтарға жауап жаз.</span></div>
+    <div class="task__body"><div class="q-grid"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text"> Жұмыс машинасы қалай аталады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text"> Сағатта кімнің аты жазылған?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Бес жұлдызды бас киім қалай аталады?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">7 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#8A6D2A;">
+  <div class="tab">7</div>
+  <header class="chead chead--cont">
+  <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Өмірден қалған естеліктер</span></div>
+    <p class="task__instr task__instr--block">Бір жеке затты таңдап, ол туралы теңеу сөздерді қатыстырып шағын мәтін құрастыр.</p>
+    <div class="task__body task__body--create"><div class="writezone"><div class="chips"><span class="chips__lead">Тірек сөздер</span><span class="chip">…дай/…дей</span><span class="chip">…ша/…ше</span><span class="chip">…сынды</span></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">7 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#4E7B3A;">
+  <div class="tab">8</div>
+  <header class="chead">
+  <h2 class="chead__title">Сырбайтану жұмыстары</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — бітіру қалпағын киіп, диплом ұстап тұр"><img class="mascot__img" src="konzhyq-diploma.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Балалар Сырбай ата туралы зерттейді, диплом жеңіп алады.</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Сырбайтану ғылымы мен мектеп тарихын зерделеу.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Қара</span>
+      <span class="task__instr">Бұрышты қарап, жауап жаз.</span></div>
+    <div class="task__body"><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Бұрышта неше диплом бар?</p><div class="wl"></div><div class="wl"></div></div>
+    </div><div class="q">
+        <div class="q__bullet"></div>
+        <div class="q__body"><p class="q__text">Қонжық — неліктен музейге бойтұмар болды?</p><div class="wl"></div><div class="wl"></div></div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">8 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#4E7B3A;">
+  <div class="tab">8</div>
+  <header class="chead chead--cont">
+   <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Сырбайтану жұмыстары</span></div>
+    <p class="task__instr task__instr--block">«Сырбай» сөзіне бес жолды өлең (синквейн) құрастыр.</p>
+    <div class="task__body task__body--create"><p class="sq__note">🌳 «Балаларым — менің бұтақтарым» деген жолды басшылыққа ал.</p><div class="sq"><div class="sq__row"><div class="sq__lead"><b>1-жол</b><span>1 зат есім — тақырып</span></div><div class="sq__line"></div></div><div class="sq__row"><div class="sq__lead"><b>2-жол</b><span>2 сын есім</span></div><div class="sq__line"></div></div><div class="sq__row"><div class="sq__lead"><b>3-жол</b><span>3 етістік</span></div><div class="sq__line"></div></div><div class="sq__row"><div class="sq__lead"><b>4-жол</b><span>4 сөзден тұратын сөйлем</span></div><div class="sq__line"></div></div><div class="sq__row"><div class="sq__lead"><b>5-жол</b><span>1 қорытынды сөз</span></div><div class="sq__line"></div></div></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">8 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--corner" style="--accent:#3F6C99;">
+  <div class="tab">9</div>
+  <header class="chead">
+    <h2 class="chead__title">Қабырғалар сөйлейді</h2>
+  </header>
+
+  <div class="intro">
+    <div class="mascot mascot--corner mascot--filled" role="img" aria-label="Қонжық — құлаққап киіп, ән тыңдап отыр"><img class="mascot__img" src="konzhyq-headphones.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+    <div class="intro__text"><div class="tip"><span class="tip__ico">💡</span><p>Экраннан Сырбай ата туралы бейне көруге болады. QR-кодты сканерле!</p></div><div class="goal"><span class="goal__ico">🎯</span><span>Бейнематериалдар арқылы ақын тұлғасын тереңірек тану.</span></div></div>
+  </div>
+
+  <div class="task">
+    <div class="task__head"><span class="task__pill">1-тапсырма</span>
+      <span class="task__verb">Тап</span>
+      <span class="task__instr">Электронды кітапхананы тап. Бір бейнебаянды таңда. Құлаққаппен тыңда.</span></div>
+    <div class="task__body"><div class="video">
+        <p class="video__lead">Қай бейнені таңдадың? Белгіле:</p>
+        <div class="vopts"><label class="vopt"><span class="vopt__box"></span><span class="vopt__tag">A</span><span class="vopt__txt">«Ұмытпаймыз» бейнесі бойынша</span></label><label class="vopt"><span class="vopt__box"></span><span class="vopt__tag">B</span><span class="vopt__txt">«Жарқын бейне» бейнесі бойынша</span></label><label class="vopt"><span class="vopt__box"></span><span class="vopt__tag">C</span><span class="vopt__txt">«Өмірі мен шығармашылығы» бейнесі бойынша</span></label></div>
+        <p class="video__lead video__lead--q">Бес сұраққа жауабыңды жаз:</p>
+        <div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div>
+    </div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">9 / 9 · А</span></footer>
+</section>
+<section class="page page--corner page--create" style="--accent:#3F6C99;">
+  <div class="tab">9</div>
+  <header class="chead chead--cont">
+    <span class="chead__badge">🎬 9-бұрыш</span>
+    <h2 class="chead__title chead__title--cont">Шығармашылық жұмыс</h2>
+  </header>
+
+  <div class="task task--creative">
+    <div class="task__head"><span class="task__pill task__pill--2">2-тапсырма</span>
+      <span class="task__verb">Қабырғалар сөйлейді</span></div>
+    <p class="task__instr task__instr--block">«Мен таныған — Сырбай ата» тақырыбында ойтолғау жаз.</p>
+    <div class="task__body task__body--create"><div class="writezone"><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div></div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">9 / 9 · Ә</span></footer>
+</section>
+
+<section class="page page--final">
+  <div class="mascot mascot--hero mascot--filled" role="img" aria-label="Қонжық — қуанып секіріп тұр, айналасында жұлдызшалар"><img class="mascot__img" src="konzhyq-jump.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+  <h1 class="final__title">Жарайсың!</h1>
+  <p class="final__sub">Сен музейді араладың.<br>Сырбай ата туралы көп нәрсе білдің!</p>
+  <div class="fav">
+    <p class="fav__title">💛 Маған ең ұнаған бұрыш</p>
+    <div class="wl wl--fav"></div><div class="wl wl--fav"></div>
+  </div>
+  <div class="fav">
+    <p class="fav__title">⭐ Келесіде білгім келеді</p>
+    <div class="wl wl--fav"></div><div class="wl wl--fav"></div>
+  </div>
+  <footer class="pfoot"><span class="pfoot__paw">🐾</span>Сырбай Мәуленов әдеби музейі</footer>
+</section>
+</main>
+</body>
+</html>
