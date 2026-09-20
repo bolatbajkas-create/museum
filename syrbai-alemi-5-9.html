@@ -124,6 +124,22 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
   padding:7px 18px; border-radius:999px; }
 .cov__flow i{ color:var(--gold-d); font-style:normal; font-size:13pt; }
 .cov__tag{ margin:9mm auto 0; max-width:130mm; font-family:var(--font-d); font-style:italic; font-size:13pt; color:var(--ink-soft); }
+.cov__author{ margin:6mm 0 0; font-size:9.8pt; color:var(--muted); }
+.cov__author b{ color:var(--ink); font-weight:700; }
+.back__author{ font-size:9.4pt; color:var(--muted); margin:5mm 0 0; }
+.back__author b{ color:var(--ink); }
+/* дайын ойын карточкалары (5–9 — ойнаушы деңгейі) */
+.games{ display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-bottom:3.5mm; }
+.game{ background:#fff; border:1px solid var(--line); border-top:3.5px solid var(--sc);
+  border-radius:11px; padding:3.2mm 3.4mm; }
+.game__top{ display:flex; align-items:center; gap:6px; margin-bottom:1.8mm; }
+.game__n{ font-size:9.4pt; font-weight:700; color:var(--ink); line-height:1.2; }
+.game__d{ font-size:7.5pt; color:var(--muted); line-height:1.35; margin:0 0 2mm; }
+.game__pick{ display:flex; align-items:center; gap:6px; font-size:8pt; font-weight:700; color:var(--ink-soft); }
+.game__pick span{ width:13px; height:13px; border:1.7px solid var(--sc); border-radius:4px; flex:0 0 13px; }
+.byline{ display:flex; align-items:center; gap:8px; background:var(--paper2); border-radius:10px;
+  padding:2.8mm 4.5mm; margin-bottom:3.5mm; font-size:8.8pt; color:var(--ink-soft); }
+.byline b{ color:var(--ink); }
 .cov__owner{ margin-top:auto; text-align:left; border-top:1.4px solid var(--line); padding-top:7mm; }
 .mf{ display:flex; align-items:baseline; gap:9px; margin-bottom:4mm; }
 .mf span{ font-size:10pt; font-weight:700; color:var(--ink); flex:0 0 auto; }
@@ -185,6 +201,32 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
 .pfoot__n{ margin-left:auto; }
 .pfoot--cover{ position:static; margin-top:6mm; justify-content:center; }
 
+
+/* ---------- LUMIO интерактивті тапсырмалары ---------- */
+.lum{ background:#fff; border:1px solid var(--line); border-left:5px solid var(--sc);
+  border-radius:13px; padding:4.6mm 5.4mm; margin-bottom:4mm; }
+.lum__top{ display:flex; align-items:center; gap:9px; margin-bottom:2.4mm; }
+.lum__kind{ font-family:var(--font-m); font-size:7.6pt; letter-spacing:.05em; color:var(--sc);
+  text-transform:uppercase; }
+.lum__n{ display:block; font-family:var(--font-d); font-weight:800; font-size:12.5pt;
+  color:var(--ink); line-height:1.2; }
+.lum__d{ font-size:9.3pt; color:var(--ink-soft); line-height:1.5; margin:0 0 2.6mm; }
+.lum__do{ display:flex; align-items:center; gap:7px; font-size:8.6pt; font-weight:700;
+  color:var(--ink-soft); }
+.lum__do span{ width:13px; height:13px; border:1.7px solid var(--sc); border-radius:4px; flex:0 0 13px; }
+
+/* кіру коды блогы */
+.access{ background:var(--paper2); border:1.6px dashed var(--gold-d); border-radius:13px;
+  padding:5mm 6mm; margin-bottom:4mm; }
+.access__hd{ display:flex; align-items:center; gap:9px; margin-bottom:3mm; }
+.access__hd b{ font-family:var(--font-d); font-size:12pt; color:var(--ink); }
+.access__steps{ margin:0; padding-left:5.5mm; font-size:9.3pt; color:var(--ink-soft); line-height:1.75; }
+.access__steps b{ color:var(--ink); }
+.access__code{ display:inline-block; font-family:var(--font-m); font-size:13pt; font-weight:700;
+  letter-spacing:.14em; color:var(--ink); background:#fff; border:1.6px solid var(--gold);
+  border-radius:8px; padding:2px 12px; }
+.access__site{ font-family:var(--font-m); font-size:9.6pt; color:var(--gold-d); }
+
 @page{ size:A4 portrait; margin:0; }
 @media print{
   html,body{ background:#fff; }
@@ -209,17 +251,18 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <div class="cov__badges"><span class="sbadge" style="--sc:#C97B3C;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span><span class="sbadge" style="--sc:#0D3B66;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="sbadge" style="--sc:#3E7D4E;width:56px;height:56px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span></div>
     <p class="cov__series">Сырбай әлемі</p>
     <h2 class="cov__title">Жұмыс дәптері</h2>
-    <p class="cov__grade">Негізгі орта білім беру деңгейі · 5–9 сынып</p>
+    <p class="cov__grade">Негізгі орта білім · 5–9 сынып</p>
     <div class="cov__flow">
       <span style="--sc:#C97B3C">Ойна</span><i>→</i>
       <span style="--sc:#0D3B66">Ойла</span><i>→</i>
       <span style="--sc:#3E7D4E">Біл</span>
     </div>
     <p class="cov__tag">Сырбай Мәуленов шығармаларын ойын арқылы зертте!</p>
+    <p class="cov__author">Құрастырушы: <b>Б.Б. Байқас</b></p>
   </div>
 
   <nav class="toc">
-    <div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">2</span><span class="toc__t">Менің зерттеу жолым</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">3</span><span class="toc__t">Ойна</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">4</span><span class="toc__t">Ойла — ЖИ мен тақырып</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">5</span><span class="toc__t">Құндылықты таны</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">6</span><span class="toc__t">Әдеби зертхана</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">7</span><span class="toc__t">Біліміңді дәлелде</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">8</span><span class="toc__t">Өзіңді бағала</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">9</span><span class="toc__t">Ойынды қайта ойна</span></div>
+    <div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">2</span><span class="toc__t">Менің зерттеу жолым</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">3</span><span class="toc__t">Ойна</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">4</span><span class="toc__t">Lumio интерактивтері</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">5</span><span class="toc__t">Ойла — ЖИ мен тақырып</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#0D3B66"></span><span class="toc__n">6</span><span class="toc__t">Құндылықты таны</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">7</span><span class="toc__t">Әдеби зертхана</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">8</span><span class="toc__t">Біліміңді дәлелде</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#3E7D4E"></span><span class="toc__n">9</span><span class="toc__t">Өзіңді бағала</span></div><div class="toc__row"><span class="toc__dot" style="--sc:#C97B3C"></span><span class="toc__n">10</span><span class="toc__t">Ойынды қайта ойна</span></div>
   </nav>
 
   <div class="cov__owner">
@@ -260,7 +303,7 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p>Әр беттің жиегіндегі түсті белгі қай қадамда тұрғаныңды көрсетеді: қызғылт-сары — ойна, көк — ойла, жасыл — біл.</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">2 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">2 / 10</span></footer>
 </section>
 
 <section class="page" style="--stage:#C97B3C;--stage-d:#9C5B27">
@@ -271,41 +314,127 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <h2 class="phead__title">Ойна</h2>
   </header>
 
-  <p class="lead">«Ақынға арналған цифрлық платформа» бөлімінен бір ойынды таңда. Ойынды ойна. Сұрақтарға жауап бер. Өз нәтижеңді белгіле.</p>
+  <p class="lead">Төмендегі бес ойынның бірін таңда. Ойна. Сұрақтарға жауап бер. Өз нәтижеңді белгіле.</p>
 
-  <div class="toolstrip">
-    <span class="toolstrip__lb">Мұндай платформалардан таба аласың</span>
-    <div class="toolstrip__row"><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#E24E1B;font-size:14px">W</span><span class="gtool__n">Wordwall</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#8854C0;font-size:14px">Q</span><span class="gtool__n">Quizizz</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#46178F;font-size:14px">K!</span><span class="gtool__n">Kahoot!</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#2C9CDB;font-size:14px">LA</span><span class="gtool__n">LearningApps</span></div><div class="gtool"><span class="logo" style="width:34px;height:34px;background:#F3901D;font-size:14px">S</span><span class="gtool__n">Scratch</span></div></div>
+  <div class="byline">
+    <span class="sbadge" style="--sc:#C97B3C;width:26px;height:26px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6l4.6 9.4 10.4 1.5-7.5 7.3 1.8 10.3L24 29.6l-9.3 4.9 1.8-10.3-7.5-7.3 10.4-1.5L24 6z" fill="#fff"/></svg></span>
+    <span>Бұл ойындарды <b>10–11 сынып оқушылары</b> Сырбай Мәуленов шығармалары негізінде өздері құрастырған.</span>
+  </div>
+
+  <div class="games">
+    <div class="game" style="--sc:#8854C0">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#8854C0;font-size:12px">W</span><b class="game__n">Wayground<br>викторинасы</b></div>
+      <p class="game__d">Ұпайлы викторина: сұрақтарға уақытпен жауап бересің, нәтиже бірден шығады.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
+    <div class="game" style="--sc:#12B886">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#12B886;font-size:13px">Q</span><b class="game__n">Quizgecko<br>тесті</b></div>
+      <p class="game__d">Мәтін бойынша тест: оқып түсінгеніңді тексеретін сұрақтар жинағы.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
+    <div class="game" style="--sc:#F0654A">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#F0654A;font-size:13px">C</span><b class="game__n">Conker<br>жаттығуы</b></div>
+      <p class="game__d">Оқып-түсіну жаттығуы: сәйкестендіру, толықтыру тапсырмалары.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
+    <div class="game" style="--sc:#2F80ED">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#2F80ED;font-size:13px">I</span><b class="game__n">Interacty<br>интерактиві</b></div>
+      <p class="game__d">Көрнекі ойын: пазл, жад ойыны, жұп табу — суретпен жұмыс.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
+    <div class="game" style="--sc:#FF5B4A">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#FF5B4A;font-size:12px">Lu</span><b class="game__n">Lumio<br>ойыны</b></div>
+      <p class="game__d">Сыныппен бірге ойнауға арналған интерактивті ойын.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
+    <div class="game" style="--sc:#7A8794">
+      <div class="game__top"><span class="logo" style="width:30px;height:30px;background:#7A8794;font-size:15px">?</span><b class="game__n">Басқа ойын</b></div>
+      <p class="game__d">Сайттағы «Оқушы жобалары» бөлімінен жаңа ойын тап.</p>
+      <div class="game__pick"><span></span>Осыны таңдадым</div>
+    </div>
   </div>
 
   <div class="card">
     <div class="dl"><span class="dl__lb">Мен таңдаған ойынның атауы</span><span class="dl__ln"></span></div>
     <div class="dl"><span class="dl__lb">Шығарма атауы</span><span class="dl__ln"></span></div>
-    <div class="dl"><span class="dl__lb">Ойынды құрастырған оқушы</span><span class="dl__ln"></span></div>
+    <div class="dl"><span class="dl__lb">Ойынды құрастырған 10–11 сынып оқушысы</span><span class="dl__ln"></span></div>
     <div class="row2"><div class="dl"><span class="dl__lb">Сыныбы</span><span class="dl__ln"></span></div><div class="score"><span>Ойын нәтижесі</span><span class="score__box"></span><span class="score__u">балл</span></div></div>
   </div>
 
   <h3 class="sec">Ойыннан кейін</h3>
   <div class="card">
     <p class="card__q">Маған ең қызықты болған тапсырма:</p>
+    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
+    <p class="card__q">Бұл ойын шығарманы түсінуге қалай көмектесті?</p>
     <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
   </div>
-  <div class="card">
-    <p class="card__q">Бұл тапсырма маған шығарманы түсінуге қалай көмектесті?</p>
-    <div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span><span class="wb__ln"></span></div>
-  </div>
 
-  <div class="tip">
-    <span class="tip__ico"><span class="sbadge" style="--sc:#C97B3C;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span></span>
-    <p>Ойынды бір реттен көп ойнауға болады — әр әрекетің жаңа ұпай әкеледі. Асықпа, сұрақты мұқият оқы!</p>
-  </div>
-
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">3 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">3 / 10</span></footer>
 </section>
+
+<section class="page" style="--stage:#C97B3C;--stage-d:#9C5B27">
+  <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#C97B3C"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></div>
+  <div class="tab" style="--sc:#C97B3C">2</div>
+  <header class="phead">
+    <div class="phead__row"><span class="sbadge" style="--sc:#C97B3C;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="19" fill="#fff"/><path d="M19.5 15.5v17l14-8.5-14-8.5z" fill="#FBF9F4"/></svg></span><span class="phead__kicker">1-тапсырма · Lumio</span></div>
+    <h2 class="phead__title">Lumio интерактивтері</h2>
+  </header>
+
+  <p class="lead">Lumio — сыныппен бірге ойнауға арналған платформа. Мұғалімің тақтаға ашады, сен телефоннан немесе компьютерден қосыласың. Үш тапсырманы <b>ретімен</b> орында.</p>
+
+  <div class="access">
+    <div class="access__hd">
+      <span class="sbadge" style="--sc:#FF5B4A;width:28px;height:28px"><svg viewBox="0 0 48 48" fill="none"><rect x="13" y="6" width="22" height="36" rx="4" stroke="#fff" stroke-width="3"/><circle cx="24" cy="35" r="2.4" fill="#fff"/></svg></span>
+      <b>Lumio интерактивті тапсырмасы</b>
+    </div>
+    <ol class="access__steps">
+      <li>Браузерде <span class="access__site">lumioclass.com</span> сайтын ашыңыз.</li>
+      <li>Сынып кодын енгізіңіз: <span class="access__code">915&nbsp;239</span></li>
+      <li>Тапсырманы орындап, нәтижесін тексеріңіз.</li>
+    </ol>
+  </div>
+
+  <div class="lum" style="--sc:#8854C0">
+    <div class="lum__top">
+      <span class="sbadge" style="--sc:#8854C0;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M10 14h12v12H10zM26 22h12v12H26z" stroke="#fff" stroke-width="3"/><path d="M22 20l4 4" stroke="#fff" stroke-width="3"/></svg></span>
+      <div><span class="lum__kind">Match 'Em Up · сәйкестендіру</span><b class="lum__n">Сырбайдың сырлы әлемі</b></div>
+    </div>
+    <p class="lum__d">Өлең үзінділерін тиісті көркемдегіш құралымен сәйкестендір: <b>эпитет, теңеу, метафора, кейіптеу</b>. Бәрін дұрыс тапсаң — айдаһарды жеңесің.</p>
+    <div class="lum__do"><span></span>Орындадым</div>
+  </div>
+
+  <div class="lum" style="--sc:#12B886">
+    <div class="lum__top">
+      <span class="sbadge" style="--sc:#12B886;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><path d="M12 12h10v24H12zM26 12h10v24H26z" stroke="#fff" stroke-width="3"/></svg></span>
+      <div><span class="lum__kind">Super Sort · топтастыру</span><b class="lum__n">Сырда туып, Қырда өстім</b></div>
+    </div>
+    <p class="lum__d">Берілген сөздер мен сөз тіркестерін екі санатқа жылдам сұрыпта: <b>«Сырда туып»</b> және <b>«Қырда өстім»</b>. Жауабыңды «Тексеру» батырмасымен растап ал.</p>
+    <div class="lum__do"><span></span>Орындадым</div>
+  </div>
+
+  <div class="lum" style="--sc:#FF5B4A">
+    <div class="lum__top">
+      <span class="sbadge" style="--sc:#FF5B4A;width:30px;height:30px"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="#fff" stroke-width="3"/><path d="M24 16v9l6 4" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></span>
+      <div><span class="lum__kind">Monster Quiz · экспресс-викторина</span><b class="lum__n">Ақынның өмірі мен шығармашылығы</b></div>
+    </div>
+    <p class="lum__d">Командаңмен бірге экспресс-викторинаға қатыс. Сұрақтарға уақытпен жауап беріп, кедергілерден өт.</p>
+    <div class="lum__do"><span></span>Орындадым</div>
+  </div>
+
+  <div class="card">
+    <div class="row2">
+      <div class="dl"><span class="dl__lb">Ең ұнағаны</span><span class="dl__ln"></span></div>
+      <div class="score"><span>Жинаған ұпайым</span><span class="score__box"></span><span class="score__u">балл</span></div>
+    </div>
+  </div>
+
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">4 / 10</span></footer>
+</section>
+
 
 <section class="page" style="--stage:#0D3B66;--stage-d:#092A49">
   <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#0D3B66"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#0D3B66"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#0D3B66"/></svg></div>
-  <div class="tab" style="--sc:#0D3B66">2</div>
+  <div class="tab" style="--sc:#0D3B66">3</div>
   <header class="phead">
     <div class="phead__row"><span class="sbadge" style="--sc:#0D3B66;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="phead__kicker">2-тапсырма · 1-бөлім</span></div>
     <h2 class="phead__title">Ойла</h2>
@@ -335,12 +464,12 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p>ЖИ құралы — сенің көмекшің. Ол сұрақ құрастырды, суретті безендірді — бірақ өлеңнің мағынасын тапқан өзің боласың.</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">4 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">5 / 10</span></footer>
 </section>
 
 <section class="page" style="--stage:#0D3B66;--stage-d:#092A49">
   <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#0D3B66"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#0D3B66"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#0D3B66"/></svg></div>
-  <div class="tab" style="--sc:#0D3B66">3</div>
+  <div class="tab" style="--sc:#0D3B66">4</div>
   <header class="phead">
     <div class="phead__row"><span class="sbadge" style="--sc:#0D3B66;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 7c-7 0-12.5 5.4-12.5 12 0 4.4 2.2 7.3 4.4 9.6 1.4 1.5 2 2.4 2.2 3.9h11.8c.2-1.5.8-2.4 2.2-3.9 2.2-2.3 4.4-5.2 4.4-9.6C36.5 12.4 31 7 24 7z" fill="#fff"/><rect x="18.5" y="33.5" width="11" height="3.2" rx="1.4" fill="#fff"/><rect x="20" y="38.2" width="8" height="2.6" rx="1.1" fill="#fff"/></svg></span><span class="phead__kicker">2-тапсырма · 2-бөлім</span></div>
     <h2 class="phead__title">Құндылықты таны</h2>
@@ -367,12 +496,12 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p>Құндылық дегеніміз — адам үшін маңызды нәрсе: достық, ерлік, еңбек, отан сүйгіштік. Өлеңнен соны тап.</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">5 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">6 / 10</span></footer>
 </section>
 
 <section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
   <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
-  <div class="tab" style="--sc:#3E7D4E">4</div>
+  <div class="tab" style="--sc:#3E7D4E">5</div>
   <header class="phead">
     <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">Әдеби зертхана</span></div>
     <h2 class="phead__title">Өлеңге талдау</h2>
@@ -397,12 +526,12 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p>Кеңес: бунақ — тыныс алу үшін жасалатын кідіріс, буын — сөздегі дауысты дыбысқа сүйенген бөлік. Дауыстап оқып, санап көр!</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">6 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">7 / 10</span></footer>
 </section>
 
 <section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
   <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
-  <div class="tab" style="--sc:#3E7D4E">5</div>
+  <div class="tab" style="--sc:#3E7D4E">6</div>
   <header class="phead">
     <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">3-тапсырма</span></div>
     <h2 class="phead__title">Біліміңді дәлелде</h2>
@@ -431,12 +560,12 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p>Зерттеуші әрқашан дәлел іздейді. Жауабыңды өлеңнен алған нақты мысалмен растауды ұмытпа.</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">7 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">8 / 10</span></footer>
 </section>
 
 <section class="page" style="--stage:#3E7D4E;--stage-d:#2C5B38">
   <div class="wmark"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#3E7D4E"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></div>
-  <div class="tab" style="--sc:#3E7D4E">6</div>
+  <div class="tab" style="--sc:#3E7D4E">7</div>
   <header class="phead">
     <div class="phead__row"><span class="sbadge" style="--sc:#3E7D4E;width:34px;height:34px"><svg viewBox="0 0 48 48" fill="none"><path d="M24 13.5c-3.4-2.4-8-3.4-14-2.8v22.6c6 -.6 10.6.4 14 2.8 3.4-2.4 8-3.4 14-2.8V10.7c-6-.6-10.6.4-14 2.8z" fill="#fff"/><path d="M24 13.5v22.6" stroke="#FBF9F4" stroke-width="1.5"/></svg></span><span class="phead__kicker">Өзіңді бағала</span></div>
     <h2 class="phead__title">Мен не үйрендім?</h2>
@@ -454,13 +583,13 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
     <p class="card__q">Келесі жолы мен:</p><div class="wb"><span class="wb__ln"></span><span class="wb__ln"></span></div>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">8 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">9 / 10</span></footer>
 </section>
 
 <section class="page page--back" style="--stage:#0D3B66;--stage-d:#092A49">
   <p class="back__eyebrow">Сырбай әлемі жалғасады…</p>
   <h2 class="back__title">Ойынды қайта ойна!</h2>
-  <p class="back__lead">«Ақынға арналған цифрлық платформаға» кіріп, басқа ойындарды да байқап көр.</p>
+  <p class="back__lead">Музей сайтындағы «Оқушы жобалары» бөліміне кіріп, 10–11 сынып оқушылары жасаған басқа ойындарды да байқап көр.</p>
 
   <div class="qrblock">
     <div class="qr"><svg class="qr__ic" viewBox="0 0 48 48" fill="none" stroke="#0D3B66" stroke-width="3"><rect x="4" y="4" width="14" height="14" rx="2"/><rect x="30" y="4" width="14" height="14" rx="2"/><rect x="4" y="30" width="14" height="14" rx="2"/><path d="M30 30h6v6M44 30v14M30 44h8" stroke-linecap="round"/></svg></div>
@@ -485,9 +614,10 @@ body{ margin:0; background:#DED6C4; color:var(--ink-soft); font-family:var(--fon
       <span style="--sc:#3E7D4E">Біл</span>
     </div>
     <p class="back__quote">Сырбай әлемін зерттеу — өзіңді танудан басталады.</p>
+    <p class="back__author">Құрастырушы: <b>Б.Б. Байқас</b> · Сырбай Мәуленов атындағы №37 мектеп-лицей, Астана</p>
   </div>
 
-  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">9 / 9</span></footer>
+  <footer class="pfoot"><span class="pfoot__paw">🐦</span>Сырбай Мәуленов әдеби музейі<span class="pfoot__n">10 / 10</span></footer>
 </section>
 </main>
 </body></html>
